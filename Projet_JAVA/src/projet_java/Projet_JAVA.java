@@ -4,6 +4,8 @@
  * and open the template in the editor.
  */
 package projet_java;
+import Controleur.Recherche;
+import java.util.ArrayList;
 
 /**
  *
@@ -16,6 +18,9 @@ public class Projet_JAVA {
      */
     public static void main(String[] args) {
         // TODO code application logic here
+        Recherche r = new Recherche(){};
+        ArrayList b = r.RechercheTable("Cours");
+        System.out.println(b);
     }
     
 }
