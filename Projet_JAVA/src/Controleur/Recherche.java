@@ -37,11 +37,12 @@ public class Recherche {
     public ArrayList RechercheTable(String table){
         try{
             String requete;
-            requete = "SELECT * FROM" + table;
+            requete = "SELECT * FROM " + table;
             return maconnexion.RequeteRetourListe(requete);
         }
         catch(SQLException e){
             System.out.println("Retour de la table impossible : probleme SQL");
+            e.printStackTrace();
             return null;
         }
     }
