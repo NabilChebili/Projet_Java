@@ -9,6 +9,7 @@ import javax.swing.JLabel;
 import javax.swing.JPanel;
 import javax.swing.JPasswordField;
 import javax.swing.JTextField;
+import Controleur.Connexion;
 
 public class GUI implements ActionListener {
 
@@ -60,7 +61,7 @@ public class GUI implements ActionListener {
         String pwd = pwdText.getText();
 
         System.out.println(user + " " + pwd);
-
+           
         if (user.equals("Pierre") && pwd.equals("password")) {
             success.setText("Login successful");
         }
