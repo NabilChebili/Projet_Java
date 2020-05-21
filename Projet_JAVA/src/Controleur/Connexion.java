@@ -4,7 +4,7 @@
  * and open the template in the editor.
  */
 package Controleur;
-import BDD.BDD;
+import DAO.BDD;
 import java.sql.SQLException;
 import java.util.ArrayList;
 
