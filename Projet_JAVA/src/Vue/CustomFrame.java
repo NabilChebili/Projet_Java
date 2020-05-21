@@ -6,6 +6,7 @@
 package Vue;
 
 import java.awt.*;
+import java.awt.event.*;
 import javax.swing.*;
 import static javax.swing.JFrame.*;
 import java.util.*;
@@ -14,7 +15,7 @@ import java.util.*;
  *
  * @author pierr
  */
-public class CustomFrame extends JFrame{
+public class CustomFrame extends JFrame implements ActionListener{
     
     public static void main(String args[]) {
         new CustomFrame().setVisible(true);
@@ -22,6 +23,19 @@ public class CustomFrame extends JFrame{
     
     public CustomFrame() {
         initEDT();
+    }
+    
+    @Override
+    public void actionPerformed(ActionEvent ae) {
+        String action = ae.getActionCommand();
+        if (action.equals("Yes")) {
+            System.out.println("Yes Button pressed!");
+            toggleVisibility();
+        }
+        else if (action.equals("No")) {
+            System.out.println("No Button pressed!");
+            pContent.add(new JLabel("test"));
+        }
     }
     
     private void initEDT() {
@@ -44,16 +58,15 @@ public class CustomFrame extends JFrame{
             ArrayList<JPanel> jour = new ArrayList<JPanel>();
             initArray(jour, 410 + (100+20)*i, 0, 5, 7, new Color(((i*(255/6))),120,220));
             linkArray(jour, pContent);
-            System.out.println(((i*(255/6))/255));
-            System.out.println(i);
         }
         
-        /* JPanel pElem = new JPanel();
-        pElem.setSize(300, 200);
-        pElem.setLocation(500, 200);
-        //pElem.setLocation(0,0);
-        pElem.setBackground(Color.blue);
-        pContent.add(pElem, 0); */
+        JButton yes = new JButton("Yes");
+        JButton no = new JButton("No");
+        yes.addActionListener(this);
+        no.addActionListener(this);
+
+        pMenu.add(yes);
+        pMenu.add(no);
         
         fMain.add(pMenu);
         fMain.add(pContent);
@@ -62,11 +75,14 @@ public class CustomFrame extends JFrame{
     private void initArray(ArrayList<JPanel> today, int x, int y, int gap, int nbColumn, Color color) {
         for (int i = 0; i < nbColumn; i++) {
             JPanel pElem = new JPanel();
+            // TODO: Implement CoursWidget
+            //CoursWidget pElem = new CoursWidget("Bonjour", Color.RED);
             pElem.setSize(100, 80);
             pElem.setLocation(x, y  + (100 + gap)*i + gap*2);
             //pElem.setLocation(0,0);
             pElem.setBackground(color);
-            
+            pElem.add(new JLabel("Comment tu vas mon chères amis, moi pour le moment ça va bien hamdoula"));
+            pElem.add(new JLabel());
             today.add(pElem);
         }
     }
@@ -77,7 +93,18 @@ public class CustomFrame extends JFrame{
         }
     }
     
+    public void toggleVisibility (){
+        if (pContent.isVisible()) {
+            pContent.setVisible(false);
+        } else {
+            pContent.setVisible(true);
+        }
+    }
+    
     private JFrame fMain;
     private JPanel pMenu;
     private JLayeredPane pContent;
+    
+    private JButton yes;
+    private JButton no;
 }
