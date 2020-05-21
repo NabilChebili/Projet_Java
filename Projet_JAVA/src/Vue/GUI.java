@@ -1,4 +1,4 @@
-package projet_java;
+package Vue;
 
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;

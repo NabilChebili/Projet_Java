@@ -30,11 +30,82 @@ public class FirstFrame extends javax.swing.JFrame {
     private void initComponents() {
 
         jPanel1 = new javax.swing.JPanel();
+        jPanel4 = new javax.swing.JPanel();
+        menuPanel = new javax.swing.JPanel();
         jButton1 = new javax.swing.JButton();
         jButton2 = new javax.swing.JButton();
-        jLayeredPane1 = new javax.swing.JLayeredPane();
-        jPanel4 = new javax.swing.JPanel();
-        jPanel3 = new javax.swing.JPanel();
+        contentPanel = new javax.swing.JLayeredPane();
+        lundi40 = new javax.swing.JPanel();
+        mardi9 = new javax.swing.JPanel();
+        lundi12 = new javax.swing.JPanel();
+        lundi25 = new javax.swing.JPanel();
+        lundi39 = new javax.swing.JPanel();
+        lundi11 = new javax.swing.JPanel();
+        lundi20 = new javax.swing.JPanel();
+        lundi3 = new javax.swing.JPanel();
+        lundi6 = new javax.swing.JPanel();
+        lundi4 = new javax.swing.JPanel();
+        lundi1 = new javax.swing.JPanel();
+        lundi5 = new javax.swing.JPanel();
+        lundi2 = new javax.swing.JPanel();
+        mardi2 = new javax.swing.JPanel();
+        mardi5 = new javax.swing.JPanel();
+        mardi3 = new javax.swing.JPanel();
+        mardi4 = new javax.swing.JPanel();
+        mardi6 = new javax.swing.JPanel();
+        mardi1 = new javax.swing.JPanel();
+        mardi7 = new javax.swing.JPanel();
+        lundi7 = new javax.swing.JPanel();
+        lundi8 = new javax.swing.JPanel();
+        lundi15 = new javax.swing.JPanel();
+        mercredi3 = new javax.swing.JPanel();
+        lundi19 = new javax.swing.JPanel();
+        mercredi6 = new javax.swing.JPanel();
+        lundi27 = new javax.swing.JPanel();
+        lundi9 = new javax.swing.JPanel();
+        mardi8 = new javax.swing.JPanel();
+        lundi36 = new javax.swing.JPanel();
+        lundi10 = new javax.swing.JPanel();
+        lundi22 = new javax.swing.JPanel();
+        lundi38 = new javax.swing.JPanel();
+        lundi21 = new javax.swing.JPanel();
+        mercredi4 = new javax.swing.JPanel();
+        lundi23 = new javax.swing.JPanel();
+        lundi24 = new javax.swing.JPanel();
+        mercredi1 = new javax.swing.JPanel();
+        lundi26 = new javax.swing.JPanel();
+        mercredi5 = new javax.swing.JPanel();
+        mercredi7 = new javax.swing.JPanel();
+        mercredi2 = new javax.swing.JPanel();
+        lundi30 = new javax.swing.JPanel();
+        lundi31 = new javax.swing.JPanel();
+        lundi32 = new javax.swing.JPanel();
+        lundi33 = new javax.swing.JPanel();
+        lundi34 = new javax.swing.JPanel();
+        lundi35 = new javax.swing.JPanel();
+        lundi37 = new javax.swing.JPanel();
+
+        javax.swing.GroupLayout jPanel1Layout = new javax.swing.GroupLayout(jPanel1);
+        jPanel1.setLayout(jPanel1Layout);
+        jPanel1Layout.setHorizontalGroup(
+            jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGap(0, 100, Short.MAX_VALUE)
+        );
+        jPanel1Layout.setVerticalGroup(
+            jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGap(0, 100, Short.MAX_VALUE)
+        );
+
+        javax.swing.GroupLayout jPanel4Layout = new javax.swing.GroupLayout(jPanel4);
+        jPanel4.setLayout(jPanel4Layout);
+        jPanel4Layout.setHorizontalGroup(
+            jPanel4Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGap(0, 100, Short.MAX_VALUE)
+        );
+        jPanel4Layout.setVerticalGroup(
+            jPanel4Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGap(0, 100, Short.MAX_VALUE)
+        );
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
         setMaximumSize(new java.awt.Dimension(800, 450));
@@ -42,7 +113,7 @@ public class FirstFrame extends javax.swing.JFrame {
         setPreferredSize(new java.awt.Dimension(800, 450));
         setResizable(false);
 
-        jPanel1.setBackground(new java.awt.Color(255, 255, 255));
+        menuPanel.setBackground(new java.awt.Color(255, 255, 255));
 
         jButton1.setText("OnClick");
         jButton1.addActionListener(new java.awt.event.ActionListener() {
@@ -58,97 +129,938 @@ public class FirstFrame extends javax.swing.JFrame {
             }
         });
 
-        javax.swing.GroupLayout jPanel1Layout = new javax.swing.GroupLayout(jPanel1);
-        jPanel1.setLayout(jPanel1Layout);
-        jPanel1Layout.setHorizontalGroup(
-            jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(jPanel1Layout.createSequentialGroup()
+        javax.swing.GroupLayout menuPanelLayout = new javax.swing.GroupLayout(menuPanel);
+        menuPanel.setLayout(menuPanelLayout);
+        menuPanelLayout.setHorizontalGroup(
+            menuPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(menuPanelLayout.createSequentialGroup()
                 .addContainerGap()
                 .addComponent(jButton1)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 87, Short.MAX_VALUE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                 .addComponent(jButton2)
                 .addContainerGap())
         );
-        jPanel1Layout.setVerticalGroup(
-            jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(jPanel1Layout.createSequentialGroup()
+        menuPanelLayout.setVerticalGroup(
+            menuPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(menuPanelLayout.createSequentialGroup()
                 .addContainerGap()
-                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                .addGroup(menuPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jButton1)
                     .addComponent(jButton2))
                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
 
-        jLayeredPane1.setBackground(new java.awt.Color(120, 240, 240));
-        jLayeredPane1.setFocusTraversalPolicyProvider(true);
-        jLayeredPane1.setPreferredSize(new java.awt.Dimension(1350, 675));
+        contentPanel.setBackground(new java.awt.Color(120, 240, 240));
+        contentPanel.setFocusTraversalPolicyProvider(true);
+        contentPanel.setMaximumSize(new java.awt.Dimension(1350, 675));
+        contentPanel.setMinimumSize(new java.awt.Dimension(1350, 675));
+        contentPanel.setLayout(new java.awt.GridLayout(7, 7, 10, 10));
 
-        jPanel4.setBackground(new java.awt.Color(240, 240, 0));
+        lundi40.setBackground(new java.awt.Color(240, 240, 0));
+        lundi40.setMaximumSize(new java.awt.Dimension(100, 40));
+        lundi40.setMinimumSize(new java.awt.Dimension(100, 40));
+        lundi40.setName(""); // NOI18N
 
-        javax.swing.GroupLayout jPanel4Layout = new javax.swing.GroupLayout(jPanel4);
-        jPanel4.setLayout(jPanel4Layout);
-        jPanel4Layout.setHorizontalGroup(
-            jPanel4Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 174, Short.MAX_VALUE)
+        javax.swing.GroupLayout lundi40Layout = new javax.swing.GroupLayout(lundi40);
+        lundi40.setLayout(lundi40Layout);
+        lundi40Layout.setHorizontalGroup(
+            lundi40Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGap(0, 0, Short.MAX_VALUE)
         );
-        jPanel4Layout.setVerticalGroup(
-            jPanel4Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 312, Short.MAX_VALUE)
-        );
-
-        jPanel3.setBackground(new java.awt.Color(0, 240, 240));
-
-        javax.swing.GroupLayout jPanel3Layout = new javax.swing.GroupLayout(jPanel3);
-        jPanel3.setLayout(jPanel3Layout);
-        jPanel3Layout.setHorizontalGroup(
-            jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 99, Short.MAX_VALUE)
-        );
-        jPanel3Layout.setVerticalGroup(
-            jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 232, Short.MAX_VALUE)
+        lundi40Layout.setVerticalGroup(
+            lundi40Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGap(0, 52, Short.MAX_VALUE)
         );
 
-        jLayeredPane1.setLayer(jPanel4, javax.swing.JLayeredPane.DEFAULT_LAYER);
-        jLayeredPane1.setLayer(jPanel3, javax.swing.JLayeredPane.DEFAULT_LAYER);
+        contentPanel.add(lundi40);
 
-        javax.swing.GroupLayout jLayeredPane1Layout = new javax.swing.GroupLayout(jLayeredPane1);
-        jLayeredPane1.setLayout(jLayeredPane1Layout);
-        jLayeredPane1Layout.setHorizontalGroup(
-            jLayeredPane1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(jLayeredPane1Layout.createSequentialGroup()
-                .addGap(114, 114, 114)
-                .addComponent(jPanel4, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(42, 42, 42)
-                .addComponent(jPanel3, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap(653, Short.MAX_VALUE))
+        mardi9.setBackground(new java.awt.Color(240, 240, 0));
+        mardi9.setMaximumSize(new java.awt.Dimension(100, 40));
+        mardi9.setMinimumSize(new java.awt.Dimension(100, 40));
+        mardi9.setName(""); // NOI18N
+
+        javax.swing.GroupLayout mardi9Layout = new javax.swing.GroupLayout(mardi9);
+        mardi9.setLayout(mardi9Layout);
+        mardi9Layout.setHorizontalGroup(
+            mardi9Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGap(0, 0, Short.MAX_VALUE)
         );
-        jLayeredPane1Layout.setVerticalGroup(
-            jLayeredPane1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(jLayeredPane1Layout.createSequentialGroup()
-                .addGroup(jLayeredPane1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addGroup(jLayeredPane1Layout.createSequentialGroup()
-                        .addGap(177, 177, 177)
-                        .addComponent(jPanel4, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                    .addGroup(jLayeredPane1Layout.createSequentialGroup()
-                        .addGap(46, 46, 46)
-                        .addComponent(jPanel3, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)))
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+        mardi9Layout.setVerticalGroup(
+            mardi9Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGap(0, 52, Short.MAX_VALUE)
         );
+
+        contentPanel.add(mardi9);
+
+        lundi12.setBackground(new java.awt.Color(240, 240, 0));
+        lundi12.setMaximumSize(new java.awt.Dimension(100, 40));
+        lundi12.setMinimumSize(new java.awt.Dimension(100, 40));
+        lundi12.setName(""); // NOI18N
+
+        javax.swing.GroupLayout lundi12Layout = new javax.swing.GroupLayout(lundi12);
+        lundi12.setLayout(lundi12Layout);
+        lundi12Layout.setHorizontalGroup(
+            lundi12Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGap(0, 0, Short.MAX_VALUE)
+        );
+        lundi12Layout.setVerticalGroup(
+            lundi12Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGap(0, 52, Short.MAX_VALUE)
+        );
+
+        contentPanel.add(lundi12);
+
+        lundi25.setBackground(new java.awt.Color(240, 240, 0));
+        lundi25.setMaximumSize(new java.awt.Dimension(100, 40));
+        lundi25.setMinimumSize(new java.awt.Dimension(100, 40));
+        lundi25.setName(""); // NOI18N
+
+        javax.swing.GroupLayout lundi25Layout = new javax.swing.GroupLayout(lundi25);
+        lundi25.setLayout(lundi25Layout);
+        lundi25Layout.setHorizontalGroup(
+            lundi25Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGap(0, 0, Short.MAX_VALUE)
+        );
+        lundi25Layout.setVerticalGroup(
+            lundi25Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGap(0, 52, Short.MAX_VALUE)
+        );
+
+        contentPanel.add(lundi25);
+
+        lundi39.setBackground(new java.awt.Color(240, 240, 0));
+        lundi39.setMaximumSize(new java.awt.Dimension(100, 40));
+        lundi39.setMinimumSize(new java.awt.Dimension(100, 40));
+        lundi39.setName(""); // NOI18N
+
+        javax.swing.GroupLayout lundi39Layout = new javax.swing.GroupLayout(lundi39);
+        lundi39.setLayout(lundi39Layout);
+        lundi39Layout.setHorizontalGroup(
+            lundi39Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGap(0, 0, Short.MAX_VALUE)
+        );
+        lundi39Layout.setVerticalGroup(
+            lundi39Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGap(0, 52, Short.MAX_VALUE)
+        );
+
+        contentPanel.add(lundi39);
+
+        lundi11.setBackground(new java.awt.Color(240, 240, 0));
+        lundi11.setMaximumSize(new java.awt.Dimension(100, 40));
+        lundi11.setMinimumSize(new java.awt.Dimension(100, 40));
+        lundi11.setName(""); // NOI18N
+
+        javax.swing.GroupLayout lundi11Layout = new javax.swing.GroupLayout(lundi11);
+        lundi11.setLayout(lundi11Layout);
+        lundi11Layout.setHorizontalGroup(
+            lundi11Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGap(0, 0, Short.MAX_VALUE)
+        );
+        lundi11Layout.setVerticalGroup(
+            lundi11Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGap(0, 52, Short.MAX_VALUE)
+        );
+
+        contentPanel.add(lundi11);
+
+        lundi20.setBackground(new java.awt.Color(240, 240, 0));
+        lundi20.setMaximumSize(new java.awt.Dimension(100, 40));
+        lundi20.setMinimumSize(new java.awt.Dimension(100, 40));
+        lundi20.setName(""); // NOI18N
+
+        javax.swing.GroupLayout lundi20Layout = new javax.swing.GroupLayout(lundi20);
+        lundi20.setLayout(lundi20Layout);
+        lundi20Layout.setHorizontalGroup(
+            lundi20Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGap(0, 0, Short.MAX_VALUE)
+        );
+        lundi20Layout.setVerticalGroup(
+            lundi20Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGap(0, 52, Short.MAX_VALUE)
+        );
+
+        contentPanel.add(lundi20);
+
+        lundi3.setBackground(new java.awt.Color(240, 240, 0));
+        lundi3.setMaximumSize(new java.awt.Dimension(100, 40));
+        lundi3.setMinimumSize(new java.awt.Dimension(100, 40));
+        lundi3.setName(""); // NOI18N
+        lundi3.setPreferredSize(new java.awt.Dimension(100, 40));
+
+        javax.swing.GroupLayout lundi3Layout = new javax.swing.GroupLayout(lundi3);
+        lundi3.setLayout(lundi3Layout);
+        lundi3Layout.setHorizontalGroup(
+            lundi3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGap(0, 0, Short.MAX_VALUE)
+        );
+        lundi3Layout.setVerticalGroup(
+            lundi3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGap(0, 52, Short.MAX_VALUE)
+        );
+
+        contentPanel.add(lundi3);
+
+        lundi6.setBackground(new java.awt.Color(240, 240, 0));
+        lundi6.setMaximumSize(new java.awt.Dimension(100, 40));
+        lundi6.setMinimumSize(new java.awt.Dimension(100, 40));
+        lundi6.setName(""); // NOI18N
+        lundi6.setPreferredSize(new java.awt.Dimension(100, 40));
+
+        javax.swing.GroupLayout lundi6Layout = new javax.swing.GroupLayout(lundi6);
+        lundi6.setLayout(lundi6Layout);
+        lundi6Layout.setHorizontalGroup(
+            lundi6Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGap(0, 0, Short.MAX_VALUE)
+        );
+        lundi6Layout.setVerticalGroup(
+            lundi6Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGap(0, 52, Short.MAX_VALUE)
+        );
+
+        contentPanel.add(lundi6);
+
+        lundi4.setBackground(new java.awt.Color(240, 240, 0));
+        lundi4.setMaximumSize(new java.awt.Dimension(100, 40));
+        lundi4.setMinimumSize(new java.awt.Dimension(100, 40));
+        lundi4.setName(""); // NOI18N
+        lundi4.setPreferredSize(new java.awt.Dimension(100, 40));
+
+        javax.swing.GroupLayout lundi4Layout = new javax.swing.GroupLayout(lundi4);
+        lundi4.setLayout(lundi4Layout);
+        lundi4Layout.setHorizontalGroup(
+            lundi4Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGap(0, 0, Short.MAX_VALUE)
+        );
+        lundi4Layout.setVerticalGroup(
+            lundi4Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGap(0, 52, Short.MAX_VALUE)
+        );
+
+        contentPanel.add(lundi4);
+
+        lundi1.setBackground(new java.awt.Color(240, 240, 0));
+        lundi1.setMaximumSize(new java.awt.Dimension(100, 40));
+        lundi1.setMinimumSize(new java.awt.Dimension(100, 40));
+        lundi1.setName(""); // NOI18N
+        lundi1.setPreferredSize(new java.awt.Dimension(100, 40));
+
+        javax.swing.GroupLayout lundi1Layout = new javax.swing.GroupLayout(lundi1);
+        lundi1.setLayout(lundi1Layout);
+        lundi1Layout.setHorizontalGroup(
+            lundi1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGap(0, 0, Short.MAX_VALUE)
+        );
+        lundi1Layout.setVerticalGroup(
+            lundi1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGap(0, 52, Short.MAX_VALUE)
+        );
+
+        contentPanel.add(lundi1);
+
+        lundi5.setBackground(new java.awt.Color(240, 240, 0));
+        lundi5.setMaximumSize(new java.awt.Dimension(100, 40));
+        lundi5.setMinimumSize(new java.awt.Dimension(100, 40));
+        lundi5.setName(""); // NOI18N
+        lundi5.setPreferredSize(new java.awt.Dimension(100, 40));
+
+        javax.swing.GroupLayout lundi5Layout = new javax.swing.GroupLayout(lundi5);
+        lundi5.setLayout(lundi5Layout);
+        lundi5Layout.setHorizontalGroup(
+            lundi5Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGap(0, 0, Short.MAX_VALUE)
+        );
+        lundi5Layout.setVerticalGroup(
+            lundi5Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGap(0, 52, Short.MAX_VALUE)
+        );
+
+        contentPanel.add(lundi5);
+
+        lundi2.setBackground(new java.awt.Color(240, 240, 0));
+        lundi2.setMaximumSize(new java.awt.Dimension(100, 40));
+        lundi2.setMinimumSize(new java.awt.Dimension(100, 40));
+        lundi2.setName(""); // NOI18N
+        lundi2.setPreferredSize(new java.awt.Dimension(100, 40));
+
+        javax.swing.GroupLayout lundi2Layout = new javax.swing.GroupLayout(lundi2);
+        lundi2.setLayout(lundi2Layout);
+        lundi2Layout.setHorizontalGroup(
+            lundi2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGap(0, 0, Short.MAX_VALUE)
+        );
+        lundi2Layout.setVerticalGroup(
+            lundi2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGap(0, 52, Short.MAX_VALUE)
+        );
+
+        contentPanel.add(lundi2);
+
+        mardi2.setBackground(new java.awt.Color(240, 240, 0));
+        mardi2.setMaximumSize(new java.awt.Dimension(100, 40));
+        mardi2.setMinimumSize(new java.awt.Dimension(100, 40));
+        mardi2.setName(""); // NOI18N
+
+        javax.swing.GroupLayout mardi2Layout = new javax.swing.GroupLayout(mardi2);
+        mardi2.setLayout(mardi2Layout);
+        mardi2Layout.setHorizontalGroup(
+            mardi2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGap(0, 0, Short.MAX_VALUE)
+        );
+        mardi2Layout.setVerticalGroup(
+            mardi2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGap(0, 52, Short.MAX_VALUE)
+        );
+
+        contentPanel.add(mardi2);
+
+        mardi5.setBackground(new java.awt.Color(240, 240, 0));
+        mardi5.setMaximumSize(new java.awt.Dimension(100, 40));
+        mardi5.setMinimumSize(new java.awt.Dimension(100, 40));
+        mardi5.setName(""); // NOI18N
+
+        javax.swing.GroupLayout mardi5Layout = new javax.swing.GroupLayout(mardi5);
+        mardi5.setLayout(mardi5Layout);
+        mardi5Layout.setHorizontalGroup(
+            mardi5Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGap(0, 0, Short.MAX_VALUE)
+        );
+        mardi5Layout.setVerticalGroup(
+            mardi5Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGap(0, 52, Short.MAX_VALUE)
+        );
+
+        contentPanel.add(mardi5);
+
+        mardi3.setBackground(new java.awt.Color(240, 240, 0));
+        mardi3.setMaximumSize(new java.awt.Dimension(100, 40));
+        mardi3.setMinimumSize(new java.awt.Dimension(100, 40));
+        mardi3.setName(""); // NOI18N
+
+        javax.swing.GroupLayout mardi3Layout = new javax.swing.GroupLayout(mardi3);
+        mardi3.setLayout(mardi3Layout);
+        mardi3Layout.setHorizontalGroup(
+            mardi3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGap(0, 0, Short.MAX_VALUE)
+        );
+        mardi3Layout.setVerticalGroup(
+            mardi3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGap(0, 52, Short.MAX_VALUE)
+        );
+
+        contentPanel.add(mardi3);
+
+        mardi4.setBackground(new java.awt.Color(240, 240, 0));
+        mardi4.setMaximumSize(new java.awt.Dimension(100, 40));
+        mardi4.setMinimumSize(new java.awt.Dimension(100, 40));
+        mardi4.setName(""); // NOI18N
+
+        javax.swing.GroupLayout mardi4Layout = new javax.swing.GroupLayout(mardi4);
+        mardi4.setLayout(mardi4Layout);
+        mardi4Layout.setHorizontalGroup(
+            mardi4Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGap(0, 0, Short.MAX_VALUE)
+        );
+        mardi4Layout.setVerticalGroup(
+            mardi4Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGap(0, 52, Short.MAX_VALUE)
+        );
+
+        contentPanel.add(mardi4);
+
+        mardi6.setBackground(new java.awt.Color(240, 240, 0));
+        mardi6.setMaximumSize(new java.awt.Dimension(100, 40));
+        mardi6.setMinimumSize(new java.awt.Dimension(100, 40));
+        mardi6.setName(""); // NOI18N
+
+        javax.swing.GroupLayout mardi6Layout = new javax.swing.GroupLayout(mardi6);
+        mardi6.setLayout(mardi6Layout);
+        mardi6Layout.setHorizontalGroup(
+            mardi6Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGap(0, 0, Short.MAX_VALUE)
+        );
+        mardi6Layout.setVerticalGroup(
+            mardi6Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGap(0, 52, Short.MAX_VALUE)
+        );
+
+        contentPanel.add(mardi6);
+
+        mardi1.setBackground(new java.awt.Color(240, 240, 0));
+        mardi1.setMaximumSize(new java.awt.Dimension(100, 40));
+        mardi1.setMinimumSize(new java.awt.Dimension(100, 40));
+        mardi1.setName(""); // NOI18N
+
+        javax.swing.GroupLayout mardi1Layout = new javax.swing.GroupLayout(mardi1);
+        mardi1.setLayout(mardi1Layout);
+        mardi1Layout.setHorizontalGroup(
+            mardi1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGap(0, 0, Short.MAX_VALUE)
+        );
+        mardi1Layout.setVerticalGroup(
+            mardi1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGap(0, 52, Short.MAX_VALUE)
+        );
+
+        contentPanel.add(mardi1);
+
+        mardi7.setBackground(new java.awt.Color(240, 240, 0));
+        mardi7.setMaximumSize(new java.awt.Dimension(100, 40));
+        mardi7.setMinimumSize(new java.awt.Dimension(100, 40));
+        mardi7.setName(""); // NOI18N
+
+        javax.swing.GroupLayout mardi7Layout = new javax.swing.GroupLayout(mardi7);
+        mardi7.setLayout(mardi7Layout);
+        mardi7Layout.setHorizontalGroup(
+            mardi7Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGap(0, 0, Short.MAX_VALUE)
+        );
+        mardi7Layout.setVerticalGroup(
+            mardi7Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGap(0, 52, Short.MAX_VALUE)
+        );
+
+        contentPanel.add(mardi7);
+
+        lundi7.setBackground(new java.awt.Color(240, 240, 0));
+        lundi7.setMaximumSize(new java.awt.Dimension(100, 40));
+        lundi7.setMinimumSize(new java.awt.Dimension(100, 40));
+        lundi7.setName(""); // NOI18N
+
+        javax.swing.GroupLayout lundi7Layout = new javax.swing.GroupLayout(lundi7);
+        lundi7.setLayout(lundi7Layout);
+        lundi7Layout.setHorizontalGroup(
+            lundi7Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGap(0, 0, Short.MAX_VALUE)
+        );
+        lundi7Layout.setVerticalGroup(
+            lundi7Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGap(0, 52, Short.MAX_VALUE)
+        );
+
+        contentPanel.add(lundi7);
+
+        lundi8.setBackground(new java.awt.Color(240, 240, 0));
+        lundi8.setMaximumSize(new java.awt.Dimension(100, 40));
+        lundi8.setMinimumSize(new java.awt.Dimension(100, 40));
+        lundi8.setName(""); // NOI18N
+
+        javax.swing.GroupLayout lundi8Layout = new javax.swing.GroupLayout(lundi8);
+        lundi8.setLayout(lundi8Layout);
+        lundi8Layout.setHorizontalGroup(
+            lundi8Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGap(0, 0, Short.MAX_VALUE)
+        );
+        lundi8Layout.setVerticalGroup(
+            lundi8Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGap(0, 52, Short.MAX_VALUE)
+        );
+
+        contentPanel.add(lundi8);
+
+        lundi15.setBackground(new java.awt.Color(240, 240, 0));
+        lundi15.setMaximumSize(new java.awt.Dimension(100, 40));
+        lundi15.setMinimumSize(new java.awt.Dimension(100, 40));
+        lundi15.setName(""); // NOI18N
+
+        javax.swing.GroupLayout lundi15Layout = new javax.swing.GroupLayout(lundi15);
+        lundi15.setLayout(lundi15Layout);
+        lundi15Layout.setHorizontalGroup(
+            lundi15Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGap(0, 0, Short.MAX_VALUE)
+        );
+        lundi15Layout.setVerticalGroup(
+            lundi15Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGap(0, 52, Short.MAX_VALUE)
+        );
+
+        contentPanel.add(lundi15);
+
+        mercredi3.setBackground(new java.awt.Color(240, 240, 0));
+        mercredi3.setMaximumSize(new java.awt.Dimension(100, 40));
+        mercredi3.setMinimumSize(new java.awt.Dimension(100, 40));
+        mercredi3.setName(""); // NOI18N
+
+        javax.swing.GroupLayout mercredi3Layout = new javax.swing.GroupLayout(mercredi3);
+        mercredi3.setLayout(mercredi3Layout);
+        mercredi3Layout.setHorizontalGroup(
+            mercredi3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGap(0, 0, Short.MAX_VALUE)
+        );
+        mercredi3Layout.setVerticalGroup(
+            mercredi3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGap(0, 52, Short.MAX_VALUE)
+        );
+
+        contentPanel.add(mercredi3);
+
+        lundi19.setBackground(new java.awt.Color(240, 240, 0));
+        lundi19.setMaximumSize(new java.awt.Dimension(100, 40));
+        lundi19.setMinimumSize(new java.awt.Dimension(100, 40));
+        lundi19.setName(""); // NOI18N
+
+        javax.swing.GroupLayout lundi19Layout = new javax.swing.GroupLayout(lundi19);
+        lundi19.setLayout(lundi19Layout);
+        lundi19Layout.setHorizontalGroup(
+            lundi19Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGap(0, 0, Short.MAX_VALUE)
+        );
+        lundi19Layout.setVerticalGroup(
+            lundi19Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGap(0, 52, Short.MAX_VALUE)
+        );
+
+        contentPanel.add(lundi19);
+
+        mercredi6.setBackground(new java.awt.Color(240, 240, 0));
+        mercredi6.setMaximumSize(new java.awt.Dimension(100, 40));
+        mercredi6.setMinimumSize(new java.awt.Dimension(100, 40));
+        mercredi6.setName(""); // NOI18N
+
+        javax.swing.GroupLayout mercredi6Layout = new javax.swing.GroupLayout(mercredi6);
+        mercredi6.setLayout(mercredi6Layout);
+        mercredi6Layout.setHorizontalGroup(
+            mercredi6Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGap(0, 0, Short.MAX_VALUE)
+        );
+        mercredi6Layout.setVerticalGroup(
+            mercredi6Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGap(0, 52, Short.MAX_VALUE)
+        );
+
+        contentPanel.add(mercredi6);
+
+        lundi27.setBackground(new java.awt.Color(240, 240, 0));
+        lundi27.setMaximumSize(new java.awt.Dimension(100, 40));
+        lundi27.setMinimumSize(new java.awt.Dimension(100, 40));
+        lundi27.setName(""); // NOI18N
+
+        javax.swing.GroupLayout lundi27Layout = new javax.swing.GroupLayout(lundi27);
+        lundi27.setLayout(lundi27Layout);
+        lundi27Layout.setHorizontalGroup(
+            lundi27Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGap(0, 100, Short.MAX_VALUE)
+        );
+        lundi27Layout.setVerticalGroup(
+            lundi27Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGap(0, 52, Short.MAX_VALUE)
+        );
+
+        contentPanel.add(lundi27);
+
+        lundi9.setBackground(new java.awt.Color(240, 240, 0));
+        lundi9.setMaximumSize(new java.awt.Dimension(100, 40));
+        lundi9.setMinimumSize(new java.awt.Dimension(100, 40));
+        lundi9.setName(""); // NOI18N
+
+        javax.swing.GroupLayout lundi9Layout = new javax.swing.GroupLayout(lundi9);
+        lundi9.setLayout(lundi9Layout);
+        lundi9Layout.setHorizontalGroup(
+            lundi9Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGap(0, 100, Short.MAX_VALUE)
+        );
+        lundi9Layout.setVerticalGroup(
+            lundi9Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGap(0, 52, Short.MAX_VALUE)
+        );
+
+        contentPanel.add(lundi9);
+
+        mardi8.setBackground(new java.awt.Color(240, 240, 0));
+        mardi8.setMaximumSize(new java.awt.Dimension(100, 40));
+        mardi8.setMinimumSize(new java.awt.Dimension(100, 40));
+        mardi8.setName(""); // NOI18N
+
+        javax.swing.GroupLayout mardi8Layout = new javax.swing.GroupLayout(mardi8);
+        mardi8.setLayout(mardi8Layout);
+        mardi8Layout.setHorizontalGroup(
+            mardi8Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGap(0, 100, Short.MAX_VALUE)
+        );
+        mardi8Layout.setVerticalGroup(
+            mardi8Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGap(0, 52, Short.MAX_VALUE)
+        );
+
+        contentPanel.add(mardi8);
+
+        lundi36.setBackground(new java.awt.Color(240, 240, 0));
+        lundi36.setMaximumSize(new java.awt.Dimension(100, 40));
+        lundi36.setMinimumSize(new java.awt.Dimension(100, 40));
+        lundi36.setName(""); // NOI18N
+
+        javax.swing.GroupLayout lundi36Layout = new javax.swing.GroupLayout(lundi36);
+        lundi36.setLayout(lundi36Layout);
+        lundi36Layout.setHorizontalGroup(
+            lundi36Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGap(0, 100, Short.MAX_VALUE)
+        );
+        lundi36Layout.setVerticalGroup(
+            lundi36Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGap(0, 52, Short.MAX_VALUE)
+        );
+
+        contentPanel.add(lundi36);
+
+        lundi10.setBackground(new java.awt.Color(240, 240, 0));
+        lundi10.setMaximumSize(new java.awt.Dimension(100, 40));
+        lundi10.setMinimumSize(new java.awt.Dimension(100, 40));
+        lundi10.setName(""); // NOI18N
+
+        javax.swing.GroupLayout lundi10Layout = new javax.swing.GroupLayout(lundi10);
+        lundi10.setLayout(lundi10Layout);
+        lundi10Layout.setHorizontalGroup(
+            lundi10Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGap(0, 100, Short.MAX_VALUE)
+        );
+        lundi10Layout.setVerticalGroup(
+            lundi10Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGap(0, 52, Short.MAX_VALUE)
+        );
+
+        contentPanel.add(lundi10);
+
+        lundi22.setBackground(new java.awt.Color(240, 240, 0));
+        lundi22.setMaximumSize(new java.awt.Dimension(100, 40));
+        lundi22.setMinimumSize(new java.awt.Dimension(100, 40));
+        lundi22.setName(""); // NOI18N
+
+        javax.swing.GroupLayout lundi22Layout = new javax.swing.GroupLayout(lundi22);
+        lundi22.setLayout(lundi22Layout);
+        lundi22Layout.setHorizontalGroup(
+            lundi22Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGap(0, 100, Short.MAX_VALUE)
+        );
+        lundi22Layout.setVerticalGroup(
+            lundi22Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGap(0, 52, Short.MAX_VALUE)
+        );
+
+        contentPanel.add(lundi22);
+
+        lundi38.setBackground(new java.awt.Color(240, 240, 0));
+        lundi38.setMaximumSize(new java.awt.Dimension(100, 40));
+        lundi38.setMinimumSize(new java.awt.Dimension(100, 40));
+        lundi38.setName(""); // NOI18N
+
+        javax.swing.GroupLayout lundi38Layout = new javax.swing.GroupLayout(lundi38);
+        lundi38.setLayout(lundi38Layout);
+        lundi38Layout.setHorizontalGroup(
+            lundi38Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGap(0, 100, Short.MAX_VALUE)
+        );
+        lundi38Layout.setVerticalGroup(
+            lundi38Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGap(0, 52, Short.MAX_VALUE)
+        );
+
+        contentPanel.add(lundi38);
+
+        lundi21.setBackground(new java.awt.Color(240, 240, 0));
+        lundi21.setMaximumSize(new java.awt.Dimension(100, 40));
+        lundi21.setMinimumSize(new java.awt.Dimension(100, 40));
+        lundi21.setName(""); // NOI18N
+
+        javax.swing.GroupLayout lundi21Layout = new javax.swing.GroupLayout(lundi21);
+        lundi21.setLayout(lundi21Layout);
+        lundi21Layout.setHorizontalGroup(
+            lundi21Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGap(0, 0, Short.MAX_VALUE)
+        );
+        lundi21Layout.setVerticalGroup(
+            lundi21Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGap(0, 52, Short.MAX_VALUE)
+        );
+
+        contentPanel.add(lundi21);
+
+        mercredi4.setBackground(new java.awt.Color(240, 240, 0));
+        mercredi4.setMaximumSize(new java.awt.Dimension(100, 40));
+        mercredi4.setMinimumSize(new java.awt.Dimension(100, 40));
+        mercredi4.setName(""); // NOI18N
+
+        javax.swing.GroupLayout mercredi4Layout = new javax.swing.GroupLayout(mercredi4);
+        mercredi4.setLayout(mercredi4Layout);
+        mercredi4Layout.setHorizontalGroup(
+            mercredi4Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGap(0, 0, Short.MAX_VALUE)
+        );
+        mercredi4Layout.setVerticalGroup(
+            mercredi4Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGap(0, 52, Short.MAX_VALUE)
+        );
+
+        contentPanel.add(mercredi4);
+
+        lundi23.setBackground(new java.awt.Color(240, 240, 0));
+        lundi23.setMaximumSize(new java.awt.Dimension(100, 40));
+        lundi23.setMinimumSize(new java.awt.Dimension(100, 40));
+        lundi23.setName(""); // NOI18N
+
+        javax.swing.GroupLayout lundi23Layout = new javax.swing.GroupLayout(lundi23);
+        lundi23.setLayout(lundi23Layout);
+        lundi23Layout.setHorizontalGroup(
+            lundi23Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGap(0, 0, Short.MAX_VALUE)
+        );
+        lundi23Layout.setVerticalGroup(
+            lundi23Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGap(0, 52, Short.MAX_VALUE)
+        );
+
+        contentPanel.add(lundi23);
+
+        lundi24.setBackground(new java.awt.Color(240, 240, 0));
+        lundi24.setMaximumSize(new java.awt.Dimension(100, 40));
+        lundi24.setMinimumSize(new java.awt.Dimension(100, 40));
+        lundi24.setName(""); // NOI18N
+
+        javax.swing.GroupLayout lundi24Layout = new javax.swing.GroupLayout(lundi24);
+        lundi24.setLayout(lundi24Layout);
+        lundi24Layout.setHorizontalGroup(
+            lundi24Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGap(0, 0, Short.MAX_VALUE)
+        );
+        lundi24Layout.setVerticalGroup(
+            lundi24Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGap(0, 52, Short.MAX_VALUE)
+        );
+
+        contentPanel.add(lundi24);
+
+        mercredi1.setBackground(new java.awt.Color(240, 240, 0));
+        mercredi1.setMaximumSize(new java.awt.Dimension(100, 40));
+        mercredi1.setMinimumSize(new java.awt.Dimension(100, 40));
+        mercredi1.setName(""); // NOI18N
+
+        javax.swing.GroupLayout mercredi1Layout = new javax.swing.GroupLayout(mercredi1);
+        mercredi1.setLayout(mercredi1Layout);
+        mercredi1Layout.setHorizontalGroup(
+            mercredi1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGap(0, 0, Short.MAX_VALUE)
+        );
+        mercredi1Layout.setVerticalGroup(
+            mercredi1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGap(0, 52, Short.MAX_VALUE)
+        );
+
+        contentPanel.add(mercredi1);
+
+        lundi26.setBackground(new java.awt.Color(240, 240, 0));
+        lundi26.setMaximumSize(new java.awt.Dimension(100, 40));
+        lundi26.setMinimumSize(new java.awt.Dimension(100, 40));
+        lundi26.setName(""); // NOI18N
+
+        javax.swing.GroupLayout lundi26Layout = new javax.swing.GroupLayout(lundi26);
+        lundi26.setLayout(lundi26Layout);
+        lundi26Layout.setHorizontalGroup(
+            lundi26Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGap(0, 0, Short.MAX_VALUE)
+        );
+        lundi26Layout.setVerticalGroup(
+            lundi26Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGap(0, 52, Short.MAX_VALUE)
+        );
+
+        contentPanel.add(lundi26);
+
+        mercredi5.setBackground(new java.awt.Color(240, 240, 0));
+        mercredi5.setMaximumSize(new java.awt.Dimension(100, 40));
+        mercredi5.setMinimumSize(new java.awt.Dimension(100, 40));
+        mercredi5.setName(""); // NOI18N
+
+        javax.swing.GroupLayout mercredi5Layout = new javax.swing.GroupLayout(mercredi5);
+        mercredi5.setLayout(mercredi5Layout);
+        mercredi5Layout.setHorizontalGroup(
+            mercredi5Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGap(0, 0, Short.MAX_VALUE)
+        );
+        mercredi5Layout.setVerticalGroup(
+            mercredi5Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGap(0, 52, Short.MAX_VALUE)
+        );
+
+        contentPanel.add(mercredi5);
+
+        mercredi7.setBackground(new java.awt.Color(240, 240, 0));
+        mercredi7.setMaximumSize(new java.awt.Dimension(100, 40));
+        mercredi7.setMinimumSize(new java.awt.Dimension(100, 40));
+        mercredi7.setName(""); // NOI18N
+
+        javax.swing.GroupLayout mercredi7Layout = new javax.swing.GroupLayout(mercredi7);
+        mercredi7.setLayout(mercredi7Layout);
+        mercredi7Layout.setHorizontalGroup(
+            mercredi7Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGap(0, 0, Short.MAX_VALUE)
+        );
+        mercredi7Layout.setVerticalGroup(
+            mercredi7Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGap(0, 52, Short.MAX_VALUE)
+        );
+
+        contentPanel.add(mercredi7);
+
+        mercredi2.setBackground(new java.awt.Color(240, 240, 0));
+        mercredi2.setMaximumSize(new java.awt.Dimension(100, 40));
+        mercredi2.setMinimumSize(new java.awt.Dimension(100, 40));
+        mercredi2.setName(""); // NOI18N
+
+        javax.swing.GroupLayout mercredi2Layout = new javax.swing.GroupLayout(mercredi2);
+        mercredi2.setLayout(mercredi2Layout);
+        mercredi2Layout.setHorizontalGroup(
+            mercredi2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGap(0, 0, Short.MAX_VALUE)
+        );
+        mercredi2Layout.setVerticalGroup(
+            mercredi2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGap(0, 52, Short.MAX_VALUE)
+        );
+
+        contentPanel.add(mercredi2);
+
+        lundi30.setBackground(new java.awt.Color(240, 240, 0));
+        lundi30.setMaximumSize(new java.awt.Dimension(100, 40));
+        lundi30.setMinimumSize(new java.awt.Dimension(100, 40));
+        lundi30.setName(""); // NOI18N
+
+        javax.swing.GroupLayout lundi30Layout = new javax.swing.GroupLayout(lundi30);
+        lundi30.setLayout(lundi30Layout);
+        lundi30Layout.setHorizontalGroup(
+            lundi30Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGap(0, 0, Short.MAX_VALUE)
+        );
+        lundi30Layout.setVerticalGroup(
+            lundi30Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGap(0, 52, Short.MAX_VALUE)
+        );
+
+        contentPanel.add(lundi30);
+
+        lundi31.setBackground(new java.awt.Color(240, 240, 0));
+        lundi31.setMaximumSize(new java.awt.Dimension(100, 40));
+        lundi31.setMinimumSize(new java.awt.Dimension(100, 40));
+        lundi31.setName(""); // NOI18N
+
+        javax.swing.GroupLayout lundi31Layout = new javax.swing.GroupLayout(lundi31);
+        lundi31.setLayout(lundi31Layout);
+        lundi31Layout.setHorizontalGroup(
+            lundi31Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGap(0, 0, Short.MAX_VALUE)
+        );
+        lundi31Layout.setVerticalGroup(
+            lundi31Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGap(0, 52, Short.MAX_VALUE)
+        );
+
+        contentPanel.add(lundi31);
+
+        lundi32.setBackground(new java.awt.Color(240, 240, 0));
+        lundi32.setMaximumSize(new java.awt.Dimension(100, 40));
+        lundi32.setMinimumSize(new java.awt.Dimension(100, 40));
+        lundi32.setName(""); // NOI18N
+
+        javax.swing.GroupLayout lundi32Layout = new javax.swing.GroupLayout(lundi32);
+        lundi32.setLayout(lundi32Layout);
+        lundi32Layout.setHorizontalGroup(
+            lundi32Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGap(0, 0, Short.MAX_VALUE)
+        );
+        lundi32Layout.setVerticalGroup(
+            lundi32Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGap(0, 52, Short.MAX_VALUE)
+        );
+
+        contentPanel.add(lundi32);
+
+        lundi33.setBackground(new java.awt.Color(240, 240, 0));
+        lundi33.setMaximumSize(new java.awt.Dimension(100, 40));
+        lundi33.setMinimumSize(new java.awt.Dimension(100, 40));
+        lundi33.setName(""); // NOI18N
+
+        javax.swing.GroupLayout lundi33Layout = new javax.swing.GroupLayout(lundi33);
+        lundi33.setLayout(lundi33Layout);
+        lundi33Layout.setHorizontalGroup(
+            lundi33Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGap(0, 0, Short.MAX_VALUE)
+        );
+        lundi33Layout.setVerticalGroup(
+            lundi33Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGap(0, 52, Short.MAX_VALUE)
+        );
+
+        contentPanel.add(lundi33);
+
+        lundi34.setBackground(new java.awt.Color(240, 240, 0));
+        lundi34.setMaximumSize(new java.awt.Dimension(100, 40));
+        lundi34.setMinimumSize(new java.awt.Dimension(100, 40));
+        lundi34.setName(""); // NOI18N
+
+        javax.swing.GroupLayout lundi34Layout = new javax.swing.GroupLayout(lundi34);
+        lundi34.setLayout(lundi34Layout);
+        lundi34Layout.setHorizontalGroup(
+            lundi34Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGap(0, 0, Short.MAX_VALUE)
+        );
+        lundi34Layout.setVerticalGroup(
+            lundi34Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGap(0, 52, Short.MAX_VALUE)
+        );
+
+        contentPanel.add(lundi34);
+
+        lundi35.setBackground(new java.awt.Color(240, 240, 0));
+        lundi35.setMaximumSize(new java.awt.Dimension(100, 40));
+        lundi35.setMinimumSize(new java.awt.Dimension(100, 40));
+        lundi35.setName(""); // NOI18N
+
+        javax.swing.GroupLayout lundi35Layout = new javax.swing.GroupLayout(lundi35);
+        lundi35.setLayout(lundi35Layout);
+        lundi35Layout.setHorizontalGroup(
+            lundi35Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGap(0, 0, Short.MAX_VALUE)
+        );
+        lundi35Layout.setVerticalGroup(
+            lundi35Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGap(0, 52, Short.MAX_VALUE)
+        );
+
+        contentPanel.add(lundi35);
+
+        lundi37.setBackground(new java.awt.Color(240, 240, 0));
+        lundi37.setMaximumSize(new java.awt.Dimension(100, 40));
+        lundi37.setMinimumSize(new java.awt.Dimension(100, 40));
+        lundi37.setName(""); // NOI18N
+
+        javax.swing.GroupLayout lundi37Layout = new javax.swing.GroupLayout(lundi37);
+        lundi37.setLayout(lundi37Layout);
+        lundi37Layout.setHorizontalGroup(
+            lundi37Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGap(0, 100, Short.MAX_VALUE)
+        );
+        lundi37Layout.setVerticalGroup(
+            lundi37Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGap(0, 52, Short.MAX_VALUE)
+        );
+
+        contentPanel.add(lundi37);
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
-                .addComponent(jPanel1, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(jLayeredPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 1082, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addComponent(menuPanel, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                .addGap(18, 18, 18)
+                .addComponent(contentPanel, javax.swing.GroupLayout.PREFERRED_SIZE, 716, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addContainerGap())
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addComponent(jPanel1, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-            .addComponent(jLayeredPane1, javax.swing.GroupLayout.DEFAULT_SIZE, 502, Short.MAX_VALUE)
+            .addComponent(menuPanel, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+            .addGroup(layout.createSequentialGroup()
+                .addContainerGap()
+                .addComponent(contentPanel, javax.swing.GroupLayout.PREFERRED_SIZE, 0, Short.MAX_VALUE)
+                .addContainerGap())
         );
 
         pack();
@@ -156,18 +1068,18 @@ public class FirstFrame extends javax.swing.JFrame {
 
     // Toogle the visibility of the button
     private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
-        switchPanel(jPanel3) ;
+        //switchPanel(jPanel3) ;
     }//GEN-LAST:event_jButton1ActionPerformed
 
     private void jButton2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton2ActionPerformed
-        switchPanel(jPanel4); 
+        //switchPanel(jPanel4); 
     }//GEN-LAST:event_jButton2ActionPerformed
 
     private void switchPanel(JPanel panel) {
-        jLayeredPane1.removeAll();
-        jLayeredPane1.add(panel);
-        jLayeredPane1.repaint();
-        jLayeredPane1.revalidate();
+        contentPanel.removeAll();
+        contentPanel.add(panel);
+        contentPanel.repaint();
+        contentPanel.revalidate();
     } 
     
     /**
@@ -206,11 +1118,60 @@ public class FirstFrame extends javax.swing.JFrame {
     }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
+    private javax.swing.JLayeredPane contentPanel;
     private javax.swing.JButton jButton1;
     private javax.swing.JButton jButton2;
-    private javax.swing.JLayeredPane jLayeredPane1;
     private javax.swing.JPanel jPanel1;
-    private javax.swing.JPanel jPanel3;
     private javax.swing.JPanel jPanel4;
+    private javax.swing.JPanel lundi1;
+    private javax.swing.JPanel lundi10;
+    private javax.swing.JPanel lundi11;
+    private javax.swing.JPanel lundi12;
+    private javax.swing.JPanel lundi15;
+    private javax.swing.JPanel lundi19;
+    private javax.swing.JPanel lundi2;
+    private javax.swing.JPanel lundi20;
+    private javax.swing.JPanel lundi21;
+    private javax.swing.JPanel lundi22;
+    private javax.swing.JPanel lundi23;
+    private javax.swing.JPanel lundi24;
+    private javax.swing.JPanel lundi25;
+    private javax.swing.JPanel lundi26;
+    private javax.swing.JPanel lundi27;
+    private javax.swing.JPanel lundi3;
+    private javax.swing.JPanel lundi30;
+    private javax.swing.JPanel lundi31;
+    private javax.swing.JPanel lundi32;
+    private javax.swing.JPanel lundi33;
+    private javax.swing.JPanel lundi34;
+    private javax.swing.JPanel lundi35;
+    private javax.swing.JPanel lundi36;
+    private javax.swing.JPanel lundi37;
+    private javax.swing.JPanel lundi38;
+    private javax.swing.JPanel lundi39;
+    private javax.swing.JPanel lundi4;
+    private javax.swing.JPanel lundi40;
+    private javax.swing.JPanel lundi5;
+    private javax.swing.JPanel lundi6;
+    private javax.swing.JPanel lundi7;
+    private javax.swing.JPanel lundi8;
+    private javax.swing.JPanel lundi9;
+    private javax.swing.JPanel mardi1;
+    private javax.swing.JPanel mardi2;
+    private javax.swing.JPanel mardi3;
+    private javax.swing.JPanel mardi4;
+    private javax.swing.JPanel mardi5;
+    private javax.swing.JPanel mardi6;
+    private javax.swing.JPanel mardi7;
+    private javax.swing.JPanel mardi8;
+    private javax.swing.JPanel mardi9;
+    private javax.swing.JPanel menuPanel;
+    private javax.swing.JPanel mercredi1;
+    private javax.swing.JPanel mercredi2;
+    private javax.swing.JPanel mercredi3;
+    private javax.swing.JPanel mercredi4;
+    private javax.swing.JPanel mercredi5;
+    private javax.swing.JPanel mercredi6;
+    private javax.swing.JPanel mercredi7;
     // End of variables declaration//GEN-END:variables
 }
