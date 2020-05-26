@@ -12,16 +12,35 @@ import javax.swing.*;
  *
  * @author pierr
  */
-public class CoursWidget{
+public class CoursWidget extends JPanel{
     public JPanel pCours;
-    public JLabel lNomCours;
+    private JLabel lNomCours;
+    private Color cCours;
     
-    public CoursWidget() {
-        pCours = new JPanel();
-        pCours.setBackground(Color.BLUE);
+    public CoursWidget(String myLabel, Color myColor,int sizeX, int sizeY, int x, int y, int gap) {
+        this.pCours = new JPanel();
+        this.pCours.setLayout(null);
         
-        lNomCours = new JLabel("Yes life");
-        pCours.add(lNomCours);
-    }
+        this.lNomCours = new JLabel(myLabel);
+        this.lNomCours.setBounds(25,5,50,10);
+        
+        this.cCours = myColor;
+        this.pCours.setBackground(myColor);
+        
+        this.pCours.setSize(CustomFrame.getSizeX(), CustomFrame.getSizeY());
+        this.pCours.setLocation(x, y);
 
+        this.pCours.add(this.lNomCours);
+    }
+    
+    public void setNomCours(String newLabel) {
+        this.lNomCours.setText(newLabel);
+        
+        this.pCours.repaint();
+        this.pCours.revalidate();
+    }
+    
+    public JPanel getCours() {
+        return this.pCours;
+    }
 }

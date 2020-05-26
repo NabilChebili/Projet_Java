@@ -15,51 +15,82 @@ import java.util.*;
  *
  * @author pierr
  */
-public class CustomFrame extends JFrame implements ActionListener{
-    
+public class CustomFrame extends JFrame implements ActionListener {
+
+    final private int height = 900;
+    final private int width = 1600;
+    final private int menu = 400;
+    final static private int sizeX = 175;
+    final static private int sizeY = 100;
+
     public static void main(String args[]) {
         new CustomFrame().setVisible(true);
     }
-    
+
     public CustomFrame() {
         initEDT();
     }
     
+    public static int getSizeX() {
+        return sizeX;
+    }
+    
+    public static int getSizeY() {
+        return sizeY;
+    }
+
     @Override
     public void actionPerformed(ActionEvent ae) {
         String action = ae.getActionCommand();
         if (action.equals("Yes")) {
             System.out.println("Yes Button pressed!");
             toggleVisibility();
-        }
-        else if (action.equals("No")) {
+        } else if (action.equals("No")) {
             System.out.println("No Button pressed!");
-            pContent.add(new JLabel("test"));
+            pSemaine.get(0).setVisible(false);
         }
     }
-    
+
     private void initEDT() {
-        fMain = new JFrame();
-        fMain.setSize(1200, 800);
-        fMain.setLocation((1920/2) - (1200/2), (1080/2) - (800/2));
+
+        fMain = new JFrame("ECE-Agenda");
+        fMain.setSize(width, height);
+        fMain.setLocation((1920 / 2) - (width / 2), (1080 / 2) - (height / 2));
         fMain.setDefaultCloseOperation(EXIT_ON_CLOSE);
         fMain.setVisible(true);
-        
+        //fMain.setResizable(false);
+
         pMenu = new JPanel();
-        pMenu.setSize(400, 800);
+        pMenu.setSize(menu, height);
         pMenu.setLocation(0, 0);
         pMenu.setBackground(Color.BLACK);
         pContent = new JLayeredPane();
-        pContent.setSize(800, 800);
-        pContent.setLocation(400, 0);
+        pContent.setSize(width - menu, height);
+        pContent.setLocation(menu, 0);
         pContent.setBackground(Color.WHITE);
-        
-        for (int i=0 ;i< 6; i++) {
-            ArrayList<JPanel> jour = new ArrayList<JPanel>();
-            initArray(jour, 410 + (100+20)*i, 0, 5, 7, new Color(((i*(255/6))),120,220));
-            linkArray(jour, pContent);
+
+        pSemaine = new ArrayList<JPanel>();
+        for (int i = 0; i < 6; i++) {
+                   //(ArrayList<JPanel> today, int x, int y, int gap, int nbColumn, Color color, String myLabel)
+            initArray(pSemaine, menu + 80 + (sizeX + 10) * i, 15, 5, 7, new Color(((i * (255 / 6))), 120, 220), "Bonjour");
+            linkArray(pSemaine, pContent);
         }
-        
+
+        for (int i = 0; i < 8; i++) {
+            JPanel test = new JPanel();
+            test.setLocation(menu + 10, 10 + (sizeY + 5 * 4) * i);
+            test.setBackground(Color.RED);
+            test.setSize(width - menu, 5);
+            pContent.add(test);
+        }
+        for (int i = 0; i < 8; i++) {
+            JPanel test = new JPanel();
+            test.setLocation(menu + 10, 15 + sizeY + (sizeY + 5 * 4) * i);
+            test.setBackground(Color.RED);
+            test.setSize(width - menu, 5);
+            pContent.add(test);
+        }
+
         JButton yes = new JButton("Yes");
         JButton no = new JButton("No");
         yes.addActionListener(this);
@@ -67,44 +98,76 @@ public class CustomFrame extends JFrame implements ActionListener{
 
         pMenu.add(yes);
         pMenu.add(no);
-        
+
         fMain.add(pMenu);
         fMain.add(pContent);
+
+        fMain.repaint();
+        fMain.revalidate();
     }
-    
-    private void initArray(ArrayList<JPanel> today, int x, int y, int gap, int nbColumn, Color color) {
+
+    private void initArray(ArrayList<JPanel> today, int x, int y, int gap, int nbColumn, Color color, String myLabel) {
         for (int i = 0; i < nbColumn; i++) {
-            JPanel pElem = new JPanel();
-            // TODO: Implement CoursWidget
-            //CoursWidget pElem = new CoursWidget("Bonjour", Color.RED);
-            pElem.setSize(100, 80);
-            pElem.setLocation(x, y  + (100 + gap)*i + gap*2);
-            //pElem.setLocation(0,0);
-            pElem.setBackground(color);
-            pElem.add(new JLabel("Comment tu vas mon chères amis, moi pour le moment ça va bien hamdoula"));
-            pElem.add(new JLabel());
-            today.add(pElem);
+            CoursWidget pElem = new CoursWidget(myLabel, color, sizeX, sizeY, x, y + (sizeY + gap*4) * i, gap);
+            today.add(pElem.getCours());
         }
     }
-    
+
     private void linkArray(ArrayList<JPanel> from, JLayeredPane to) {
-        for (int i = 0; i< from.size(); i++) {
+        for (int i = 0; i < from.size(); i++) {
             to.add(from.get(i), 2);
         }
     }
-    
-    public void toggleVisibility (){
+
+    public void toggleVisibility() {
         if (pContent.isVisible()) {
             pContent.setVisible(false);
         } else {
             pContent.setVisible(true);
         }
     }
-    
+
     private JFrame fMain;
     private JPanel pMenu;
     private JLayeredPane pContent;
-    
+
+    private ArrayList<JPanel> pSemaine;
+
     private JButton yes;
     private JButton no;
 }
+
+
+/*main () {
+    vue maVue = new vue();
+    model monModel = new model();
+    controleur monControleur = new controleur();
+}
+
+class vue {
+    private JPanel affichage;
+    public void setCours(Liste Cours) {
+        ... Modifie l'interface
+    }
+    
+    private button;
+    public clickButton() {
+        Controleur.monControler.click();
+    }
+
+}
+
+class model {
+    public void seConnecter(nom, pwd) {
+        ..requete database
+                
+        vue.setCours(Mes nouveaux cours);
+    }
+}
+
+class controleur { 
+    
+    public click() {
+        Model.monModel.seConnecter();
+    }
+}*/
