@@ -12,48 +12,45 @@ import java.util.ArrayList;
  *
  * @author Nabil WOW
  */
-public class DAO_Etudiant {
-    BDD maconnexion;
-    private int ID_UTILISATEUR;
-    private int NUMERO;
-    private int ID_GROUPE;
-    
-    public DAO_Etudiant(int id){
-        try{    
-            try{
-                maconnexion = new BDD("projet_java", "root", "");
-            }
-            catch(final ClassNotFoundException  cnfe){
-                System.out.println("Connexion echouee : probleme de classe");
-                cnfe.printStackTrace();
-            }
-        }
-        catch(final SQLException e){
-            System.out.println("Connexion echouee : probleme SQL");
-            e.printStackTrace();
+public class DAO_Etudiant extends DAO<Etudiant> {
 
-        }
-        
+    @Override
+    public boolean create() {
+        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+    }
+
+    @Override
+    public boolean delete(Etudiant obj) {
+        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+    }
+
+    @Override
+    public boolean update(Etudiant obj) {
+        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+    }
+
+    @Override
+    public Etudiant find(int id) {
         ArrayList liste;
-        final String Requete = "SELECT * FROM `etudiant` WHERE `ID_UTILISATEUR` LIKE " + id;
+        final String Requete = "SELECT * FROM `etudiant` WHERE `ID_UTILISATEUR` = " + id;
         try{
             liste = maconnexion.RequeteRetourListe(Requete);
-            ID_UTILISATEUR = (int) liste.get(0);
-            NUMERO = (int) liste.get(1);
-            ID_GROUPE = (int) liste.get(2);
+            int ID_UTILISATEUR = Integer.parseInt((String) liste.get(0));
+            int NUMERO = Integer.parseInt((String) liste.get(1));
+            int ID_GROUPE = Integer.parseInt((String) liste.get(2));
+            Etudiant etudiant = new Etudiant(ID_UTILISATEUR,NUMERO,ID_GROUPE);
+            return etudiant;
+
         }
         catch(final SQLException e){
             System.out.println("Connexion echouee : probleme SQL");
-        }     
+            return null;
+        }
     }
-    
-    public int GET_ID_UTILISATEUR (){
-        return ID_UTILISATEUR;
+
+    @Override
+    public Etudiant find(String email, String passwd) {
+        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
     }
-    public int GET_NUMERO (){
-        return NUMERO;
-    }
-    public int GET_ID_GROUPE() {
-        return ID_GROUPE;
-    }  
+      
 }

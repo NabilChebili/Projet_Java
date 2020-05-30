@@ -12,7 +12,7 @@ import java.util.ArrayList;
  *
  * @author Nabil WOW
  */
-public class DAO_Promotion extends DAO<Promotion> {
+public class DAO_Type_cours extends DAO<Type_cours> {
 
     @Override
     public boolean create() {
@@ -20,25 +20,25 @@ public class DAO_Promotion extends DAO<Promotion> {
     }
 
     @Override
-    public boolean delete(Promotion obj) {
+    public boolean delete(Type_cours obj) {
         throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
     }
 
     @Override
-    public boolean update(Promotion obj) {
+    public boolean update(Type_cours obj) {
         throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
     }
 
     @Override
-    public Promotion find(int id) {
+    public Type_cours find(int id) {
         ArrayList liste;
-        final String Requete = "SELECT * FROM `promotion` WHERE `ID` = " + id;
+        final String Requete = "SELECT * FROM `type_cours` WHERE `ID` = " + id;
         try{
             liste = maconnexion.RequeteRetourListe(Requete);
             int ID = Integer.parseInt((String) liste.get(0));
-            String NOM = (String) liste.get(1);  
-            Promotion promotion = new Promotion(ID,NOM);
-            return promotion;
+            String NOM = (String) liste.get(1);
+            Type_cours type_cours = new Type_cours(ID,NOM);
+            return type_cours;
         }
         catch(final SQLException e){
             System.out.println("Connexion echouee : probleme SQL");
@@ -47,7 +47,7 @@ public class DAO_Promotion extends DAO<Promotion> {
     }
 
     @Override
-    public Promotion find(String email, String passwd) {
+    public Type_cours find(String email, String passwd) {
         throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
     }
     

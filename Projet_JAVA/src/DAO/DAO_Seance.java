@@ -14,47 +14,75 @@ import java.util.ArrayList;
  *
  * @author Nabil WOW
  */
-public class DAO_Seance {
-    BDD maconnexion;
-    private int ID;
-    private int SEMAINE;
-    private String DATE;
-    private String HEURE_DEBUT;
-    private String HEURE_FIN;
-    private int ID_COURS;
-    private int ID_TYPE;
-    
-    public DAO_Seance(int id){
-        try{    
-            try{
-                maconnexion = new BDD("projet_java", "root", "");
-            }
-            catch(final ClassNotFoundException  cnfe){
-                System.out.println("Connexion echouee : probleme de classe");
-                cnfe.printStackTrace();
-            }
-        }
-        catch(final SQLException e){
-            System.out.println("Connexion echouee : probleme SQL");
-            e.printStackTrace();
+public class DAO_Seance extends DAO<Seance> {
 
-        }
-        
+    @Override
+    public boolean create() {
+        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+    }
+
+    @Override
+    public boolean delete(Seance obj) {
+        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+    }
+
+    @Override
+    public boolean update(Seance obj) {
+        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+    }
+
+    @Override
+    public Seance find(int id) {
         ArrayList liste;
-        final String Requete = "SELECT * FROM `seance` WHERE `ID` LIKE " + id;
+        final String Requete1 = "SELECT * FROM `seance` WHERE `ID` = " + id;
+        final String Requete2 = "SELECT #ID_GROUPE FROM `seance_groupes` WHERE `#ID_SEANCE` = " + id;
+        final String Requete3 = "SELECT #ID_SALLE FROM `seance_salles` WHERE `#ID_SEANCE` = " + id;
+        final String Requete4 = "SELECT #ID_ENSEIGNANT FROM `seance_enseignants` WHERE `#ID_SEANCE` = " + id;
         try{
-            liste = maconnexion.RequeteRetourListe(Requete);
-            ID = (int) liste.get(0);
-            SEMAINE = (int) liste.get(1);
-            DATE = (String) liste.get(2);
-            HEURE_DEBUT = (String) liste.get(3);
-            HEURE_FIN = (String) liste.get(4);
-            ID_COURS = (int) liste.get(5);
-            ID_TYPE = (int) liste.get(6);
+            liste = maconnexion.RequeteRetourListe(Requete1);
+            int ID = Integer.parseInt((String) liste.get(0));
+            int SEMAINE = Integer.parseInt((String) liste.get(1));
+            String DATE = (String) liste.get(2);
+            String HEURE_DEBUT = (String) liste.get(3);
+            String HEURE_FIN = (String) liste.get(4);
+            int ID_COURS = Integer.parseInt((String) liste.get(5));
+            int ID_TYPE = Integer.parseInt((String) liste.get(6));
+            
+            liste = maconnexion.RequeteRetourListe(Requete2);
+            ArrayList<Integer> ID_GROUPE = new ArrayList<Integer>();
+            for(int i=0;i<liste.size();i++)
+            {
+                ID_GROUPE.add(Integer.parseInt((String) liste.get(0)));
+            }
+            
+            liste = maconnexion.RequeteRetourListe(Requete3);
+            ArrayList<Integer> ID_SALLE = new ArrayList<Integer>();
+            
+            for(int i=0;i<liste.size();i++)
+            {
+                ID_SALLE.add(Integer.parseInt((String) liste.get(0)));
+            }
+            
+            liste = maconnexion.RequeteRetourListe(Requete4);
+            ArrayList<Integer> ID_ENSEIGNANT = new ArrayList<Integer>();
+            
+            for(int i=0;i<liste.size();i++)
+            {
+                ID_ENSEIGNANT.add(Integer.parseInt((String) liste.get(0)));
+            }
+            
+            Seance seance = new Seance(ID,SEMAINE,DATE,HEURE_DEBUT,HEURE_FIN,ID_COURS,ID_TYPE,ID_GROUPE,ID_SALLE,ID_ENSEIGNANT);
+            return seance;
         }
         catch(final SQLException e){
             System.out.println("Connexion echouee : probleme SQL");
+            return null;
         }
-        
     }
+
+    @Override
+    public Seance find(String email, String passwd) {
+        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+    }
+    
 }

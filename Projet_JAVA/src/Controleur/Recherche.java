@@ -4,47 +4,123 @@
  * and open the template in the editor.
  */
 package Controleur;
-import DAO.BDD;
+import DAO.*;
 import java.sql.SQLException;
 import java.util.ArrayList;
+import projet_java.*;
 
 /**
  *
  * @author Nabil WOW
  */
 public class Recherche {
+    private Utilisateur uti;
+    public Recherche(Utilisateur uti_n){
+        uti = uti_n;
+    }
     
-    private BDD maconnexion;
-    
-    public Recherche(){
-        try{    
-            try{
-                maconnexion = new BDD("projet_java", "root", "");
+    public ArrayList<Seance> RechercheSeanceUti() throws Exception{
+        if(uti.GET_DROIT() == 3)
+        {
+            DAO<Enseignant> enseignantdao = new DAO_Enseignant();
+            Enseignant prof = enseignantdao.find(uti.GET_ID());
+            ArrayList<Integer> seanceid = new ArrayList<Integer>();
+            seanceid = prof.GET_ID_SEANCES();
+            ArrayList<Seance> seancelist = new ArrayList<Seance>();
+            for(int i=0;i<seanceid.size();i++)
+            {
+                DAO<Seance> seancedao = new DAO_Seance();
+                Seance seance = seancedao.find(seanceid.get(i));
+                seancelist.add(seance);
+                
             }
-            catch(ClassNotFoundException  cnfe){
-                System.out.println("Connexion echouee : probleme de classe");
-                cnfe.printStackTrace();
-            }
+            return seancelist;
+            
         }
-        catch(SQLException e){
-            System.out.println("Connexion echouee : probleme SQL");
-            e.printStackTrace();
+        else if(uti.GET_DROIT()== 4)
+        {
+            DAO<Etudiant> etudiantdao = new DAO_Etudiant();
+            Etudiant etudiant = etudiantdao.find(uti.GET_ID());
+            int groupeid = etudiant.GET_ID_GROUPE();
+            DAO<Groupe> groupedao = new DAO_Groupe();
+            Groupe groupe = groupedao.find(groupeid);
+            
+            ArrayList<Integer> seanceid = new ArrayList<Integer>();
+            seanceid = groupe.GET_ID_SEANCES();
+            ArrayList<Seance> seancelist = new ArrayList<Seance>();
+            for(int i=0;i<seanceid.size();i++)
+            {
+                DAO<Seance> seancedao = new DAO_Seance();
+                Seance seance = seancedao.find(seanceid.get(i));
+                seancelist.add(seance);
+                
+            }
+            return seancelist;
+            
+        }
+        else 
+        {
+            Exception erreurdroit = null;
+            throw erreurdroit;
+        }
+        
+    }
+    public ArrayList<Seance> RechercheSeanceGroupe(int id_groupe)
+    {
+        DAO<Groupe> groupedao = new DAO_Groupe();
+        Groupe groupe = groupedao.find(id_groupe);
+        ArrayList<Integer> seanceid = new ArrayList<Integer>();
+        seanceid = groupe.GET_ID_SEANCES();
+        ArrayList<Seance> seancelist = new ArrayList<Seance>();
+        for(int i=0;i<seanceid.size();i++)
+        {
+            DAO<Seance> seancedao = new DAO_Seance();
+            Seance seance = seancedao.find(seanceid.get(i));
+            seancelist.add(seance);
 
         }
+        return seancelist;
             
     }
     
-    public ArrayList RechercheTable(String table){
-        try{
-            String requete;
-            requete = "SELECT * FROM " + table;
-            return maconnexion.RequeteRetourListe(requete);
+    public ArrayList<Seance> RechercheSeanceSalle(int id_salle)
+    {
+        DAO<Salle> salledao = new DAO_Salle();
+        Salle salle = salledao.find(id_salle);
+        ArrayList<Integer> seanceid = new ArrayList<Integer>();
+        seanceid = salle.GET_ID_SEANCES();
+        ArrayList<Seance> seancelist = new ArrayList<Seance>();
+        for(int i=0;i<seanceid.size();i++)
+        {
+            DAO<Seance> seancedao = new DAO_Seance();
+            Seance seance = seancedao.find(seanceid.get(i));
+            seancelist.add(seance);
+
         }
-        catch(SQLException e){
-            System.out.println("Retour de la table impossible : probleme SQL");
-            e.printStackTrace();
-            return null;
+        return seancelist;     
+    }
+    
+    public ArrayList<Seance> RechercheSeanceCours(int id_salle)
+    {
+        DAO<Salle> salledao = new DAO_Salle();
+        Salle salle = salledao.find(id_salle);
+        ArrayList<Integer> seanceid = new ArrayList<Integer>();
+        seanceid = salle.GET_ID_SEANCES();
+        ArrayList<Seance> seancelist = new ArrayList<Seance>();
+        for(int i=0;i<seanceid.size();i++)
+        {
+            DAO<Seance> seancedao = new DAO_Seance();
+            Seance seance = seancedao.find(seanceid.get(i));
+            seancelist.add(seance);
         }
+        return seancelist;     
+    }
+    
+    
+    
+    
+    public void recherche(Connexion conn) {
+        conn.GET_UTI();
     }
     
     

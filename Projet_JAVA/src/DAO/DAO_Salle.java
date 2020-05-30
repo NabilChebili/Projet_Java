@@ -12,41 +12,55 @@ import java.util.ArrayList;
  *
  * @author Nabil WOW
  */
-public class DAO_Salle {
-    BDD maconnexion;
-    private int ID;
-    private String NOM;
-    private int CAPACITE;
-    private int ID_SITE;
-    
-    public DAO_Salle(int id){
-        try{    
-            try{
-                maconnexion = new BDD("projet_java", "root", "");
-            }
-            catch(final ClassNotFoundException  cnfe){
-                System.out.println("Connexion echouee : probleme de classe");
-                cnfe.printStackTrace();
-            }
-        }
-        catch(final SQLException e){
-            System.out.println("Connexion echouee : probleme SQL");
-            e.printStackTrace();
+public class DAO_Salle extends DAO<Salle> {
 
-        }
-        
-        ArrayList liste;
-        final String Requete = "SELECT * FROM `utilisateur` WHERE `ID` LIKE " + id;
+    @Override
+    public boolean create() {
+        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+    }
+
+    @Override
+    public boolean delete(Salle obj) {
+        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+    }
+
+    @Override
+    public boolean update(Salle obj) {
+        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+    }
+
+    @Override
+    public Salle find(int id) {
+    ArrayList liste;
+        final String Requete1 = "SELECT * FROM `salle` WHERE `ID` = " + id;
+        final String Requete2 = "SELECT #ID_SEANCE FROM `seance_salles` WHERE `#ID_SALLE` = " + id;
         try{
-            liste = maconnexion.RequeteRetourListe(Requete);
-            ID = (int) liste.get(0);
-            NOM = (String) liste.get(1);
-            CAPACITE = (int) liste.get(2);
-            ID_SITE = (int) liste.get(3);
+            liste = maconnexion.RequeteRetourListe(Requete1);
+            int ID = Integer.parseInt((String) liste.get(0));
+            String NOM = (String) liste.get(1);
+            int CAPACITE = Integer.parseInt((String) liste.get(2));
+            int ID_SITE = Integer.parseInt((String) liste.get(3));
+            
+            liste = maconnexion.RequeteRetourListe(Requete2);
+            ArrayList<Integer> ID_Seances = new ArrayList<Integer>();
+            
+            for(int i=0;i<liste.size();i++)
+            {
+                ID_Seances.add(Integer.parseInt((String) liste.get(0)));
+            }
+            
+            Salle salle = new Salle(ID,NOM,CAPACITE,ID_SITE,ID_Seances);
+            return salle;
         }
         catch(final SQLException e){
             System.out.println("Connexion echouee : probleme SQL");
+            return null;
         }
-        
     }
+
+    @Override
+    public Salle find(String email, String passwd) {
+        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+    }
+    
 }
