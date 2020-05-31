@@ -17,7 +17,7 @@ import java.util.*;
  */
 public class CustomFrame extends JFrame implements ActionListener {
 
-    final private int height = 900;
+    final private int height = 1000;
     final private int width = 1600;
     final private int menu = 400;
     final static private int sizeX = 175;
@@ -69,35 +69,43 @@ public class CustomFrame extends JFrame implements ActionListener {
         pContent.setLocation(menu, 0);
         pContent.setBackground(Color.WHITE);
 
-        pSemaine = new ArrayList<JPanel>();
+        pSemaine = new ArrayList<>();
         for (int i = 0; i < 6; i++) {
                    //(ArrayList<JPanel> today, int x, int y, int gap, int nbColumn, Color color, String myLabel)
-            initArray(pSemaine, menu + 80 + (sizeX + 10) * i, 15, 5, 7, new Color(((i * (255 / 6))), 120, 220), "Bonjour");
+            initArray(pSemaine, menu + 80 + (sizeX + 10) * i, 115, 5, 7, new Color(((i * (255 / 6))), 120, 220), "Bonjour");
             linkArray(pSemaine, pContent);
         }
+        
+        Grille tmp = new Grille(menu + 10, sizeY, Color.BLUE, sizeX);
+        tmp.addPanel(pContent);
 
-        for (int i = 0; i < 8; i++) {
+        JButton bYes = new JButton("Yes");
+        JButton bNo = new JButton("No");
+        bYes.addActionListener(this);
+        bNo.addActionListener(this);
+        
+        /*for (int i = 0; i < 7; i++) {
             JPanel test = new JPanel();
-            test.setLocation(menu + 10, 10 + (sizeY + 5 * 4) * i);
-            test.setBackground(Color.RED);
-            test.setSize(width - menu, 5);
+            test.setLocation(menu +10, 10 + (sizeY + 5 * 4) * i + 100);
+            test.setBackground(Color.BLACK);
+            test.setSize(1200 , 5);
             pContent.add(test);
         }
         for (int i = 0; i < 8; i++) {
             JPanel test = new JPanel();
-            test.setLocation(menu + 10, 15 + sizeY + (sizeY + 5 * 4) * i);
-            test.setBackground(Color.RED);
-            test.setSize(width - menu, 5);
+            test.setLocation(menu +15, 15 + sizeY + (sizeY + 5 * 4) * i + 100);
+            test.setBackground(Color.BLACK);
+            test.setSize(1200 , 5);
             pContent.add(test);
-        }
-
-        JButton yes = new JButton("Yes");
-        JButton no = new JButton("No");
-        yes.addActionListener(this);
-        no.addActionListener(this);
-
-        pMenu.add(yes);
-        pMenu.add(no);
+        }*/ 
+        
+        /*JLabel test = new JLabel("Bonjour");
+        test.setBounds(menu + 20 ,10 , 500, 20);
+        pContent.add(test);*/
+        
+        
+        pMenu.add(bYes);
+        pMenu.add(bNo);
 
         fMain.add(pMenu);
         fMain.add(pContent);

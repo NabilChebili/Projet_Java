@@ -14,8 +14,8 @@ import javax.swing.*;
  */
 public class CoursWidget extends JPanel{
     public JPanel pCours;
-    private JLabel lNomCours;
-    private Color cCours;
+    private final JLabel lNomCours;
+    private final Color cCours;
     
     public CoursWidget(String myLabel, Color myColor,int sizeX, int sizeY, int x, int y, int gap) {
         this.pCours = new JPanel();
