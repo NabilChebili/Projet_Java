@@ -95,7 +95,7 @@ public class GUI extends JFrame implements ActionListener {
         
         
            
-        if (user.equals("Pierre") && pwd.equals("password")) {
+        if (myCo.connexion(user, pwd)) {
             success.setText("Login successful");
         }
         else {
