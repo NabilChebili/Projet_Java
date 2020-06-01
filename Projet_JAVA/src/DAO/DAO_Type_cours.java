@@ -42,6 +42,7 @@ public class DAO_Type_cours extends DAO<Type_cours> {
         }
         catch(final SQLException e){
             System.out.println("Connexion echouee : probleme SQL");
+            e.printStackTrace();
             return null;
         }
     }

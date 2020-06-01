@@ -42,6 +42,7 @@ public class DAO_Promotion extends DAO<Promotion> {
         }
         catch(final SQLException e){
             System.out.println("Connexion echouee : probleme SQL");
+            e.printStackTrace();
             return null;
         }
     }

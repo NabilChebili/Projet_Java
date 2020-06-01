@@ -33,7 +33,7 @@ public class DAO_Groupe extends DAO<Groupe> {
     public Groupe find(int id) {
         ArrayList liste;
         final String Requete1 = "SELECT * FROM `groupe` WHERE `ID` = " + id;
-        final String Requete2 = "SELECT #ID_SEANCE FROM `seance_groupes` WHERE `#ID_GROUPE` = " + id;
+        final String Requete2 = "SELECT `#ID_SEANCE` FROM `seance_groupes` WHERE `#ID_GROUPE` = " + id;
         try{
             liste = maconnexion.RequeteRetourListe(Requete1);
             int ID = Integer.parseInt((String) liste.get(0));
@@ -52,7 +52,8 @@ public class DAO_Groupe extends DAO<Groupe> {
             return groupe;
         }
         catch(final SQLException e){
-            System.out.println("Connexion echouee : probleme SQL");
+            e.printStackTrace();
+            System.out.println("Connexion echouee : probleme SQL groupe");
             return null;
         }
     }

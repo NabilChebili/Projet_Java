@@ -60,6 +60,7 @@ public class DAO_Enseignant extends DAO<Enseignant> {
         }
         catch(final SQLException e){
             System.out.println("Connexion echouee : probleme SQL");
+            e.printStackTrace();
             return null;
         }
     }

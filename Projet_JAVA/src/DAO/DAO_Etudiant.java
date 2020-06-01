@@ -32,7 +32,7 @@ public class DAO_Etudiant extends DAO<Etudiant> {
     @Override
     public Etudiant find(int id) {
         ArrayList liste;
-        final String Requete = "SELECT * FROM `etudiant` WHERE `ID_UTILISATEUR` = " + id;
+        final String Requete = "SELECT * FROM `etudiant` WHERE `#ID_UTILISATEUR` = " + id;
         try{
             liste = maconnexion.RequeteRetourListe(Requete);
             int ID_UTILISATEUR = Integer.parseInt((String) liste.get(0));
@@ -44,6 +44,7 @@ public class DAO_Etudiant extends DAO<Etudiant> {
         }
         catch(final SQLException e){
             System.out.println("Connexion echouee : probleme SQL");
+            e.printStackTrace();
             return null;
         }
     }

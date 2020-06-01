@@ -83,8 +83,13 @@ public class CustomFrame extends JFrame implements ActionListener {
         pContent.setBackground(Color.WHITE);
 
         
-        /*// Import cours
         DAO<Seance> seancedao = new DAO_Seance();   
+        
+        
+        
+        
+        // Import cours
+        /**DAO<Seance> seancedao = new DAO_Seance();   
         int ID = -1;
         int SEMAINE = 10;
         LocalDate DATE = LocalDate.parse("1999-11-11");  
@@ -108,16 +113,20 @@ public class CustomFrame extends JFrame implements ActionListener {
         
         Seance seance = new Seance(ID,SEMAINE,DATE,HEURE_DEBUT,HEURE_FIN,ETAT,ID_COURS,ID_TYPE,ID_GROUPE,ID_SALLE,ID_ENSEIGNANT);
         
-        seancedao.create(seance);
+        seancedao.create(seance);**/
         
         DAO<Utilisateur> utilisateurDao = new DAO_Utilisateur();
+        System.out.println("1");
         Utilisateur tmpUser = utilisateurDao.find(9);
+        System.out.println("2");
         Recherche tmpRechercher = new Recherche(tmpUser);
+        System.out.println("3");
         ArrayList<Seance> arraySeance = new ArrayList<>();
         try {
             arraySeance = tmpRechercher.RechercheSeanceUti();
+            System.out.println("4");
         } catch (Exception e) {
-            
+            e.printStackTrace();
         }
         
         System.out.println(arraySeance.get(0).GET_ID());
@@ -125,7 +134,7 @@ public class CustomFrame extends JFrame implements ActionListener {
         
         pSemaine = new ArrayList<>();
         for (int i = 0; i < 6; i++) {
-            initArray(pSemaine, menu + 80 + (sizeX + 10) * i, 115, 5, 7, new Color(((i * (255 / 6))), 120, 220), "Bonjour");
+            initArray(pSemaine, menu + 80 + (sizeX + 10) * i, 115, 5, 7, new Color(((i * (255 / 6))), 120, 220), arraySeance.get(0).GET_DATE().toString());
             linkArray(pSemaine, pContent);
         }
         

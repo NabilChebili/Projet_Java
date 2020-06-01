@@ -81,6 +81,7 @@ public class DAO_Seance extends DAO<Seance> {
             maconnexion.Update(Requete1);
             return true;
         } catch (SQLException ex) {
+            ex.printStackTrace();
             return false;
         }
     }
