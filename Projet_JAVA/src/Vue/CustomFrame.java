@@ -5,8 +5,12 @@
  */
 package Vue;
 
+import Controleur.*;
+import DAO.*;
 import java.awt.*;
 import java.awt.event.*;
+import java.time.LocalDate;
+import java.time.LocalTime;
 import javax.swing.*;
 import static javax.swing.JFrame.*;
 import java.util.*;
@@ -68,10 +72,62 @@ public class CustomFrame extends JFrame implements ActionListener {
         pContent.setSize(width - menu, height);
         pContent.setLocation(menu, 0);
         pContent.setBackground(Color.WHITE);
+        
+        
+        
+        
+        
+        // Import cours
+        DAO<Seance> seancedao = new DAO_Seance();   
+        int ID = -1;
+        int SEMAINE = 10;
+        LocalDate DATE = LocalDate.parse("1999-11-11");  
+        LocalTime HEURE_DEBUT = LocalTime.parse("10:10");
+        LocalTime HEURE_FIN = LocalTime.parse("20:15");
+        String ETAT = "validee";
+        int ID_COURS = 1;
+        int ID_TYPE = 1;
+        ArrayList<Integer> ID_GROUPE = new ArrayList<Integer>();
+        ArrayList<Integer> ID_SALLE = new ArrayList<Integer>();
+        ArrayList<Integer> ID_ENSEIGNANT = new ArrayList<Integer>();
+        ID_GROUPE.add(1);
+        ID_GROUPE.add(2);
+        ID_GROUPE.add(3);
+        ID_SALLE.add(1);
+        ID_SALLE.add(2);
+        ID_SALLE.add(3);
+        ID_ENSEIGNANT.add(1);
+        ID_ENSEIGNANT.add(2);
+        ID_ENSEIGNANT.add(3);
+        
+        Seance seance = new Seance(ID,SEMAINE,DATE,HEURE_DEBUT,HEURE_FIN,ETAT,ID_COURS,ID_TYPE,ID_GROUPE,ID_SALLE,ID_ENSEIGNANT);
+        
+        seancedao.create(seance);
+        
+        DAO<Utilisateur> utilisateurDao = new DAO_Utilisateur();
+        Utilisateur tmpUser = utilisateurDao.find(9);
+        Recherche tmpRechercher = new Recherche(tmpUser);
+        ArrayList<Seance> arraySeance = new ArrayList<>();
+        try {
+            arraySeance = tmpRechercher.RechercheSeanceUti();
+        } catch (Exception e) {
+            
+        }
+        
+        System.out.println(arraySeance.get(0).GET_ID());
+        
+        
+        
+        
+        
+        // Fin import
+        
+        
+        
+        
 
         pSemaine = new ArrayList<>();
         for (int i = 0; i < 6; i++) {
-                   //(ArrayList<JPanel> today, int x, int y, int gap, int nbColumn, Color color, String myLabel)
             initArray(pSemaine, menu + 80 + (sizeX + 10) * i, 115, 5, 7, new Color(((i * (255 / 6))), 120, 220), "Bonjour");
             linkArray(pSemaine, pContent);
         }
@@ -83,26 +139,6 @@ public class CustomFrame extends JFrame implements ActionListener {
         JButton bNo = new JButton("No");
         bYes.addActionListener(this);
         bNo.addActionListener(this);
-        
-        /*for (int i = 0; i < 7; i++) {
-            JPanel test = new JPanel();
-            test.setLocation(menu +10, 10 + (sizeY + 5 * 4) * i + 100);
-            test.setBackground(Color.BLACK);
-            test.setSize(1200 , 5);
-            pContent.add(test);
-        }
-        for (int i = 0; i < 8; i++) {
-            JPanel test = new JPanel();
-            test.setLocation(menu +15, 15 + sizeY + (sizeY + 5 * 4) * i + 100);
-            test.setBackground(Color.BLACK);
-            test.setSize(1200 , 5);
-            pContent.add(test);
-        }*/ 
-        
-        /*JLabel test = new JLabel("Bonjour");
-        test.setBounds(menu + 20 ,10 , 500, 20);
-        pContent.add(test);*/
-        
         
         pMenu.add(bYes);
         pMenu.add(bNo);
