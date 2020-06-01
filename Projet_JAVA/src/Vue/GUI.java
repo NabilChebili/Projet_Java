@@ -3,15 +3,27 @@ package Vue;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 
-import javax.swing.JButton;
-import javax.swing.JFrame;
-import javax.swing.JLabel;
-import javax.swing.JPanel;
-import javax.swing.JPasswordField;
-import javax.swing.JTextField;
+import javax.swing.*;
 import Controleur.Connexion;
+import java.awt.*;
+import java.sql.*;
+import java.util.ArrayList;
 
-public class GUI implements ActionListener {
+public class GUI extends JFrame implements ActionListener {
+    
+    private JFrame fMain;
+    private JPanel pMenu;
+    private JPanel pContent;
+
+    private JButton yes;
+    private JButton no;
+    
+    
+    final private int height = 1000;
+    final private int width = 1600;
+    final private int menu = 400;
+    final static private int sizeX = 175;
+    final static private int sizeY = 100;
 
     private static JLabel userLabel;
     private static JTextField userText;
@@ -21,38 +33,55 @@ public class GUI implements ActionListener {
     private static JLabel success;
 
     public static void main(String[] args) {
-        JFrame frame = new JFrame();
-        JPanel panel = new JPanel();
-        frame.setSize(350, 200);
-        frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
-        frame.setVisible(true);
-        frame.add(panel);
+        GUI myGUI = new GUI();
+    }
+    
+    public GUI() {
+        initConnection();
+    }
+    
+    private void initConnection() {
+        fMain = new JFrame("ECE-Agenda");
+        fMain.setSize(width, height);
+        fMain.setLocation((1920 / 2) - (width / 2), (1080 / 2) - (height / 2));
+        fMain.setDefaultCloseOperation(EXIT_ON_CLOSE);
+        fMain.setVisible(true);
+        fMain.setResizable(false);
 
-        panel.setLayout(null);
+        pContent = new JPanel();
+        pContent.setBackground(Color.WHITE);
+
+        pContent.setLayout(null);
         userLabel = new JLabel("User");
-        userLabel.setBounds(10, 20, 80, 25);
-        panel.add(userLabel);
+        userLabel.setBounds(width/2 -80, height/2 -15 + 20, 80, 30);
+        pContent.add(userLabel);
 
         userText = new JTextField();
-        userText.setBounds(100, 20, 165, 25);
-        panel.add(userText);
+        userText.setBounds(width/2, height/2 -15 + 20, 165, 30);
+        pContent.add(userText);
 
         pwdLabel = new JLabel("Password");
-        pwdLabel.setBounds(10, 50, 80, 25);
-        panel.add(pwdLabel);
+        pwdLabel.setBounds(width/2 -80, height/2 -15 + 70, 80, 30);
+        pContent.add(pwdLabel);
 
         pwdText = new JPasswordField();
-        pwdText.setBounds(100, 50, 165, 25);
-        panel.add(pwdText);
+        pwdText.setBounds(width/2, height/2 -15 + 70, 165, 30);
+        pContent.add(pwdText);
 
         button = new JButton("Login");
-        button.setBounds(10, 80, 80, 25);
-        button.addActionListener(new GUI());
-        panel.add(button);
+        button.setBounds(width/2, height/2 -15 + 120, 80, 25);
+        button.addActionListener(this);
+        pContent.add(button);
 
         success = new JLabel("");
-        success.setBounds(10, 110, 300, 25);
-        panel.add(success);
+        success.setBounds(width/2, height/2 -15 + 170, 300, 25);
+        pContent.add(success);
+        
+        //fMain.add(pMenu);
+        fMain.add(pContent);
+
+        fMain.repaint();
+        fMain.revalidate();
     }
 
     @Override
@@ -61,6 +90,10 @@ public class GUI implements ActionListener {
         String pwd = pwdText.getText();
 
         System.out.println(user + " " + pwd);
+        
+        Connexion myCo = new Connexion();
+        
+        
            
         if (user.equals("Pierre") && pwd.equals("password")) {
             success.setText("Login successful");

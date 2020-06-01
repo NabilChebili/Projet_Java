@@ -4,6 +4,7 @@
  * and open the template in the editor.
  */
 package Controleur;
+
 import DAO.*;
 import java.sql.SQLException;
 import java.util.ArrayList;
@@ -13,16 +14,25 @@ import java.util.ArrayList;
  * @author Nabil WOW
  */
 public class Connexion {
+
     public Utilisateur uti;
-    public Connexion(){             
+
+    public Connexion() {
     }
-    
-    public void connexion (String Idtest, String Mdptest){
+
+    public boolean connexion(String Idtest, String Mdptest) {
         DAO<Utilisateur> utilisateurdao = new DAO_Utilisateur();
-        uti = utilisateurdao.find(Idtest,Mdptest);        
+        uti = new Utilisateur();
+        uti = utilisateurdao.find(Idtest, Mdptest);
+
+        if (uti.GET_ID() == -1) {
+            return false;
+        } else {
+            return true;
+        }
     }
-    
-    public Utilisateur GET_UTI(){
+
+    public Utilisateur GET_UTI() {
         return uti;
     }
 }

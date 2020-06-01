@@ -20,6 +20,15 @@ import java.util.*;
  * @author pierr
  */
 public class CustomFrame extends JFrame implements ActionListener {
+    
+    private JFrame fMain;
+    private JPanel pMenu;
+    private JLayeredPane pContent;
+
+    private ArrayList<JPanel> pSemaine;
+
+    private JButton yes;
+    private JButton no;
 
     final private int height = 1000;
     final private int width = 1600;
@@ -62,7 +71,7 @@ public class CustomFrame extends JFrame implements ActionListener {
         fMain.setLocation((1920 / 2) - (width / 2), (1080 / 2) - (height / 2));
         fMain.setDefaultCloseOperation(EXIT_ON_CLOSE);
         fMain.setVisible(true);
-        //fMain.setResizable(false);
+        fMain.setResizable(false);
 
         pMenu = new JPanel();
         pMenu.setSize(menu, height);
@@ -72,12 +81,9 @@ public class CustomFrame extends JFrame implements ActionListener {
         pContent.setSize(width - menu, height);
         pContent.setLocation(menu, 0);
         pContent.setBackground(Color.WHITE);
+
         
-        
-        
-        
-        
-        // Import cours
+        /*// Import cours
         DAO<Seance> seancedao = new DAO_Seance();   
         int ID = -1;
         int SEMAINE = 10;
@@ -115,17 +121,8 @@ public class CustomFrame extends JFrame implements ActionListener {
         }
         
         System.out.println(arraySeance.get(0).GET_ID());
+        // Fin import*/
         
-        
-        
-        
-        
-        // Fin import
-        
-        
-        
-        
-
         pSemaine = new ArrayList<>();
         for (int i = 0; i < 6; i++) {
             initArray(pSemaine, menu + 80 + (sizeX + 10) * i, 115, 5, 7, new Color(((i * (255 / 6))), 120, 220), "Bonjour");
@@ -170,15 +167,6 @@ public class CustomFrame extends JFrame implements ActionListener {
             pContent.setVisible(true);
         }
     }
-
-    private JFrame fMain;
-    private JPanel pMenu;
-    private JLayeredPane pContent;
-
-    private ArrayList<JPanel> pSemaine;
-
-    private JButton yes;
-    private JButton no;
 }
 
 
