@@ -56,17 +56,25 @@ public class DAO_Utilisateur extends DAO<Utilisateur> {
     }
     public Utilisateur find(final String email,final String passwd) {
         ArrayList liste;
-        final String Requete = "SELECT ID,EMAIL,PASSWD,DROIT FROM `utilisateur` WHERE `EMAIL` LIKE " + email + "AND `PASSWD` LIKE " + passwd;
+        final String Requete = "SELECT * FROM `utilisateur` WHERE `EMAIL` = '" + email + "' AND `PASSWD` = '" + passwd +"'";
         try{
             liste = maconnexion.RequeteRetourListe(Requete);
-            int ID = Integer.parseInt((String) liste.get(0)) ;
-            String EMAIL = (String) liste.get(1);
-            String PASSWD = (String) liste.get(2);
-            String NOM = (String) liste.get(3);
-            String PRENOM = (String) liste.get(4);
-            int DROIT = Integer.parseInt((String) liste.get(5));
-            Utilisateur utilisateur = new Utilisateur(ID,EMAIL,PASSWD,NOM,PRENOM,DROIT);
-            return utilisateur;
+            if(liste.isEmpty())
+            {
+                Utilisateur utilisateur = new Utilisateur();
+                return utilisateur;
+            }
+            else{
+                int ID = Integer.parseInt((String) liste.get(0)) ;
+                String EMAIL = (String) liste.get(1);
+                String PASSWD = (String) liste.get(2);
+                String NOM = (String) liste.get(3);
+                String PRENOM = (String) liste.get(4);
+                int DROIT = Integer.parseInt((String) liste.get(5));
+                Utilisateur utilisateur = new Utilisateur(ID,EMAIL,PASSWD,NOM,PRENOM,DROIT);
+                return utilisateur;
+            }
+            
         }
         catch(final SQLException e){
             System.out.println("Connexion echouee");
