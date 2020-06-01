@@ -15,7 +15,7 @@ import java.util.ArrayList;
 public class DAO_Etudiant extends DAO<Etudiant> {
 
     @Override
-    public boolean create() {
+    public boolean create(Etudiant obj) {
         throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
     }
 
@@ -50,6 +50,11 @@ public class DAO_Etudiant extends DAO<Etudiant> {
 
     @Override
     public Etudiant find(String email, String passwd) {
+        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+    }
+
+    @Override
+    public ArrayList<Etudiant> all() {
         throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
     }
       

@@ -19,7 +19,7 @@ public class DAO_Utilisateur extends DAO<Utilisateur> {
     
 
     @Override
-    public boolean create() {
+    public boolean create(Utilisateur obj) {
         throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
     }
 
@@ -72,6 +72,11 @@ public class DAO_Utilisateur extends DAO<Utilisateur> {
             Utilisateur utilisateur = new Utilisateur();
             return utilisateur;
         }
+    }
+
+    @Override
+    public ArrayList<Utilisateur> all() {
+        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
     }
     
 }

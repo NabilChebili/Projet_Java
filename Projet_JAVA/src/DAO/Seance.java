@@ -5,6 +5,7 @@
  */
 package DAO;
 
+import java.time.*;
 import java.util.ArrayList;
 
 /**
@@ -14,21 +15,23 @@ import java.util.ArrayList;
 public class Seance {
     private int ID;
     private int SEMAINE;
-    private String DATE;
-    private String HEURE_DEBUT;
-    private String HEURE_FIN;
+    private LocalDate DATE;
+    private LocalTime HEURE_DEBUT;
+    private LocalTime HEURE_FIN;
+    private String ETAT;
     private int ID_COURS;
     private int ID_TYPE;
     private ArrayList<Integer> ID_GROUPES;
     private ArrayList<Integer> ID_SALLES;
     private ArrayList<Integer> ID_ENSEIGNANTS;
     
-    public Seance(int id,int semaine,String date,String heure_debut,String heure_fin,int id_cours,int id_type,ArrayList<Integer> id_groupes,ArrayList<Integer> id_salles,ArrayList<Integer> id_enseigants){
+    public Seance(int id,int semaine,LocalDate date,LocalTime heure_debut,LocalTime heure_fin,String etat,int id_cours,int id_type,ArrayList<Integer> id_groupes,ArrayList<Integer> id_salles,ArrayList<Integer> id_enseigants){
         this.ID = id ;
         this.SEMAINE = semaine ;
         this.DATE = date ;
         this.HEURE_DEBUT = heure_debut ;
         this.HEURE_FIN = heure_fin ;
+        this.ETAT = etat ;
         this.ID_COURS = id_cours ;
         this.ID_TYPE = id_type ;
         this.ID_GROUPES = id_groupes ;
@@ -42,14 +45,17 @@ public class Seance {
     public int GET_SEMAINE (){
         return SEMAINE;
     }
-    public String GET_DATE (){
+    public LocalDate GET_DATE (){
         return DATE;
     }
-    public String GET_HEURE_DEBUT (){
+    public LocalTime GET_HEURE_DEBUT (){
         return HEURE_DEBUT;
     }
-    public String GET_HEURE_FIN (){
+    public LocalTime GET_HEURE_FIN (){
         return HEURE_FIN;
+    }
+    public String GET_ETAT (){
+        return ETAT;
     }
     public int GET_ID_COURS (){
         return ID_COURS;

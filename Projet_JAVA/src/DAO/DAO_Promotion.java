@@ -15,7 +15,7 @@ import java.util.ArrayList;
 public class DAO_Promotion extends DAO<Promotion> {
 
     @Override
-    public boolean create() {
+    public boolean create(Promotion obj) {
         throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
     }
 
@@ -48,6 +48,11 @@ public class DAO_Promotion extends DAO<Promotion> {
 
     @Override
     public Promotion find(String email, String passwd) {
+        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+    }
+
+    @Override
+    public ArrayList<Promotion> all() {
         throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
     }
     

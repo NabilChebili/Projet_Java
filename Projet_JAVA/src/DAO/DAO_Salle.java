@@ -15,7 +15,7 @@ import java.util.ArrayList;
 public class DAO_Salle extends DAO<Salle> {
 
     @Override
-    public boolean create() {
+    public boolean create(Salle obj) {
         throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
     }
 
@@ -33,7 +33,7 @@ public class DAO_Salle extends DAO<Salle> {
     public Salle find(int id) {
     ArrayList liste;
         final String Requete1 = "SELECT * FROM `salle` WHERE `ID` = " + id;
-        final String Requete2 = "SELECT #ID_SEANCE FROM `seance_salles` WHERE `#ID_SALLE` = " + id;
+        final String Requete2 = "SELECT `#ID_SEANCE` FROM `seance_salles` WHERE `#ID_SALLE` = " + id;
         try{
             liste = maconnexion.RequeteRetourListe(Requete1);
             int ID = Integer.parseInt((String) liste.get(0));
@@ -46,7 +46,7 @@ public class DAO_Salle extends DAO<Salle> {
             
             for(int i=0;i<liste.size();i++)
             {
-                ID_Seances.add(Integer.parseInt((String) liste.get(0)));
+                ID_Seances.add(Integer.parseInt((String) liste.get(i)));
             }
             
             Salle salle = new Salle(ID,NOM,CAPACITE,ID_SITE,ID_Seances);
@@ -60,6 +60,11 @@ public class DAO_Salle extends DAO<Salle> {
 
     @Override
     public Salle find(String email, String passwd) {
+        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+    }
+
+    @Override
+    public ArrayList<Salle> all() {
         throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
     }
     

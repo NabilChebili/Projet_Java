@@ -15,7 +15,7 @@ import java.util.ArrayList;
 public class DAO_Enseignant extends DAO<Enseignant> {
 
     @Override
-    public boolean create() {
+    public boolean create(Enseignant obj) {
         throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
     }
 
@@ -32,9 +32,9 @@ public class DAO_Enseignant extends DAO<Enseignant> {
     @Override
     public Enseignant find(int id) {
         ArrayList liste;
-        final String Requete1 = "SELECT #ID_UTILISATEUR FROM `enseignant` WHERE `#ID_UTILISATEUR` = " + id;
-        final String Requete2 = "SELECT #ID_COURS FROM `enseignant` WHERE `#ID_UTILISATEUR` = " + id;
-        final String Requete3 = "SELECT #ID_SEANCE FROM `seance_enseignants` WHERE `#ID_ENSEIGNANT` = " + id;
+        final String Requete1 = "SELECT `#ID_UTILISATEUR` FROM `enseignant` WHERE `#ID_UTILISATEUR` = " + id;
+        final String Requete2 = "SELECT `#ID_COURS` FROM `enseignant` WHERE `#ID_UTILISATEUR` = " + id;
+        final String Requete3 = "SELECT `#ID_SEANCE` FROM `seance_enseignants` WHERE `#ID_ENSEIGNANT` = " + id;
         try{
             liste = maconnexion.RequeteRetourListe(Requete1);
             int ID_utilisateur = Integer.parseInt((String) liste.get(0));
@@ -44,7 +44,7 @@ public class DAO_Enseignant extends DAO<Enseignant> {
             
             for(int i=0;i<liste.size();i++)
             {
-                ID_Cours.add(Integer.parseInt((String) liste.get(0)));
+                ID_Cours.add(Integer.parseInt((String) liste.get(i)));
             }
             
             liste = maconnexion.RequeteRetourListe(Requete3);
@@ -52,7 +52,7 @@ public class DAO_Enseignant extends DAO<Enseignant> {
             
             for(int i=0;i<liste.size();i++)
             {
-                ID_Seances.add(Integer.parseInt((String) liste.get(0)));
+                ID_Seances.add(Integer.parseInt((String) liste.get(i)));
             }
             
             Enseignant enseignant = new Enseignant(ID_utilisateur,ID_Cours,ID_Seances);
@@ -66,6 +66,11 @@ public class DAO_Enseignant extends DAO<Enseignant> {
 
     @Override
     public Enseignant find(String email, String passwd) {
+        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+    }
+
+    @Override
+    public ArrayList<Enseignant> all() {
         throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
     }
 }

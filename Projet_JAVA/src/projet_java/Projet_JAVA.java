@@ -6,6 +6,8 @@
 package projet_java;
 import Controleur.*;
 import DAO.*;
+import java.time.LocalDate;
+import java.time.LocalTime;
 import java.util.ArrayList;
 
 /**
@@ -18,13 +20,39 @@ public class Projet_JAVA {
     /**
      * @param args the command line arguments
      */
-    public void main(String[] args) {
+    public static void main(String[] args) {
         // TODO code application logic here
-        conn = new Connexion();
-        Utilisateur uti1 = new Utilisateur();
         
-        conn.connexion("nabil", "coucou");
-        System.out.println(conn.uti.GET_ID()+","+uti1.GET_EMAIL()+","+uti1.GET_DROIT());
+        Utilisateur uti1 = new Utilisateur();
+        DAO<Seance> seancedao = new DAO_Seance();
+        
+        int ID = -1;
+        int SEMAINE = 10;
+
+        LocalDate DATE = LocalDate.parse("1999-11-11");  
+        LocalTime HEURE_DEBUT = LocalTime.parse("10:10");
+        LocalTime HEURE_FIN = LocalTime.parse("20:15");
+        String ETAT = "validee";
+        int ID_COURS = 1;
+        int ID_TYPE = 1;
+        ArrayList<Integer> ID_GROUPE = new ArrayList<Integer>();
+        ArrayList<Integer> ID_SALLE = new ArrayList<Integer>();
+        ArrayList<Integer> ID_ENSEIGNANT = new ArrayList<Integer>();
+        ID_GROUPE.add(1);
+        ID_GROUPE.add(2);
+        ID_GROUPE.add(3);
+        ID_SALLE.add(1);
+        ID_SALLE.add(2);
+        ID_SALLE.add(3);
+        ID_ENSEIGNANT.add(1);
+        ID_ENSEIGNANT.add(2);
+        ID_ENSEIGNANT.add(3);
+        
+        
+        Seance seance = new Seance(ID,SEMAINE,DATE,HEURE_DEBUT,HEURE_FIN,ETAT,ID_COURS,ID_TYPE,ID_GROUPE,ID_SALLE,ID_ENSEIGNANT);
+        
+        seancedao.create(seance);
+        
         
     }
     

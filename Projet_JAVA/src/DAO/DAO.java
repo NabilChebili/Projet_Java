@@ -6,6 +6,7 @@
 package DAO;
 
 import java.sql.SQLException;
+import java.util.ArrayList;
 
 /**
  *
@@ -36,7 +37,7 @@ public abstract class DAO<T> {
     * @param obj
     * @return boolean 
     */
-    public abstract boolean create();
+    public abstract boolean create(T obj);
 
     /**
     * Méthode pour effacer
@@ -59,4 +60,6 @@ public abstract class DAO<T> {
     */
     public abstract T find(int id);
     public abstract T find(final String email,final String passwd);
+    
+    public abstract ArrayList<T> all();
 }

@@ -15,7 +15,7 @@ import java.util.ArrayList;
 public class DAO_Groupe extends DAO<Groupe> {
 
     @Override
-    public boolean create() {
+    public boolean create(Groupe obj) {
         throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
     }
 
@@ -45,7 +45,7 @@ public class DAO_Groupe extends DAO<Groupe> {
             
             for(int i=0;i<liste.size();i++)
             {
-                ID_Seances.add(Integer.parseInt((String) liste.get(0)));
+                ID_Seances.add(Integer.parseInt((String) liste.get(i)));
             }
             
             Groupe groupe = new Groupe(ID,NOM,ID_PROMOTION,ID_Seances);
@@ -60,6 +60,41 @@ public class DAO_Groupe extends DAO<Groupe> {
     @Override
     public Groupe find(String email, String passwd) {
         throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+    }
+
+    @Override
+    public ArrayList<Groupe> all() {
+        ArrayList liste;
+        final String Requete1 = "SELECT * FROM `groupe`";
+        try{
+            liste = maconnexion.RequeteRetourListe(Requete1);
+            ArrayList<Groupe> listgrp = new ArrayList();            
+            for(int i=0;i<liste.size();i+=3)
+            {
+                int ID = Integer.parseInt((String) liste.get(i));
+                String NOM = (String) liste.get(i+1);
+                int ID_PROMOTION = Integer.parseInt((String) liste.get(i+2));
+
+                final String Requete2 = "SELECT `#ID_SEANCE` FROM `seance_groupes` WHERE `#ID_GROUPE` = " + ID;
+                ArrayList liste2;
+                liste2 = maconnexion.RequeteRetourListe(Requete2);
+                ArrayList<Integer> ID_Seances = new ArrayList<Integer>();
+
+                for(int j=0;j<liste2.size();j++)
+                {
+                    ID_Seances.add(Integer.parseInt((String) liste.get(j)));
+                }
+
+                Groupe groupe = new Groupe(ID,NOM,ID_PROMOTION,ID_Seances);
+                listgrp.add(groupe);
+            }
+            return listgrp;
+        }
+        catch(final SQLException e){
+            System.out.println("Connexion echouee : probleme SQL");
+            e.printStackTrace();
+            return null;
+        }
     }
     
 }
