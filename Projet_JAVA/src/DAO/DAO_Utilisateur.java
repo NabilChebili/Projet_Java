@@ -50,6 +50,7 @@ public class DAO_Utilisateur extends DAO<Utilisateur> {
         }
         catch(final SQLException e){
             System.out.println("Connexion echouee : probleme SQL");
+            e.printStackTrace();
             return null;
         }
     }
@@ -69,6 +70,7 @@ public class DAO_Utilisateur extends DAO<Utilisateur> {
         }
         catch(final SQLException e){
             System.out.println("Connexion echouee");
+            e.printStackTrace();
             Utilisateur utilisateur = new Utilisateur();
             return utilisateur;
         }

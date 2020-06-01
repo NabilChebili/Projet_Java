@@ -54,6 +54,7 @@ public class DAO_Salle extends DAO<Salle> {
         }
         catch(final SQLException e){
             System.out.println("Connexion echouee : probleme SQL");
+            e.printStackTrace();
             return null;
         }
     }
