@@ -9,7 +9,7 @@ import java.awt.*;
 import java.sql.*;
 import java.util.ArrayList;
 
-public class GUI extends JFrame implements ActionListener {
+public class GUIConnection extends JFrame implements ActionListener {
     
     private JFrame fMain;
     private JPanel pMenu;
@@ -33,10 +33,10 @@ public class GUI extends JFrame implements ActionListener {
     private static JLabel success;
 
     public static void main(String[] args) {
-        GUI myGUI = new GUI();
+        GUIConnection myGUI = new GUIConnection();
     }
     
-    public GUI() {
+    public GUIConnection() {
         initConnection();
     }
     
