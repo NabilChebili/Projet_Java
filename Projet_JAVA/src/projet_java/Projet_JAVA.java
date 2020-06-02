@@ -51,7 +51,7 @@ public class Projet_JAVA {
         
         Seance seance = new Seance(ID,SEMAINE,DATE,HEURE_DEBUT,HEURE_FIN,ETAT,ID_COURS,ID_TYPE,ID_GROUPE,ID_SALLE,ID_ENSEIGNANT);
         
-        seancedao.create(seance);
+        //seancedao.create(seance);
         
         
     }

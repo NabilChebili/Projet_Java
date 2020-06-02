@@ -100,7 +100,7 @@ public class Recherche {
         return seancelist;     
     }
     
-    public ArrayList<Seance> RechercheSeanceCours(int id_salle)
+    /**public ArrayList<Seance> RechercheSeanceCours(int id_salle)
     {
         DAO<Salle> salledao = new DAO_Salle();
         Salle salle = salledao.find(id_salle);
@@ -114,7 +114,7 @@ public class Recherche {
             seancelist.add(seance);
         }
         return seancelist;     
-    }
+    }**/
     
     
     

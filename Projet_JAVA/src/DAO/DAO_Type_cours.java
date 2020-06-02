@@ -54,7 +54,25 @@ public class DAO_Type_cours extends DAO<Type_cours> {
 
     @Override
     public ArrayList<Type_cours> all() {
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
-    }
+        ArrayList liste;
+        final String Requete1 = "SELECT * FROM `type_cours`";
+        try{
+            liste = maconnexion.RequeteRetourListe(Requete1);
+            ArrayList<Type_cours> listtype_cours = new ArrayList(); 
+            for(int i=0;i<liste.size();i+=3)
+            {
+                int ID = Integer.parseInt((String) liste.get(0));
+                String NOM = (String) liste.get(1);
+                Type_cours type_cours = new Type_cours(ID,NOM);
+                listtype_cours.add(type_cours);
+            }
+            return listtype_cours;
+        }
+        catch(final SQLException e){
+            System.out.println("Connexion echouee : probleme SQL");
+            e.printStackTrace();
+            return null;
+        }    
+    }   
     
 }
