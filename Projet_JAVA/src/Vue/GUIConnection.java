@@ -96,7 +96,8 @@ public class GUIConnection extends JFrame implements ActionListener {
         if (myCo.connexion(user, pwd)) {
         //if ("p".equals(user) && "p".equals(pwd)) {
             success.setText("Login successful");
-            new CustomFrame().setVisible(true);
+            new CustomFrame(myCo.GET_UTI()).setVisible(true);
+            
             fMain.setVisible(false);
         }
         else {

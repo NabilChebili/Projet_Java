@@ -15,6 +15,8 @@ import java.time.LocalTime;
 import javax.swing.*;
 import static javax.swing.JFrame.*;
 import java.util.*;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 
 /**
  *
@@ -22,6 +24,8 @@ import java.util.*;
  */
 public class CustomFrame extends JFrame implements ActionListener {
 
+    private Utilisateur uti;
+    
     private JFrame fMain;
     private JPanel pMenu;
     private JLayeredPane pContent;
@@ -37,11 +41,12 @@ public class CustomFrame extends JFrame implements ActionListener {
     final static private int sizeX = 175;
     final static private int sizeY = 100;
 
-    public static void main(String args[]) {
+    /*public static void main(String args[]) {
         new CustomFrame().setVisible(true);
-    }
+    }*/
 
-    public CustomFrame() {
+    public CustomFrame(Utilisateur tmputi) {
+        this.uti = tmputi;
         initEDT();
     }
 
@@ -51,6 +56,9 @@ public class CustomFrame extends JFrame implements ActionListener {
 
     public static int getSizeY() {
         return sizeY;
+    }
+    public void setUti(Utilisateur tmputi) {
+        this.uti = tmputi;
     }
 
     @Override
@@ -110,7 +118,7 @@ public class CustomFrame extends JFrame implements ActionListener {
          *
          * seancedao.create(seance);*
          */
-        DAO<Utilisateur> utilisateurDao = new DAO_Utilisateur();
+        /**DAO<Utilisateur> utilisateurDao = new DAO_Utilisateur();
         System.out.println("1");
         Utilisateur tmpUser = utilisateurDao.find(9);
         System.out.println("2");
@@ -124,38 +132,83 @@ public class CustomFrame extends JFrame implements ActionListener {
             e.printStackTrace();
         }
 
-        System.out.println(arraySeance.get(0).GET_ID());
+        System.out.println(arraySeance.get(0).GET_ID());**/
         // Fin import
         
         
+        DAO<Utilisateur> utilisateurdao = new DAO_Utilisateur();
+        DAO<Cours> coursdao = new DAO_Cours();
+        ArrayList<Cours> cours = coursdao.all();
+        ArrayList<Utilisateur> prof = utilisateurdao.all();
         
         
-        
-        
+        Recherche rech = new Recherche(uti);
+        ArrayList<Seance> seances = new ArrayList<>();
+        try {
+            seances.addAll(rech.RechercheSeanceUti());
+            
+        } catch (Exception ex) {
+            System.out.println("Erreur Recherche");
+        }
         
         pSemaine = new ArrayList<>();
 
-        ArrayList test = new ArrayList<>();
+        ArrayList stringcours = new ArrayList<>();
+        ArrayList stringprof = new ArrayList<>();
+        boolean trouve = false;
         for (int i = 0; i < 6; i++) {
+            //Jour
+            
             for (int j = 0; j < 7; j++) {
-                test.add("Bonjour");
+                //Heure
+                
+                for(int k=0;k<seances.size();k++)
+                {
+                    System.out.println("oui");
+                    if(seances.get(k).GET_DATE().getDayOfWeek().getValue()-1 == i)
+                    {
+                        int heure = getintheure(seances.get(k).GET_HEURE_DEBUT().toString());
+                        if(heure == j)
+                        {
+                            for(int l = 0; l <cours.size(); l++)
+                            {
+                                if(seances.get(k).GET_ID_COURS() == cours.get(l).GET_ID())
+                                {
+                                    stringcours.add(cours.get(l).GET_NOM());
+                                }
+                            }
+                            for(int l = 0; l <prof.size(); l++)
+                            {
+                                if(seances.get(k).GET_ID_ENSEIGNANTS().get(0) == prof.get(l).GET_ID())
+                                {
+                                    stringprof.add(prof.get(l).GET_NOM());
+                                }
+                            }
+                            trouve = true;
+                        }
+                        
+                    }
+                    
+                }
+                
+                if(trouve == false)
+                {
+                    stringcours.add("-1");
+                    stringprof.add("-1");
+                }
+                else{
+                    trouve = false;
+                }
+                
+                
             }
         }
-        ArrayList prof = new ArrayList<>();
-        for (int i = 0; i < 6; i++) {
-            for (int j = 0; j < 7; j++) {
-                prof.add("Mockber");
-            }
-        }
-        test.set(5, "Java");
-        test.set(6, "Match");
-        test.set(15, "Java");
-        test.set(7, "ELEC");
-        test.set(9, "Java");
-        test.set(13, "proba");
-        test.set(2, "Java");
+        
+        System.out.println(stringcours);
+        System.out.println(stringprof);
+        
 
-        initArray(pSemaine, 0, 115, 5, 7, Color.PINK, test, prof);
+        initArray(pSemaine, 0, 115, 5, 7, Color.PINK, stringcours, stringprof);
 
         Grille tmp = new Grille(menu + 10, sizeY, Color.BLUE, sizeX);
         tmp.addPanel(pContent);
@@ -222,5 +275,24 @@ public class CustomFrame extends JFrame implements ActionListener {
         } else {
             pContent.setVisible(true);
         }
+    }
+    public int getintheure(String i) {
+        switch (i) {
+            case "08:30":
+                return 0;
+            case "10:15":
+                return 1;
+            case "12:00":
+                return 2;
+            case "13H45":
+                return 3;
+            case "15:30":
+                return 4;
+            case "17:15":
+                return 5;
+            case "19:00":
+                return 6;
+        }
+        return 0;
     }
 }
