@@ -9,7 +9,7 @@ import java.awt.*;
 import java.sql.*;
 import java.util.ArrayList;
 
-public class GUI extends JFrame implements ActionListener {
+public class GUIConnection extends JFrame implements ActionListener {
     
     private JFrame fMain;
     private JPanel pMenu;
@@ -33,10 +33,10 @@ public class GUI extends JFrame implements ActionListener {
     private static JLabel success;
 
     public static void main(String[] args) {
-        GUI myGUI = new GUI();
+        GUIConnection myGUI = new GUIConnection();
     }
     
-    public GUI() {
+    public GUIConnection() {
         initConnection();
     }
     
@@ -50,8 +50,8 @@ public class GUI extends JFrame implements ActionListener {
 
         pContent = new JPanel();
         pContent.setBackground(Color.WHITE);
-
         pContent.setLayout(null);
+        
         userLabel = new JLabel("User");
         userLabel.setBounds(width/2 -80, height/2 -15 + 20, 80, 30);
         pContent.add(userLabel);
@@ -96,7 +96,10 @@ public class GUI extends JFrame implements ActionListener {
         
            
         if (myCo.connexion(user, pwd)) {
+        //if ("p".equals(user) && "p".equals(pwd)) {
             success.setText("Login successful");
+            new CustomFrame().setVisible(true);
+            fMain.setVisible(false);
         }
         else {
             success.setText("Error");
