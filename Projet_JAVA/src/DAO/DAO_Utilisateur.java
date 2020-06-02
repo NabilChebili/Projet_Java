@@ -86,7 +86,29 @@ public class DAO_Utilisateur extends DAO<Utilisateur> {
 
     @Override
     public ArrayList<Utilisateur> all() {
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+        ArrayList liste;
+        final String Requete1 = "SELECT * FROM `utilisateur`";
+        try{
+            liste = maconnexion.RequeteRetourListe(Requete1);
+            ArrayList<Utilisateur> listgrp = new ArrayList();            
+            for(int i=0;i<liste.size();i+=6)
+            {
+                int ID = Integer.parseInt((String) liste.get(i)) ;
+                String EMAIL = (String) liste.get(i+1);
+                String PASSWD = (String) liste.get(i+2);
+                String NOM = (String) liste.get(i+3);
+                String PRENOM = (String) liste.get(i+4);
+                int DROIT = Integer.parseInt((String) liste.get(i+5));
+                Utilisateur utilisateur = new Utilisateur(ID,EMAIL,PASSWD,NOM,PRENOM,DROIT);
+                listgrp.add(utilisateur);
+            }
+            return listgrp;
+        }
+        catch(final SQLException e){
+            System.out.println("Connexion echouee : probleme SQL");
+            e.printStackTrace();
+            return null;
+        }
     }
     
 }

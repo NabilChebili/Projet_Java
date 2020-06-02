@@ -58,7 +58,7 @@ public class DAO_Cours extends DAO<Cours> {
     @Override
     public ArrayList<Cours> all() {
         ArrayList liste;
-        final String Requete1 = "SELECT * FROM `groupe`";
+        final String Requete1 = "SELECT * FROM `cours`";
         try {
             liste = maconnexion.RequeteRetourListe(Requete1);
             ArrayList<Cours> listcours = new ArrayList();

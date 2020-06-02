@@ -29,11 +29,11 @@ public class Projet_JAVA {
         int ID = -1;
         int SEMAINE = 10;
 
-        LocalDate DATE = LocalDate.parse("1999-11-11");  
-        LocalTime HEURE_DEBUT = LocalTime.parse("10:10");
-        LocalTime HEURE_FIN = LocalTime.parse("20:15");
+        LocalDate DATE = LocalDate.parse("2020-06-01");  
+        LocalTime HEURE_DEBUT = LocalTime.parse("17:15");
+        LocalTime HEURE_FIN = LocalTime.parse("18:45");
         String ETAT = "validee";
-        int ID_COURS = 1;
+        int ID_COURS = 2;
         int ID_TYPE = 1;
         ArrayList<Integer> ID_GROUPE = new ArrayList<Integer>();
         ArrayList<Integer> ID_SALLE = new ArrayList<Integer>();
