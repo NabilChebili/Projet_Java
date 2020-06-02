@@ -110,7 +110,7 @@ public class CustomFrame extends JFrame implements ActionListener {
          *
          * seancedao.create(seance);*
          */
-        /*DAO<Utilisateur> utilisateurDao = new DAO_Utilisateur();
+        DAO<Utilisateur> utilisateurDao = new DAO_Utilisateur();
         System.out.println("1");
         Utilisateur tmpUser = utilisateurDao.find(9);
         System.out.println("2");
@@ -125,7 +125,14 @@ public class CustomFrame extends JFrame implements ActionListener {
         }
 
         System.out.println(arraySeance.get(0).GET_ID());
-        // Fin import*/
+        // Fin import
+        
+        
+        
+        
+        
+        
+        
         pSemaine = new ArrayList<>();
 
         ArrayList test = new ArrayList<>();

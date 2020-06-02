@@ -92,9 +92,7 @@ public class GUIConnection extends JFrame implements ActionListener {
         System.out.println(user + " " + pwd);
         
         Connexion myCo = new Connexion();
-        
-        
-           
+  
         if (myCo.connexion(user, pwd)) {
         //if ("p".equals(user) && "p".equals(pwd)) {
             success.setText("Login successful");
