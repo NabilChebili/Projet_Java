@@ -25,6 +25,7 @@ public class CustomFrame extends JFrame implements ActionListener {
     private JFrame fMain;
     private JPanel pMenu;
     private JLayeredPane pContent;
+    private JLayeredPane pProf;
 
     private ArrayList<CoursWidget> pSemaine;
 
@@ -56,15 +57,21 @@ public class CustomFrame extends JFrame implements ActionListener {
     @Override
     public void actionPerformed(ActionEvent ae) {
         String action = ae.getActionCommand();
-        if (action.equals("Yes")) {
-            System.out.println("Yes Button pressed!");
-            toggleVisibility();
-        } else if (action.equals("No")) {
-            System.out.println("No Button pressed!");
-            pSemaine.get(0).getCours().setVisible(false);
-            pSemaine.get(3).setNomCours("COMMENT");
-        } else if (action.equals("Rechercher")) {
-            System.out.println("Recherche");
+        switch (action) {
+            case "Yes":
+                System.out.println("Yes Button pressed!");
+                toggleVisibility();
+                break;
+            case "No":
+                System.out.println("No Button pressed!");
+                pSemaine.get(0).getCours().setVisible(false);
+                pSemaine.get(3).setNomCours("COMMENT");
+                break;
+            case "Rechercher":
+                System.out.println("Recherche");
+                break;
+            default:
+                break;
         }
     }
 
@@ -91,85 +98,8 @@ public class CustomFrame extends JFrame implements ActionListener {
         fMain.add(pMenu);
         fMain.add(pContent);
 
-        //DAO<Seance> seancedao = new DAO_Seance();
-        // Import cours
-        /**
-         * DAO<Seance> seancedao = new DAO_Seance(); int ID = -1; int SEMAINE =
-         * 10; LocalDate DATE = LocalDate.parse("1999-11-11"); LocalTime
-         * HEURE_DEBUT = LocalTime.parse("10:10"); LocalTime HEURE_FIN =
-         * LocalTime.parse("20:15"); String ETAT = "validee"; int ID_COURS = 1;
-         * int ID_TYPE = 1; ArrayList<Integer> ID_GROUPE = new
-         * ArrayList<Integer>(); ArrayList<Integer> ID_SALLE = new
-         * ArrayList<Integer>(); ArrayList<Integer> ID_ENSEIGNANT = new
-         * ArrayList<Integer>(); ID_GROUPE.add(1); ID_GROUPE.add(2);
-         * ID_GROUPE.add(3); ID_SALLE.add(1); ID_SALLE.add(2); ID_SALLE.add(3);
-         * ID_ENSEIGNANT.add(1); ID_ENSEIGNANT.add(2); ID_ENSEIGNANT.add(3);
-         *
-         * Seance seance = new
-         * Seance(ID,SEMAINE,DATE,HEURE_DEBUT,HEURE_FIN,ETAT,ID_COURS,ID_TYPE,ID_GROUPE,ID_SALLE,ID_ENSEIGNANT);
-         *
-         * seancedao.create(seance);*
-         */
-        DAO<Utilisateur> utilisateurDao = new DAO_Utilisateur();
-        System.out.println("1");
-        Utilisateur tmpUser = utilisateurDao.find(9);
-        System.out.println("2");
-        Recherche tmpRechercher = new Recherche(tmpUser);
-        System.out.println("3");
-        ArrayList<Seance> arraySeance = new ArrayList<>();
-        try {
-            arraySeance = tmpRechercher.RechercheSeanceUti();
-            System.out.println("4");
-        } catch (Exception e) {
-            e.printStackTrace();
-        }
-
-        System.out.println(arraySeance.get(0).GET_ID());
-        // Fin import
-        
-        
-        
-        
-        
-        
-        
-        pSemaine = new ArrayList<>();
-
-        ArrayList test = new ArrayList<>();
-        for (int i = 0; i < 6; i++) {
-            for (int j = 0; j < 7; j++) {
-                test.add("Bonjour");
-            }
-        }
-        ArrayList prof = new ArrayList<>();
-        for (int i = 0; i < 6; i++) {
-            for (int j = 0; j < 7; j++) {
-                prof.add("Mockber");
-            }
-        }
-        test.set(5, "Java");
-        test.set(6, "Match");
-        test.set(15, "Java");
-        test.set(7, "ELEC");
-        test.set(9, "Java");
-        test.set(13, "proba");
-        test.set(2, "Java");
-
-        initArray(pSemaine, 0, 115, 5, 7, Color.PINK, test, prof);
-
-        Grille tmp = new Grille(menu + 10, sizeY, Color.BLUE, sizeX);
-        tmp.addPanel(pContent);
-
-        JLabel semaineRecherche = new JLabel("Semaine: ");
-        JTextField semaineText = new JTextField();
-        JButton semaineButton = new JButton("Rechercher");
-        semaineButton.addActionListener(this);
-        semaineRecherche.setBounds( menu + 10, 10, 100, 20);
-        semaineText.setBounds( menu + 120, 10, 50, 20);
-        semaineButton.setBounds( menu + 180, 10, 35, 20);
-        pContent.add(semaineRecherche);
-        pContent.add(semaineText);
-        pContent.add(semaineButton);
+        initContent();
+        //initProfInputCours();
 
         JButton bYes = new JButton("Yes");
         JButton bNo = new JButton("No");
@@ -196,8 +126,55 @@ public class CustomFrame extends JFrame implements ActionListener {
         pMenu.repaint();
         pContent.revalidate();
         pContent.repaint();
+        fMain.revalidate();
+        fMain.repaint();
         // TODO: Ajouter le menu left, sous formes de Jpanel prennant toute la largeur, pour le moment le new JPanel supprime les précédents
 
+    }
+
+    private void initContent() {
+        pSemaine = new ArrayList<>();
+
+        ArrayList test = new ArrayList<>();
+        for (int i = 0; i < 6; i++) {
+            for (int j = 0; j < 7; j++) {
+                test.add("Bonjour");
+            }
+        }
+        ArrayList prof = new ArrayList<>();
+        for (int i = 0; i < 6; i++) {
+            for (int j = 0; j < 7; j++) {
+                prof.add("Mockber");
+            }
+        }
+        test.set(5, "Java");
+        test.set(6, "Match");
+        test.set(15, "Java");
+        test.set(7, "ELEC");
+        test.set(9, "Java");
+        test.set(13, "proba");
+        test.set(2, "-1");
+
+        initArray(pSemaine, 0, 115, 5, 7, Color.PINK, test, prof);
+
+        Grille tmp = new Grille(menu + 10, sizeY, Color.BLUE, sizeX);
+        tmp.addPanel(pContent);
+
+        JLabel semaineRecherche = new JLabel("Semaine: ");
+        JTextField semaineText = new JTextField();
+        JButton semaineButton = new JButton("Rechercher");
+        semaineButton.addActionListener(this);
+        semaineRecherche.setBounds(menu + 10, 10, 100, 20);
+        semaineText.setBounds(menu + 120, 10, 50, 20);
+        semaineButton.setBounds(menu + 180, 10, 35, 20);
+        pContent.add(semaineRecherche);
+        pContent.add(semaineText);
+        pContent.add(semaineButton);
+    }
+
+    private void initProfInputCours() {
+        JPanel tmp = new JPanel();
+        
     }
 
     private void initArray(ArrayList<CoursWidget> semaine, int x, int y, int gap, int nbColumn, Color color, ArrayList<String> myLabel, ArrayList<String> myProf) {

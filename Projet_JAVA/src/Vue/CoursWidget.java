@@ -37,6 +37,8 @@ public final class CoursWidget extends JPanel {
         
         setFontSizeMax(this.lNomCours);
         setFontSizeMax(this.lProf);
+        
+        if (myLabel == "-1")pCours.setVisible(false);
 
         this.pCours.add(this.lNomCours);
         this.pCours.add(this.lProf);

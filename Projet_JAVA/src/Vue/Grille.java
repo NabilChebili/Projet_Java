@@ -117,5 +117,4 @@ public final class Grille extends JPanel {
         }
         return "Error static Heure";
     }
-
 }
