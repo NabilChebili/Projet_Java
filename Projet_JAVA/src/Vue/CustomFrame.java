@@ -29,6 +29,7 @@ public class CustomFrame extends JFrame implements ActionListener {
     private JFrame fMain;
     private JPanel pMenu;
     private JLayeredPane pContent;
+    private JLayeredPane pProf;
 
     private ArrayList<CoursWidget> pSemaine;
 
@@ -64,15 +65,21 @@ public class CustomFrame extends JFrame implements ActionListener {
     @Override
     public void actionPerformed(ActionEvent ae) {
         String action = ae.getActionCommand();
-        if (action.equals("Yes")) {
-            System.out.println("Yes Button pressed!");
-            toggleVisibility();
-        } else if (action.equals("No")) {
-            System.out.println("No Button pressed!");
-            pSemaine.get(0).getCours().setVisible(false);
-            pSemaine.get(3).setNomCours("COMMENT");
-        } else if (action.equals("Rechercher")) {
-            System.out.println("Recherche");
+        switch (action) {
+            case "Yes":
+                System.out.println("Yes Button pressed!");
+                toggleVisibility();
+                break;
+            case "No":
+                System.out.println("No Button pressed!");
+                pSemaine.get(0).getCours().setVisible(false);
+                pSemaine.get(3).setNomCours("COMMENT");
+                break;
+            case "Rechercher":
+                System.out.println("Recherche");
+                break;
+            default:
+                break;
         }
     }
 
@@ -136,6 +143,44 @@ public class CustomFrame extends JFrame implements ActionListener {
         // Fin import
         
         
+        
+        initContent();
+        //initProfInputCours();
+
+        JButton bYes = new JButton("Yes");
+        JButton bNo = new JButton("No");
+        bYes.addActionListener(this);
+        bNo.addActionListener(this);
+        bYes.setBounds(0, 100, menu, 50);
+        bNo.setBounds(0, 200, menu, 50);
+        pMenu.add(bYes);
+        pMenu.add(bNo);
+
+        JPanel menuB = new JPanel();
+        menuB.setLayout(null);
+        menuB.setBounds(0, 300, menu, 50);
+        menuB.setBackground(Color.yellow);
+
+        JLabel p = new JLabel("BOUTTON");
+        p.setBounds(0, 0, menu, 50);
+        setFontSizeMax(p);
+        menuB.add(p);
+
+        pMenu.add(menuB);
+
+        pMenu.revalidate();
+        pMenu.repaint();
+        pContent.revalidate();
+        pContent.repaint();
+        fMain.revalidate();
+        fMain.repaint();
+        // TODO: Ajouter le menu left, sous formes de Jpanel prennant toute la largeur, pour le moment le new JPanel supprime les précédents
+
+    }
+
+    private void initContent() {
+       
+       
         DAO<Utilisateur> utilisateurdao = new DAO_Utilisateur();
         DAO<Cours> coursdao = new DAO_Cours();
         ArrayList<Cours> cours = coursdao.all();
@@ -217,40 +262,17 @@ public class CustomFrame extends JFrame implements ActionListener {
         JTextField semaineText = new JTextField();
         JButton semaineButton = new JButton("Rechercher");
         semaineButton.addActionListener(this);
-        semaineRecherche.setBounds( menu + 10, 10, 100, 20);
-        semaineText.setBounds( menu + 120, 10, 50, 20);
-        semaineButton.setBounds( menu + 180, 10, 35, 20);
+        semaineRecherche.setBounds(menu + 10, 10, 100, 20);
+        semaineText.setBounds(menu + 120, 10, 50, 20);
+        semaineButton.setBounds(menu + 180, 10, 35, 20);
         pContent.add(semaineRecherche);
         pContent.add(semaineText);
         pContent.add(semaineButton);
+    }
 
-        JButton bYes = new JButton("Yes");
-        JButton bNo = new JButton("No");
-        bYes.addActionListener(this);
-        bNo.addActionListener(this);
-        bYes.setBounds(0, 100, menu, 50);
-        bNo.setBounds(0, 200, menu, 50);
-        pMenu.add(bYes);
-        pMenu.add(bNo);
-
-        JPanel menuB = new JPanel();
-        menuB.setLayout(null);
-        menuB.setBounds(0, 300, menu, 50);
-        menuB.setBackground(Color.yellow);
-
-        JLabel p = new JLabel("BOUTTON");
-        p.setBounds(0, 0, menu, 50);
-        setFontSizeMax(p);
-        menuB.add(p);
-
-        pMenu.add(menuB);
-
-        pMenu.revalidate();
-        pMenu.repaint();
-        pContent.revalidate();
-        pContent.repaint();
-        // TODO: Ajouter le menu left, sous formes de Jpanel prennant toute la largeur, pour le moment le new JPanel supprime les précédents
-
+    private void initProfInputCours() {
+        JPanel tmp = new JPanel();
+        
     }
 
     private void initArray(ArrayList<CoursWidget> semaine, int x, int y, int gap, int nbColumn, Color color, ArrayList<String> myLabel, ArrayList<String> myProf) {
