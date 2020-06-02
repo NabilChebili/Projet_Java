@@ -95,11 +95,19 @@ public class CustomFrame extends JFrame implements ActionListener {
         pContent.setLocation(menu, 0);
         pContent.setBackground(Color.WHITE);
 
+        /*pProf = new JLayeredPane();
+        pProf.setSize(width - menu, height);
+        pProf.setLocation(menu, 0);
+        pProf.setBackground(Color.RED);*/
+
         fMain.add(pMenu);
         fMain.add(pContent);
+        //fMain.add(pProf);
 
         initContent();
         //initProfInputCours();
+        
+        //pContent.setVisible(false); 
 
         JButton bYes = new JButton("Yes");
         JButton bNo = new JButton("No");
@@ -124,12 +132,15 @@ public class CustomFrame extends JFrame implements ActionListener {
 
         pMenu.revalidate();
         pMenu.repaint();
+        
         pContent.revalidate();
         pContent.repaint();
+        
+        /*pProf.revalidate();
+        pProf.repaint();*/
+        
         fMain.revalidate();
         fMain.repaint();
-        // TODO: Ajouter le menu left, sous formes de Jpanel prennant toute la largeur, pour le moment le new JPanel supprime les précédents
-
     }
 
     private void initContent() {
@@ -175,6 +186,9 @@ public class CustomFrame extends JFrame implements ActionListener {
     private void initProfInputCours() {
         JPanel tmp = new JPanel();
         
+        tmp.setLayout(null);
+        tmp.setBounds(menu, 300, 500, 350);
+        tmp.setBackground(Color.yellow);
     }
 
     private void initArray(ArrayList<CoursWidget> semaine, int x, int y, int gap, int nbColumn, Color color, ArrayList<String> myLabel, ArrayList<String> myProf) {
@@ -196,8 +210,10 @@ public class CustomFrame extends JFrame implements ActionListener {
     public void toggleVisibility() {
         if (pContent.isVisible()) {
             pContent.setVisible(false);
+            //pProf.setVisible(true);
         } else {
             pContent.setVisible(true);
+            //pProf.setVisible(false);
         }
     }
 }
