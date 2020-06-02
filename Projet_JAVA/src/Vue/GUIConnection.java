@@ -50,8 +50,8 @@ public class GUIConnection extends JFrame implements ActionListener {
 
         pContent = new JPanel();
         pContent.setBackground(Color.WHITE);
-
         pContent.setLayout(null);
+        
         userLabel = new JLabel("User");
         userLabel.setBounds(width/2 -80, height/2 -15 + 20, 80, 30);
         pContent.add(userLabel);
