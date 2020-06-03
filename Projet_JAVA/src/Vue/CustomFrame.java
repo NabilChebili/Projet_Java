@@ -40,6 +40,8 @@ public class CustomFrame extends JFrame implements ActionListener {
     private JButton semaineButton;
     private JTextField semaineText;
     private int semaineNbr = -1;
+    private String semaineNom = "Semaine : ";
+    private JLabel semaineRecherche;
 
     final private int height = 1000;
     final private int width = 1600;
@@ -93,15 +95,26 @@ public class CustomFrame extends JFrame implements ActionListener {
                     page = "planning";
                 }
 
-                pContent.revalidate();
-                pContent.repaint();
+                //pContent.revalidate();
+                //pContent.repaint();
                 fMain.revalidate();
                 fMain.repaint();
                 break;
             case "Rechercher":
-                semaineNbr = Integer.parseInt(semaineText.getText());
-                System.out.println(semaineText.getText());
+                semaineNom = "Semaine: " + semaineText.getText();
+                semaineRecherche.paintImmediately(semaineRecherche.getVisibleRect());
 
+                
+                semaineNbr = Integer.parseInt(semaineText.getText());
+                System.out.println(semaineNbr);
+                pContent.removeAll();
+                initContent();
+                //pContent.repaint();
+                //pContent.revalidate();
+                fMain.repaint();
+                fMain.revalidate();
+                
+                
                 break;
             default:
                 break;
@@ -193,18 +206,23 @@ public class CustomFrame extends JFrame implements ActionListener {
         menuB.add(p);
 
         pMenu.add(menuB);*/
-        pMenu.revalidate();
-        pMenu.repaint();
+        //pMenu.revalidate();
+        //pMenu.repaint();
 
-        pContent.revalidate();
-        pContent.repaint();
+        //pContent.revalidate();
+        //pContent.repaint();
 
         /*pProf.revalidate();
         pProf.repaint();*/
         fMain.revalidate();
         fMain.repaint();
+        
+       
     }
-
+    
+    
+    
+    
     private void initContent() {
         ArrayList stringcours = new ArrayList<>();
         ArrayList stringprof = new ArrayList<>();
@@ -294,16 +312,17 @@ public class CustomFrame extends JFrame implements ActionListener {
             Grille tmp = new Grille(menu + 10, sizeY, Color.BLUE, sizeX);
             tmp.addPanel(pContent);
 
-            JLabel semaineRecherche = new JLabel("Semaine: ");
+            semaineRecherche = new JLabel(semaineNom);
             semaineText = new JTextField();
             semaineButton = new JButton("Rechercher");
             semaineButton.addActionListener(this);
             semaineRecherche.setBounds(menu + 10, 10, 100, 20);
             semaineText.setBounds(menu + 120, 10, 50, 20);
             semaineButton.setBounds(menu + 180, 10, 35, 20);
-            pContent.add(semaineRecherche);
+            
             pContent.add(semaineText);
             pContent.add(semaineButton);
+            pContent.add(semaineRecherche);
         }
 
     
