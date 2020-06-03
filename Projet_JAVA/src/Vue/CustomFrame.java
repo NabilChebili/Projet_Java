@@ -164,8 +164,8 @@ public class CustomFrame extends JFrame implements ActionListener {
          * System.out.println(arraySeance.get(0).GET_ID());*
          */
         // Fin import
-        //initContent();
-        initProfInputCours();
+        initContent();
+        //initProfInputCours();
 
         //pContent.setVisible(false); 
         JButton bYes = new JButton("Yes");
