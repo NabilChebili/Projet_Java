@@ -177,7 +177,7 @@ public class CustomFrame extends JFrame implements ActionListener {
         pMenu.add(bYes);
         pMenu.add(bNo);
 
-        JPanel menuB = new JPanel();
+        /*JPanel menuB = new JPanel();
         menuB.setLayout(null);
         menuB.setBounds(0, 300, menu, 50);
         menuB.setBackground(Color.yellow);
@@ -187,7 +187,7 @@ public class CustomFrame extends JFrame implements ActionListener {
         setFontSizeMax(p);
         menuB.add(p);
 
-        pMenu.add(menuB);
+        pMenu.add(menuB);*/
 
         pMenu.revalidate();
         pMenu.repaint();
