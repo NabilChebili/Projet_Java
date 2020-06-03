@@ -37,6 +37,8 @@ public class CustomFrame extends JFrame implements ActionListener {
 
     private JButton yes;
     private JButton no;
+    private JButton semaineButton;
+    private JTextField semaineText;
 
     final private int height = 1000;
     final private int width = 1600;
@@ -96,7 +98,7 @@ public class CustomFrame extends JFrame implements ActionListener {
                 fMain.repaint();
                 break;
             case "Rechercher":
-                System.out.println("Recherche");
+                System.out.println(semaineText.getText());
                 break;
             default:
                 break;
@@ -188,7 +190,6 @@ public class CustomFrame extends JFrame implements ActionListener {
         menuB.add(p);
 
         pMenu.add(menuB);*/
-
         pMenu.revalidate();
         pMenu.repaint();
 
@@ -269,8 +270,8 @@ public class CustomFrame extends JFrame implements ActionListener {
         tmp.addPanel(pContent);
 
         JLabel semaineRecherche = new JLabel("Semaine: ");
-        JTextField semaineText = new JTextField();
-        JButton semaineButton = new JButton("Rechercher");
+        semaineText = new JTextField();
+        semaineButton = new JButton("Rechercher");
         semaineButton.addActionListener(this);
         semaineRecherche.setBounds(menu + 10, 10, 100, 20);
         semaineText.setBounds(menu + 120, 10, 50, 20);
