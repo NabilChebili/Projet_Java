@@ -39,6 +39,7 @@ public class CustomFrame extends JFrame implements ActionListener {
     private JButton no;
     private JButton semaineButton;
     private JTextField semaineText;
+    private int semaineNbr = -1;
 
     final private int height = 1000;
     final private int width = 1600;
@@ -98,7 +99,9 @@ public class CustomFrame extends JFrame implements ActionListener {
                 fMain.repaint();
                 break;
             case "Rechercher":
+                semaineNbr = Integer.parseInt(semaineText.getText());
                 System.out.println(semaineText.getText());
+
                 break;
             default:
                 break;
@@ -203,83 +206,107 @@ public class CustomFrame extends JFrame implements ActionListener {
     }
 
     private void initContent() {
-
-        DAO<Utilisateur> utilisateurdao = new DAO_Utilisateur();
-        DAO<Cours> coursdao = new DAO_Cours();
-        ArrayList<Cours> cours = coursdao.all();
-        ArrayList<Utilisateur> prof = utilisateurdao.all();
-
-        Recherche rech = new Recherche(uti);
-        ArrayList<Seance> seances = new ArrayList<>();
-        try {
-            seances.addAll(rech.RechercheSeanceUti());
-
-        } catch (Exception ex) {
-            System.out.println("Erreur Recherche");
-        }
-
-        pSemaine = new ArrayList<>();
-
         ArrayList stringcours = new ArrayList<>();
         ArrayList stringprof = new ArrayList<>();
-        boolean trouve = false;
-        for (int i = 0; i < 6; i++) {
-            //Jour
+        
+        if (semaineNbr != -1) {
+            DAO<Utilisateur> utilisateurdao = new DAO_Utilisateur();
+            DAO<Cours> coursdao = new DAO_Cours();
+            ArrayList<Cours> cours = coursdao.all();
+            ArrayList<Utilisateur> prof = utilisateurdao.all();
 
-            for (int j = 0; j < 7; j++) {
-                //Heure
+            Recherche rech = new Recherche(uti);
+            ArrayList<Seance> seances = new ArrayList<>();
+            try {
+                seances.addAll(rech.RechercheSeanceUti());
 
-                for (int k = 0; k < seances.size(); k++) {
-                    System.out.println("oui");
-                    if (seances.get(k).GET_DATE().getDayOfWeek().getValue() - 1 == i) {
-                        int heure = getintheure(seances.get(k).GET_HEURE_DEBUT().toString());
-                        if (heure == j) {
-                            for (int l = 0; l < cours.size(); l++) {
-                                if (seances.get(k).GET_ID_COURS() == cours.get(l).GET_ID()) {
-                                    stringcours.add(cours.get(l).GET_NOM());
+            } catch (Exception ex) {
+                System.out.println("Erreur Recherche");
+            }
+
+            
+            boolean trouve = false;
+            for (int i = 0; i < 6; i++) {
+                //Jour
+
+                for (int j = 0; j < 7; j++) {
+                    //Heure
+
+                    for (int k = 0; k < seances.size(); k++) {
+                        System.out.println("oui");
+                        System.out.println("seances.get(k).GET_SEMAINE()");
+                        System.out.println("semaineNbr");
+                        if(seances.get(k).GET_SEMAINE() == semaineNbr)
+                        {
+                            if (seances.get(k).GET_DATE().getDayOfWeek().getValue() - 1 == i)
+                            {
+                                int heure = getintheure(seances.get(k).GET_HEURE_DEBUT().toString());
+                                if (heure == j) {
+                                    for (int l = 0; l < cours.size(); l++) {
+                                        if (seances.get(k).GET_ID_COURS() == cours.get(l).GET_ID()) {
+                                            stringcours.add(cours.get(l).GET_NOM());
+                                        }
+                                    }
+                                    for (int l = 0; l < prof.size(); l++) {
+                                        if (seances.get(k).GET_ID_ENSEIGNANTS().get(0) == prof.get(l).GET_ID()) {
+                                            stringprof.add(prof.get(l).GET_NOM());
+                                        }
+                                    }
+                                    trouve = true;
                                 }
+
                             }
-                            for (int l = 0; l < prof.size(); l++) {
-                                if (seances.get(k).GET_ID_ENSEIGNANTS().get(0) == prof.get(l).GET_ID()) {
-                                    stringprof.add(prof.get(l).GET_NOM());
-                                }
-                            }
-                            trouve = true;
                         }
+                        
+                        
 
                     }
 
-                }
+                    if (trouve == false) {
+                        stringcours.add("-1");
+                        stringprof.add("-1");
+                    } else {
+                        trouve = false;
+                    }
 
-                if (trouve == false) {
+                }
+            }
+        } 
+        else {
+            for (int i = 0; i < 6; i++) {
+
+                for (int j = 0; j < 7; j++) {
                     stringcours.add("-1");
                     stringprof.add("-1");
-                } else {
-                    trouve = false;
                 }
+                
 
             }
         }
 
-        System.out.println(stringcours);
-        System.out.println(stringprof);
+            pSemaine = new ArrayList<>();
 
-        initArray(pSemaine, 0, 115, 5, 7, Color.PINK, stringcours, stringprof);
+            System.out.println(stringcours);
+            System.out.println(stringprof);
 
-        Grille tmp = new Grille(menu + 10, sizeY, Color.BLUE, sizeX);
-        tmp.addPanel(pContent);
+            initArray(pSemaine, 0, 115, 5, 7, Color.PINK, stringcours, stringprof);
 
-        JLabel semaineRecherche = new JLabel("Semaine: ");
-        semaineText = new JTextField();
-        semaineButton = new JButton("Rechercher");
-        semaineButton.addActionListener(this);
-        semaineRecherche.setBounds(menu + 10, 10, 100, 20);
-        semaineText.setBounds(menu + 120, 10, 50, 20);
-        semaineButton.setBounds(menu + 180, 10, 35, 20);
-        pContent.add(semaineRecherche);
-        pContent.add(semaineText);
-        pContent.add(semaineButton);
-    }
+            Grille tmp = new Grille(menu + 10, sizeY, Color.BLUE, sizeX);
+            tmp.addPanel(pContent);
+
+            JLabel semaineRecherche = new JLabel("Semaine: ");
+            semaineText = new JTextField();
+            semaineButton = new JButton("Rechercher");
+            semaineButton.addActionListener(this);
+            semaineRecherche.setBounds(menu + 10, 10, 100, 20);
+            semaineText.setBounds(menu + 120, 10, 50, 20);
+            semaineButton.setBounds(menu + 180, 10, 35, 20);
+            pContent.add(semaineRecherche);
+            pContent.add(semaineText);
+            pContent.add(semaineButton);
+        }
+
+    
 
     private void initProfInputCours() {
         JPanel tmp = new JPanel();
