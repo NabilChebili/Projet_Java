@@ -19,11 +19,8 @@ public class GUIConnection extends JFrame implements ActionListener {
     private JButton no;
     
     
-    final private int height = 1000;
-    final private int width = 1600;
-    final private int menu = 400;
-    final static private int sizeX = 175;
-    final static private int sizeY = 100;
+    final private int height = 200;
+    final private int width = 300;
 
     private static JLabel userLabel;
     private static JTextField userText;
@@ -53,28 +50,28 @@ public class GUIConnection extends JFrame implements ActionListener {
         pContent.setLayout(null);
         
         userLabel = new JLabel("User");
-        userLabel.setBounds(width/2 -80, height/2 -15 + 20, 80, 30);
+        userLabel.setBounds(30, 20, 80, 30);
         pContent.add(userLabel);
 
         userText = new JTextField();
-        userText.setBounds(width/2, height/2 -15 + 20, 165, 30);
+        userText.setBounds(30+80, 20, 165, 30);
         pContent.add(userText);
 
         pwdLabel = new JLabel("Password");
-        pwdLabel.setBounds(width/2 -80, height/2 -15 + 70, 80, 30);
+        pwdLabel.setBounds(30, 60, 80, 30);
         pContent.add(pwdLabel);
 
         pwdText = new JPasswordField();
-        pwdText.setBounds(width/2, height/2 -15 + 70, 165, 30);
+        pwdText.setBounds(30 + 80, 60, 165, 30);
         pContent.add(pwdText);
 
         button = new JButton("Login");
-        button.setBounds(width/2, height/2 -15 + 120, 80, 25);
+        button.setBounds(30, 100, 80, 25);
         button.addActionListener(this);
         pContent.add(button);
 
         success = new JLabel("");
-        success.setBounds(width/2, height/2 -15 + 170, 300, 25);
+        success.setBounds(30 + 100, 100, 300, 25);
         pContent.add(success);
         
         //fMain.add(pMenu);

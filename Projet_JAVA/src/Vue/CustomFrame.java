@@ -25,11 +25,13 @@ import java.util.logging.Logger;
 public class CustomFrame extends JFrame implements ActionListener {
 
     private Utilisateur uti;
-    
+
     private JFrame fMain;
     private JPanel pMenu;
     private JLayeredPane pContent;
     private JLayeredPane pProf;
+
+    private String page;
 
     private ArrayList<CoursWidget> pSemaine;
 
@@ -42,12 +44,16 @@ public class CustomFrame extends JFrame implements ActionListener {
     final static private int sizeX = 175;
     final static private int sizeY = 100;
 
-    /*public static void main(String args[]) {
+    public static void main(String args[]) {
         new CustomFrame().setVisible(true);
-    }*/
+    }
 
     public CustomFrame(Utilisateur tmputi) {
         this.uti = tmputi;
+        initEDT();
+    }
+
+    public CustomFrame() {
         initEDT();
     }
 
@@ -58,6 +64,7 @@ public class CustomFrame extends JFrame implements ActionListener {
     public static int getSizeY() {
         return sizeY;
     }
+
     public void setUti(Utilisateur tmputi) {
         this.uti = tmputi;
     }
@@ -72,8 +79,21 @@ public class CustomFrame extends JFrame implements ActionListener {
                 break;
             case "No":
                 System.out.println("No Button pressed!");
-                pSemaine.get(0).getCours().setVisible(false);
-                pSemaine.get(3).setNomCours("COMMENT");
+                /*pSemaine.get(0).getCours().setVisible(false);
+                pSemaine.get(3).setNomCours("COMMENT");*/
+                pContent.removeAll();
+                if (page == "planning") {
+                    initProfInputCoursRED();
+                    page = "prof";
+                } else {
+                    initProfInputCours();
+                    page = "planning";
+                }
+
+                pContent.revalidate();
+                pContent.repaint();
+                fMain.revalidate();
+                fMain.repaint();
                 break;
             case "Rechercher":
                 System.out.println("Recherche");
@@ -84,6 +104,8 @@ public class CustomFrame extends JFrame implements ActionListener {
     }
 
     private void initEDT() {
+
+        page = "planning";
 
         fMain = new JFrame("ECE-Agenda");
         fMain.setSize(width, height);
@@ -107,7 +129,6 @@ public class CustomFrame extends JFrame implements ActionListener {
         pProf.setSize(width - menu, height);
         pProf.setLocation(menu, 0);
         pProf.setBackground(Color.RED);*/
-
         fMain.add(pMenu);
         fMain.add(pContent);
         //fMain.add(pProf);
@@ -131,30 +152,22 @@ public class CustomFrame extends JFrame implements ActionListener {
          *
          * seancedao.create(seance);*
          */
-        /**DAO<Utilisateur> utilisateurDao = new DAO_Utilisateur();
-        System.out.println("1");
-        Utilisateur tmpUser = utilisateurDao.find(9);
-        System.out.println("2");
-        Recherche tmpRechercher = new Recherche(tmpUser);
-        System.out.println("3");
-        ArrayList<Seance> arraySeance = new ArrayList<>();
-        try {
-            arraySeance = tmpRechercher.RechercheSeanceUti();
-            System.out.println("4");
-        } catch (Exception e) {
-            e.printStackTrace();
-        }
-
-        System.out.println(arraySeance.get(0).GET_ID());**/
+        /**
+         * DAO<Utilisateur> utilisateurDao = new DAO_Utilisateur();
+         * System.out.println("1"); Utilisateur tmpUser =
+         * utilisateurDao.find(9); System.out.println("2"); Recherche
+         * tmpRechercher = new Recherche(tmpUser); System.out.println("3");
+         * ArrayList<Seance> arraySeance = new ArrayList<>(); try { arraySeance
+         * = tmpRechercher.RechercheSeanceUti(); System.out.println("4"); }
+         * catch (Exception e) { e.printStackTrace(); }
+         *
+         * System.out.println(arraySeance.get(0).GET_ID());*
+         */
         // Fin import
-        
-        
-        
-        initContent();
-        //initProfInputCours();
-        
-        //pContent.setVisible(false); 
+        //initContent();
+        initProfInputCours();
 
+        //pContent.setVisible(false); 
         JButton bYes = new JButton("Yes");
         JButton bNo = new JButton("No");
         bYes.addActionListener(this);
@@ -178,35 +191,32 @@ public class CustomFrame extends JFrame implements ActionListener {
 
         pMenu.revalidate();
         pMenu.repaint();
-        
+
         pContent.revalidate();
         pContent.repaint();
-        
+
         /*pProf.revalidate();
         pProf.repaint();*/
-        
         fMain.revalidate();
         fMain.repaint();
     }
 
     private void initContent() {
-       
-       
+
         DAO<Utilisateur> utilisateurdao = new DAO_Utilisateur();
         DAO<Cours> coursdao = new DAO_Cours();
         ArrayList<Cours> cours = coursdao.all();
         ArrayList<Utilisateur> prof = utilisateurdao.all();
-        
-        
+
         Recherche rech = new Recherche(uti);
         ArrayList<Seance> seances = new ArrayList<>();
         try {
             seances.addAll(rech.RechercheSeanceUti());
-            
+
         } catch (Exception ex) {
             System.out.println("Erreur Recherche");
         }
-        
+
         pSemaine = new ArrayList<>();
 
         ArrayList stringcours = new ArrayList<>();
@@ -214,55 +224,44 @@ public class CustomFrame extends JFrame implements ActionListener {
         boolean trouve = false;
         for (int i = 0; i < 6; i++) {
             //Jour
-            
+
             for (int j = 0; j < 7; j++) {
                 //Heure
-                
-                for(int k=0;k<seances.size();k++)
-                {
+
+                for (int k = 0; k < seances.size(); k++) {
                     System.out.println("oui");
-                    if(seances.get(k).GET_DATE().getDayOfWeek().getValue()-1 == i)
-                    {
+                    if (seances.get(k).GET_DATE().getDayOfWeek().getValue() - 1 == i) {
                         int heure = getintheure(seances.get(k).GET_HEURE_DEBUT().toString());
-                        if(heure == j)
-                        {
-                            for(int l = 0; l <cours.size(); l++)
-                            {
-                                if(seances.get(k).GET_ID_COURS() == cours.get(l).GET_ID())
-                                {
+                        if (heure == j) {
+                            for (int l = 0; l < cours.size(); l++) {
+                                if (seances.get(k).GET_ID_COURS() == cours.get(l).GET_ID()) {
                                     stringcours.add(cours.get(l).GET_NOM());
                                 }
                             }
-                            for(int l = 0; l <prof.size(); l++)
-                            {
-                                if(seances.get(k).GET_ID_ENSEIGNANTS().get(0) == prof.get(l).GET_ID())
-                                {
+                            for (int l = 0; l < prof.size(); l++) {
+                                if (seances.get(k).GET_ID_ENSEIGNANTS().get(0) == prof.get(l).GET_ID()) {
                                     stringprof.add(prof.get(l).GET_NOM());
                                 }
                             }
                             trouve = true;
                         }
-                        
+
                     }
-                    
+
                 }
-                
-                if(trouve == false)
-                {
+
+                if (trouve == false) {
                     stringcours.add("-1");
                     stringprof.add("-1");
-                }
-                else{
+                } else {
                     trouve = false;
                 }
-                
-                
+
             }
         }
-        
+
         System.out.println(stringcours);
         System.out.println(stringprof);
-        
 
         initArray(pSemaine, 0, 115, 5, 7, Color.PINK, stringcours, stringprof);
 
@@ -283,10 +282,22 @@ public class CustomFrame extends JFrame implements ActionListener {
 
     private void initProfInputCours() {
         JPanel tmp = new JPanel();
-        
+
         tmp.setLayout(null);
-        tmp.setBounds(menu, 300, 500, 350);
+        tmp.setBounds(menu + 10, 300, 500, 350);
         tmp.setBackground(Color.yellow);
+
+        pContent.add(tmp);
+    }
+
+    private void initProfInputCoursRED() {
+        JPanel tmp = new JPanel();
+
+        tmp.setLayout(null);
+        tmp.setBounds(menu + 100, 300, 500, 350);
+        tmp.setBackground(Color.RED);
+
+        pContent.add(tmp);
     }
 
     private void initArray(ArrayList<CoursWidget> semaine, int x, int y, int gap, int nbColumn, Color color, ArrayList<String> myLabel, ArrayList<String> myProf) {
@@ -314,6 +325,7 @@ public class CustomFrame extends JFrame implements ActionListener {
             //pProf.setVisible(false);
         }
     }
+
     public int getintheure(String i) {
         switch (i) {
             case "08:30":
