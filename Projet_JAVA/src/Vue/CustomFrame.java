@@ -38,6 +38,8 @@ public class CustomFrame extends JFrame implements ActionListener {
 
     private ArrayList<CoursWidget> pSemaine;
 
+    private JButton inputProf;
+
     private JButton bMesCours;
     private JButton bMesClasses;
     private JButton bMesSalles;
@@ -50,6 +52,9 @@ public class CustomFrame extends JFrame implements ActionListener {
     private JLabel speL;
     private JButton speB;
     private JTextField speF;
+
+    private JLabel speCoursL;
+    private JTextField speCoursF;
 
     final private int height = 1000;
     final private int width = 1600;
@@ -100,7 +105,7 @@ public class CustomFrame extends JFrame implements ActionListener {
                 System.out.println("Les CLasses Pressed");
                 pContent.removeAll();
                 initContent();
-                coursSpec("Classes");
+                coursSpec("Groupe");
 
                 fMain.repaint();
                 fMain.revalidate();
@@ -110,6 +115,15 @@ public class CustomFrame extends JFrame implements ActionListener {
                 pContent.removeAll();
                 initContent();
                 coursSpec("Salles");
+
+                fMain.repaint();
+                fMain.revalidate();
+                break;
+            case "Ajout de cours":
+                System.out.println("Ajout de cours  Pressed");
+                pContent.removeAll();
+
+                ajoutProf();
 
                 fMain.repaint();
                 fMain.revalidate();
@@ -132,6 +146,7 @@ public class CustomFrame extends JFrame implements ActionListener {
                 initContent();
                 // Implementer la recherche pour les cours
                 // Obtient le cours recherché  ->  speF.getText();
+                // Obtient la proma avec speCoursF.getText();
                 break;
             case "Salles":
                 System.out.println("Criteria Salles Pressed");
@@ -146,14 +161,29 @@ public class CustomFrame extends JFrame implements ActionListener {
         }
     }
 
+    private void ajoutProf() {
+
+    }
+
     private void coursSpec(String monTypeField) {
-        speL = new JLabel(monTypeField + ": ");
+        speL = new JLabel(monTypeField + " :");
         speF = new JTextField();
         speB = new JButton(monTypeField);
+
         speB.addActionListener(this);
         speL.setBounds(menu + 10, 40, 100, 20);
         speF.setBounds(menu + 120, 40, 100, 20);
         speB.setBounds(menu + 180 + 50, 40, 35, 20);
+
+        if ("Groupe".equals(monTypeField)) {
+            speCoursL = new JLabel("Promotion :");
+            speCoursF = new JTextField();
+            speCoursL.setBounds(menu + 240, 40, 100, 20);
+            speCoursF.setBounds(menu + 360, 40, 100, 20);
+            speB.setBounds(menu + 470, 40, 35, 20);
+            pContent.add(speCoursL);
+            pContent.add(speCoursF);
+        }
 
         pContent.add(speL);
         pContent.add(speF);
@@ -215,6 +245,16 @@ public class CustomFrame extends JFrame implements ActionListener {
         pMenu.add(bMesClasses);
         pMenu.add(bMesSalles);
 
+        if (uti.GET_DROIT() == 3) {
+            JButton inputProf = new JButton("Ajout de cours");
+            inputProf.setBackground(grisFonce);
+            inputProf.setForeground(blanc);
+            inputProf.setFont(new Font("Arial", Font.PLAIN, 30));
+            inputProf.addActionListener(this);
+            inputProf.setBounds(0, 450, menu, 50);
+            pMenu.add(inputProf);
+        }
+
         JLabel intro = new JLabel("Planning's");
         intro.setFont(new Font("Arial", Font.PLAIN, 45));
         intro.setForeground(blanc);
@@ -223,7 +263,6 @@ public class CustomFrame extends JFrame implements ActionListener {
 
         fMain.revalidate();
         fMain.repaint();
-
     }
 
     private void initContent() {
@@ -365,6 +404,46 @@ public class CustomFrame extends JFrame implements ActionListener {
         semaineRecherche.setBounds(menu + 10, 10, 100, 20);
         semaineText.setBounds(menu + 120, 10, 50, 20);
         semaineButton.setBounds(menu + 180, 10, 35, 20);
+
+        /*JLabel nom = new JLabel(uti.GET_NOM());
+        JLabel prenom = new JLabel(uti.GET_PRENOM());
+        String droit;
+        switch (uti.GET_DROIT()) {
+            case 1:
+                droit = "Admin";
+                break;
+            case 2:
+                droit = "Superviseur";
+                break;
+            case 3:
+                droit = "Enseignant";
+                break;
+            case 4:
+                droit = "Etudiant";
+                break;
+            default:
+                System.out.println("Erreur Sur le type d'utilisateur");
+                droit = "Erreur";
+                break;
+        }
+        JLabel role = new JLabel(droit);
+        JLabel mail = new JLabel(uti.GET_EMAIL());
+
+        nom.setFont(new Font("Arial", Font.PLAIN, 20));
+        prenom.setFont(new Font("Arial", Font.PLAIN, 20));
+        role.setFont(new Font("Arial", Font.PLAIN, 20));
+        mail.setFont(new Font("Arial", Font.PLAIN, 20));
+
+        nom.setBounds(1400, 50, 100, 50);
+        prenom.setBounds(1450, 50, 100, 50);
+        role.setBounds(1400, 100, 100, 30);
+        mail.setBounds(1430, 50, 100, 70);
+
+        pContent.add(nom);
+        pContent.add(prenom);
+        pContent.add(role);
+        pContent.add(role);
+        pContent.add(mail);*/
 
         pContent.add(semaineText);
         pContent.add(semaineButton);

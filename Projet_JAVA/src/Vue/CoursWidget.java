@@ -38,6 +38,11 @@ public final class CoursWidget extends JPanel {
         setFontSizeMax(this.lNomCours);
         setFontSizeMax(this.lProf);
         
+        Color blanc = Color.decode("#e2f3f5");
+        
+        lNomCours.setForeground(blanc);
+        lProf.setForeground(blanc);
+        
         if (myLabel == "-1")pCours.setVisible(false);
         
         Color blanc = Color.decode("#e2f3f5");
