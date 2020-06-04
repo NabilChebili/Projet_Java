@@ -294,7 +294,7 @@ public class CustomFrame extends JFrame implements ActionListener {
         System.out.println(stringcours);
         System.out.println(stringprof);
 
-        initArray(pSemaine, 0, 115, 5, 7, bleu, stringcours, stringprof);
+        initArray(pSemaine, 0, 115, 5, 7, blanc, stringcours, stringprof);
 
         Grille tmp = new Grille(menu + 10, sizeY, bleu, sizeX);
         tmp.addPanel(pContent);
