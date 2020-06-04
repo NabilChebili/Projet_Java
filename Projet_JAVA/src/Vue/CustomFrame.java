@@ -24,6 +24,11 @@ import java.util.logging.Logger;
  */
 public class CustomFrame extends JFrame implements ActionListener {
 
+    private Color gris;
+    private Color grisFonce;
+    private Color blanc;
+    private Color bleu;
+
     private Utilisateur uti;
 
     private JFrame fMain;
@@ -31,17 +36,20 @@ public class CustomFrame extends JFrame implements ActionListener {
     private JLayeredPane pContent;
     private JLayeredPane pProf;
 
-    private String page;
-
     private ArrayList<CoursWidget> pSemaine;
 
-    private JButton yes;
-    private JButton no;
+    private JButton bMesCours;
+    private JButton bMesClasses;
+    private JButton bMesSalles;
     private JButton semaineButton;
     private JTextField semaineText;
     private int semaineNbr = -1;
     private String semaineNom = "Semaine : ";
     private JLabel semaineRecherche;
+
+    private JLabel speL;
+    private JButton speB;
+    private JTextField speF;
 
     final private int height = 1000;
     final private int width = 1600;
@@ -78,52 +86,77 @@ public class CustomFrame extends JFrame implements ActionListener {
     public void actionPerformed(ActionEvent ae) {
         String action = ae.getActionCommand();
         switch (action) {
-            case "Yes":
-                System.out.println("Yes Button pressed!");
-                toggleVisibility();
-                break;
-            case "No":
-                System.out.println("No Button pressed!");
-                /*pSemaine.get(0).getCours().setVisible(false);
-                pSemaine.get(3).setNomCours("COMMENT");*/
+            case "Mes Cours":
+                System.out.println("Mes Cours Pressed");
                 pContent.removeAll();
-                if (page == "planning") {
-                    initProfInputCoursRED();
-                    page = "prof";
-                } else {
-                    initProfInputCours();
-                    page = "planning";
-                }
-
-                //pContent.revalidate();
-                //pContent.repaint();
                 fMain.revalidate();
+                initContent();
                 fMain.repaint();
                 break;
-            case "Rechercher":
-                semaineNom = "Semaine: " + semaineText.getText();
-                semaineRecherche.paintImmediately(semaineRecherche.getVisibleRect());
+            case "Les Classes":
+                System.out.println("Les CLasses Pressed");
+                pContent.removeAll();
+                initContent();
+                coursSpec("Classes");
 
-                
+                fMain.repaint();
+                fMain.revalidate();
+                break;
+            case "Les Salles":
+                System.out.println("Les Salles  Pressed");
+                pContent.removeAll();
+                initContent();
+                coursSpec("Salles");
+
+                fMain.repaint();
+                fMain.revalidate();
+                break;
+            case "Rechercher":
+                System.out.println("Criteria Rechercher Pressed");
+                semaineNom = "Semaine: " + semaineText.getText();
                 semaineNbr = Integer.parseInt(semaineText.getText());
                 System.out.println(semaineNbr);
                 pContent.removeAll();
                 initContent();
-                //pContent.repaint();
-                //pContent.revalidate();
+
                 fMain.repaint();
                 fMain.revalidate();
-                
-                
+                break;
+            case "Classes":
+                System.out.println("Criteria Classes Pressed");
+                // Implementer la recherche pour les cours
+                // Obtient le cours recherché  ->  speF.getText();
+                break;
+            case "Salles":
+                System.out.println("Criteria Salles Pressed");
+                // Implementer la recherche pour les cours
+                // Obtient le cours recherché  ->  speF.getText();
                 break;
             default:
                 break;
         }
     }
 
+    private void coursSpec(String monTypeField) {
+        speL = new JLabel(monTypeField + ": ");
+        speF = new JTextField();
+        speB = new JButton(monTypeField);
+        speB.addActionListener(this);
+        speL.setBounds(menu + 10, 40, 100, 20);
+        speF.setBounds(menu + 120, 40, 100, 20);
+        speB.setBounds(menu + 180 + 50, 40, 35, 20);
+
+        pContent.add(speL);
+        pContent.add(speF);
+        pContent.add(speB);
+    }
+
     private void initEDT() {
 
-        page = "planning";
+        gris = Color.decode("#303a52");
+        grisFonce = Color.decode("#202a42");
+        blanc = Color.decode("#e2f3f5");
+        bleu = Color.decode("#1f4287");
 
         fMain = new JFrame("ECE-Agenda");
         fMain.setSize(width, height);
@@ -135,98 +168,59 @@ public class CustomFrame extends JFrame implements ActionListener {
         pMenu = new JPanel();
         pMenu.setSize(menu, height);
         pMenu.setLocation(0, 0);
-        pMenu.setBackground(Color.BLACK);
+        pMenu.setBackground(gris);
         pMenu.setLayout(null);
 
         pContent = new JLayeredPane();
         pContent.setSize(width - menu, height);
         pContent.setLocation(menu, 0);
-        pContent.setBackground(Color.WHITE);
+        pContent.setBackground(Color.RED);
 
-        /*pProf = new JLayeredPane();
-        pProf.setSize(width - menu, height);
-        pProf.setLocation(menu, 0);
-        pProf.setBackground(Color.RED);*/
         fMain.add(pMenu);
         fMain.add(pContent);
-        //fMain.add(pProf);
 
-        //DAO<Seance> seancedao = new DAO_Seance();
-        // Import cours
-        /**
-         * DAO<Seance> seancedao = new DAO_Seance(); int ID = -1; int SEMAINE =
-         * 10; LocalDate DATE = LocalDate.parse("1999-11-11"); LocalTime
-         * HEURE_DEBUT = LocalTime.parse("10:10"); LocalTime HEURE_FIN =
-         * LocalTime.parse("20:15"); String ETAT = "validee"; int ID_COURS = 1;
-         * int ID_TYPE = 1; ArrayList<Integer> ID_GROUPE = new
-         * ArrayList<Integer>(); ArrayList<Integer> ID_SALLE = new
-         * ArrayList<Integer>(); ArrayList<Integer> ID_ENSEIGNANT = new
-         * ArrayList<Integer>(); ID_GROUPE.add(1); ID_GROUPE.add(2);
-         * ID_GROUPE.add(3); ID_SALLE.add(1); ID_SALLE.add(2); ID_SALLE.add(3);
-         * ID_ENSEIGNANT.add(1); ID_ENSEIGNANT.add(2); ID_ENSEIGNANT.add(3);
-         *
-         * Seance seance = new
-         * Seance(ID,SEMAINE,DATE,HEURE_DEBUT,HEURE_FIN,ETAT,ID_COURS,ID_TYPE,ID_GROUPE,ID_SALLE,ID_ENSEIGNANT);
-         *
-         * seancedao.create(seance);*
-         */
-        /**
-         * DAO<Utilisateur> utilisateurDao = new DAO_Utilisateur();
-         * System.out.println("1"); Utilisateur tmpUser =
-         * utilisateurDao.find(9); System.out.println("2"); Recherche
-         * tmpRechercher = new Recherche(tmpUser); System.out.println("3");
-         * ArrayList<Seance> arraySeance = new ArrayList<>(); try { arraySeance
-         * = tmpRechercher.RechercheSeanceUti(); System.out.println("4"); }
-         * catch (Exception e) { e.printStackTrace(); }
-         *
-         * System.out.println(arraySeance.get(0).GET_ID());*
-         */
-        // Fin import
         initContent();
-        //initProfInputCours();
 
-        //pContent.setVisible(false); 
-        JButton bYes = new JButton("Yes");
-        JButton bNo = new JButton("No");
-        bYes.addActionListener(this);
-        bNo.addActionListener(this);
-        bYes.setBounds(0, 100, menu, 50);
-        bNo.setBounds(0, 200, menu, 50);
-        pMenu.add(bYes);
-        pMenu.add(bNo);
+        JButton bMesCours = new JButton("Mes Cours");
+        bMesCours.setBackground(grisFonce);
+        bMesCours.setForeground(blanc);
+        bMesCours.setFont(new Font("Arial", Font.PLAIN, 30));
 
-        /*JPanel menuB = new JPanel();
-        menuB.setLayout(null);
-        menuB.setBounds(0, 300, menu, 50);
-        menuB.setBackground(Color.yellow);
+        JButton bMesClasses = new JButton("Les Classes");
+        bMesClasses.setBackground(grisFonce);
+        bMesClasses.setForeground(blanc);
+        bMesClasses.setFont(new Font("Arial", Font.PLAIN, 30));
 
-        JLabel p = new JLabel("BOUTTON");
-        p.setBounds(0, 0, menu, 50);
-        setFontSizeMax(p);
-        menuB.add(p);
+        JButton bMesSalles = new JButton("Les Salles");
+        bMesSalles.setBackground(grisFonce);
+        bMesSalles.setForeground(blanc);
+        bMesSalles.setFont(new Font("Arial", Font.PLAIN, 30));
 
-        pMenu.add(menuB);*/
-        //pMenu.revalidate();
-        //pMenu.repaint();
+        bMesCours.addActionListener(this);
+        bMesClasses.addActionListener(this);
+        bMesSalles.addActionListener(this);
+        bMesCours.setBounds(0, 300, menu, 50);
+        bMesClasses.setBounds(0, 350, menu, 50);
+        bMesSalles.setBounds(0, 400, menu, 50);
+        pMenu.add(bMesCours);
+        pMenu.add(bMesClasses);
+        pMenu.add(bMesSalles);
 
-        //pContent.revalidate();
-        //pContent.repaint();
+        JLabel intro = new JLabel("Planning's");
+        intro.setFont(new Font("Arial", Font.PLAIN, 45));
+        intro.setForeground(blanc);
+        intro.setBounds(menu / 2 - 220 / 2, 30, 220, 50);
+        pMenu.add(intro);
 
-        /*pProf.revalidate();
-        pProf.repaint();*/
         fMain.revalidate();
         fMain.repaint();
-        
-       
+
     }
-    
-    
-    
-    
+
     private void initContent() {
         ArrayList stringcours = new ArrayList<>();
         ArrayList stringprof = new ArrayList<>();
-        
+
         if (semaineNbr != -1) {
             DAO<Utilisateur> utilisateurdao = new DAO_Utilisateur();
             DAO<Cours> coursdao = new DAO_Cours();
@@ -242,7 +236,6 @@ public class CustomFrame extends JFrame implements ActionListener {
                 System.out.println("Erreur Recherche");
             }
 
-            
             boolean trouve = false;
             for (int i = 0; i < 6; i++) {
                 //Jour
@@ -254,10 +247,8 @@ public class CustomFrame extends JFrame implements ActionListener {
                         System.out.println("oui");
                         System.out.println("seances.get(k).GET_SEMAINE()");
                         System.out.println("semaineNbr");
-                        if(seances.get(k).GET_SEMAINE() == semaineNbr)
-                        {
-                            if (seances.get(k).GET_DATE().getDayOfWeek().getValue() - 1 == i)
-                            {
+                        if (seances.get(k).GET_SEMAINE() == semaineNbr) {
+                            if (seances.get(k).GET_DATE().getDayOfWeek().getValue() - 1 == i) {
                                 int heure = getintheure(seances.get(k).GET_HEURE_DEBUT().toString());
                                 if (heure == j) {
                                     for (int l = 0; l < cours.size(); l++) {
@@ -275,8 +266,6 @@ public class CustomFrame extends JFrame implements ActionListener {
 
                             }
                         }
-                        
-                        
 
                     }
 
@@ -289,43 +278,39 @@ public class CustomFrame extends JFrame implements ActionListener {
 
                 }
             }
-        } 
-        else {
+        } else {
             for (int i = 0; i < 6; i++) {
 
                 for (int j = 0; j < 7; j++) {
                     stringcours.add("-1");
                     stringprof.add("-1");
                 }
-                
 
             }
         }
 
-            pSemaine = new ArrayList<>();
+        pSemaine = new ArrayList<>();
 
-            System.out.println(stringcours);
-            System.out.println(stringprof);
+        System.out.println(stringcours);
+        System.out.println(stringprof);
 
-            initArray(pSemaine, 0, 115, 5, 7, Color.PINK, stringcours, stringprof);
+        initArray(pSemaine, 0, 115, 5, 7, bleu, stringcours, stringprof);
 
-            Grille tmp = new Grille(menu + 10, sizeY, Color.BLUE, sizeX);
-            tmp.addPanel(pContent);
+        Grille tmp = new Grille(menu + 10, sizeY, bleu, sizeX);
+        tmp.addPanel(pContent);
 
-            semaineRecherche = new JLabel(semaineNom);
-            semaineText = new JTextField();
-            semaineButton = new JButton("Rechercher");
-            semaineButton.addActionListener(this);
-            semaineRecherche.setBounds(menu + 10, 10, 100, 20);
-            semaineText.setBounds(menu + 120, 10, 50, 20);
-            semaineButton.setBounds(menu + 180, 10, 35, 20);
-            
-            pContent.add(semaineText);
-            pContent.add(semaineButton);
-            pContent.add(semaineRecherche);
-        }
+        semaineRecherche = new JLabel(semaineNom);
+        semaineText = new JTextField();
+        semaineButton = new JButton("Rechercher");
+        semaineButton.addActionListener(this);
+        semaineRecherche.setBounds(menu + 10, 10, 100, 20);
+        semaineText.setBounds(menu + 120, 10, 50, 20);
+        semaineButton.setBounds(menu + 180, 10, 35, 20);
 
-    
+        pContent.add(semaineText);
+        pContent.add(semaineButton);
+        pContent.add(semaineRecherche);
+    }
 
     private void initProfInputCours() {
         JPanel tmp = new JPanel();
