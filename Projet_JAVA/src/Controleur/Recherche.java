@@ -25,7 +25,7 @@ public class Recherche {
             DAO<Enseignant> enseignantdao = new DAO_Enseignant();
             Enseignant prof = enseignantdao.find(uti.GET_ID());
             ArrayList<Integer> seanceid = new ArrayList<Integer>();
-            seanceid = prof.GET_ID_SEANCES();
+            seanceid = prof.GET_ID_SEANCES();            
             ArrayList<Seance> seancelist = new ArrayList<Seance>();
             for(int i=0;i<seanceid.size();i++)
             {

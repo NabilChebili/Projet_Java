@@ -98,11 +98,40 @@ public class DAO_Seance extends DAO<Seance> {
         int idtype = obj.GET_ID_TYPE(); 
         final String Requete1 = "UPDATE `seance` SET SEMAINE`="+ semaine +",`DATE`="+ date +",`HEURE_DEBUT`="+ heuredebut +",`HEURE_FIN`="+ heurefin +",`ETAT`="+ etat +",`#ID_COURS`="+ idcours +",`#ID_TYPE`="+ idtype +" WHERE ID = " + id;
         try {
+            final String Requetedel1 = "DELETE FROM `seance_groupes` WHERE `#ID_SEANCE` = " + id;
+            maconnexion.Update(Requetedel1);
+            final String Requetedel2 = "DELETE FROM `seance_salles` WHERE `#ID_SEANCE` = " + id;
+            maconnexion.Update(Requetedel2);
+            final String Requetedel3 = "DELETE FROM `seance_enseignants` WHERE `#ID_SEANCE` = " + id;
+            maconnexion.Update(Requetedel3);
+            
             maconnexion.Update(Requete1);
+            ArrayList<Integer> ID_Groupe = new ArrayList<Integer>();
+            ID_Groupe = obj.GET_ID_GROUPES();
+            ArrayList<Integer> ID_Salle = new ArrayList<Integer>();
+            ID_Salle = obj.GET_ID_SALLES();
+            ArrayList<Integer> ID_Enseignant = new ArrayList<Integer>();
+            ID_Enseignant = obj.GET_ID_ENSEIGNANTS();
+            for(int i=0;i<ID_Groupe.size();i++)
+            {
+                final String Requete3 = "INSERT INTO `seance_groupes`(`#ID_SEANCE`, `#ID_GROUPE`) VALUES ("+ id +","+ ID_Groupe.get(i) +")";
+                maconnexion.Update(Requete3);
+            }
+            for(int i=0;i<ID_Salle.size();i++)
+            {
+                final String Requete4 = "INSERT INTO `seance_salles`(`#ID_SEANCE`, `#ID_SALLE`) VALUES ("+ id +","+ ID_Salle.get(i) +")";
+                maconnexion.Update(Requete4);
+            }
+            for(int i=0;i<ID_Enseignant.size();i++)
+            {
+                final String Requete5 = "INSERT INTO `seance_enseignants`(`#ID_SEANCE`, `#ID_ENSEIGNANT`) VALUES ("+ id +","+ ID_Enseignant.get(i) +")";
+                maconnexion.Update(Requete5);
+            }
             return true;
         } catch (SQLException ex) {
             return false;
         }
+        
     }
 
     @Override
@@ -114,41 +143,49 @@ public class DAO_Seance extends DAO<Seance> {
         final String Requete4 = "SELECT `#ID_ENSEIGNANT` FROM `seance_enseignants` WHERE `#ID_SEANCE` = " + id;
         try{
             liste = maconnexion.RequeteRetourListe(Requete1);
-            int ID = Integer.parseInt((String) liste.get(0));
-            int SEMAINE = Integer.parseInt((String) liste.get(1));
+            /*if(!liste.isEmpty())
+            {*/
+                int ID = Integer.parseInt((String) liste.get(0));
+                int SEMAINE = Integer.parseInt((String) liste.get(1));
+
+                LocalDate DATE = LocalDate.parse((String) liste.get(2));  
+                LocalTime HEURE_DEBUT = LocalTime.parse((String) liste.get(3));
+                LocalTime HEURE_FIN = LocalTime.parse((String) liste.get(4));
+                String ETAT = (String) liste.get(5);
+                int ID_COURS = Integer.parseInt((String) liste.get(6));
+                int ID_TYPE = Integer.parseInt((String) liste.get(7));
+
+                liste = maconnexion.RequeteRetourListe(Requete2);
+                ArrayList<Integer> ID_GROUPE = new ArrayList<Integer>();
+                for(int i=0;i<liste.size();i++)
+                {
+                    ID_GROUPE.add(Integer.parseInt((String) liste.get(i)));
+                }
+
+                liste = maconnexion.RequeteRetourListe(Requete3);
+                ArrayList<Integer> ID_SALLE = new ArrayList<Integer>();
+
+                for(int i=0;i<liste.size();i++)
+                {
+                    ID_SALLE.add(Integer.parseInt((String) liste.get(i)));
+                }
+
+                liste = maconnexion.RequeteRetourListe(Requete4);
+                ArrayList<Integer> ID_ENSEIGNANT = new ArrayList<Integer>();
+
+                for(int i=0;i<liste.size();i++)
+                {
+                    ID_ENSEIGNANT.add(Integer.parseInt((String) liste.get(i)));
+                }
+
+                Seance seance = new Seance(ID,SEMAINE,DATE,HEURE_DEBUT,HEURE_FIN,ETAT,ID_COURS,ID_TYPE,ID_GROUPE,ID_SALLE,ID_ENSEIGNANT);
+                return seance;
+            /*}
+            else{
+                System.out.println("Aucune Seance trouvée");
+                return null;
+            }*/
             
-            LocalDate DATE = LocalDate.parse((String) liste.get(2));  
-            LocalTime HEURE_DEBUT = LocalTime.parse((String) liste.get(3));
-            LocalTime HEURE_FIN = LocalTime.parse((String) liste.get(4));
-            String ETAT = (String) liste.get(5);
-            int ID_COURS = Integer.parseInt((String) liste.get(6));
-            int ID_TYPE = Integer.parseInt((String) liste.get(7));
-            
-            liste = maconnexion.RequeteRetourListe(Requete2);
-            ArrayList<Integer> ID_GROUPE = new ArrayList<Integer>();
-            for(int i=0;i<liste.size();i++)
-            {
-                ID_GROUPE.add(Integer.parseInt((String) liste.get(i)));
-            }
-            
-            liste = maconnexion.RequeteRetourListe(Requete3);
-            ArrayList<Integer> ID_SALLE = new ArrayList<Integer>();
-            
-            for(int i=0;i<liste.size();i++)
-            {
-                ID_SALLE.add(Integer.parseInt((String) liste.get(i)));
-            }
-            
-            liste = maconnexion.RequeteRetourListe(Requete4);
-            ArrayList<Integer> ID_ENSEIGNANT = new ArrayList<Integer>();
-            
-            for(int i=0;i<liste.size();i++)
-            {
-                ID_ENSEIGNANT.add(Integer.parseInt((String) liste.get(i)));
-            }
-            
-            Seance seance = new Seance(ID,SEMAINE,DATE,HEURE_DEBUT,HEURE_FIN,ETAT,ID_COURS,ID_TYPE,ID_GROUPE,ID_SALLE,ID_ENSEIGNANT);
-            return seance;
         }
         catch(final SQLException e){
             System.out.println("Connexion echouee : probleme SQL");
