@@ -37,7 +37,7 @@ public class CustomFrame extends JFrame implements ActionListener {
     private JLayeredPane pProf;
 
     private ArrayList<CoursWidget> pSemaine;
-    
+
     private JButton inputProf;
 
     private JButton bMesCours;
@@ -52,6 +52,9 @@ public class CustomFrame extends JFrame implements ActionListener {
     private JLabel speL;
     private JButton speB;
     private JTextField speF;
+
+    private JLabel speCoursL;
+    private JTextField speCoursF;
 
     final private int height = 1000;
     final private int width = 1600;
@@ -99,7 +102,7 @@ public class CustomFrame extends JFrame implements ActionListener {
                 System.out.println("Les CLasses Pressed");
                 pContent.removeAll();
                 initContent();
-                coursSpec("Classes");
+                coursSpec("Groupe");
 
                 fMain.repaint();
                 fMain.revalidate();
@@ -115,6 +118,12 @@ public class CustomFrame extends JFrame implements ActionListener {
                 break;
             case "Ajout de cours":
                 System.out.println("Ajout de cours  Pressed");
+                pContent.removeAll();
+
+                ajoutProf();
+
+                fMain.repaint();
+                fMain.revalidate();
                 break;
             case "Rechercher":
                 System.out.println("Criteria Rechercher Pressed");
@@ -131,6 +140,7 @@ public class CustomFrame extends JFrame implements ActionListener {
                 System.out.println("Criteria Classes Pressed");
                 // Implementer la recherche pour les cours
                 // Obtient le cours recherché  ->  speF.getText();
+                // Obtient la proma avec speCoursF.getText();
                 break;
             case "Salles":
                 System.out.println("Criteria Salles Pressed");
@@ -142,14 +152,29 @@ public class CustomFrame extends JFrame implements ActionListener {
         }
     }
 
+    private void ajoutProf() {
+
+    }
+
     private void coursSpec(String monTypeField) {
-        speL = new JLabel(monTypeField + ": ");
+        speL = new JLabel(monTypeField + " :");
         speF = new JTextField();
         speB = new JButton(monTypeField);
+
         speB.addActionListener(this);
         speL.setBounds(menu + 10, 40, 100, 20);
         speF.setBounds(menu + 120, 40, 100, 20);
         speB.setBounds(menu + 180 + 50, 40, 35, 20);
+
+        if ("Groupe".equals(monTypeField)) {
+            speCoursL = new JLabel("Promotion :");
+            speCoursF = new JTextField();
+            speCoursL.setBounds(menu + 240, 40, 100, 20);
+            speCoursF.setBounds(menu + 360, 40, 100, 20);
+            speB.setBounds(menu + 470, 40, 35, 20);
+            pContent.add(speCoursL);
+            pContent.add(speCoursF);
+        }
 
         pContent.add(speL);
         pContent.add(speF);
@@ -211,8 +236,7 @@ public class CustomFrame extends JFrame implements ActionListener {
         pMenu.add(bMesClasses);
         pMenu.add(bMesSalles);
 
-        if (true) {
-        //if (uti.GET_DROIT() == 3) {
+        if (uti.GET_DROIT() == 3) {
             JButton inputProf = new JButton("Ajout de cours");
             inputProf.setBackground(grisFonce);
             inputProf.setForeground(blanc);
@@ -230,7 +254,6 @@ public class CustomFrame extends JFrame implements ActionListener {
 
         fMain.revalidate();
         fMain.repaint();
-
     }
 
     private void initContent() {
@@ -356,13 +379,12 @@ public class CustomFrame extends JFrame implements ActionListener {
         prenom.setBounds(1450, 50, 100, 50);
         role.setBounds(1400, 100, 100, 30);
         mail.setBounds(1430, 50, 100, 70);
-        
+
         pContent.add(nom);
         pContent.add(prenom);
         pContent.add(role);
         pContent.add(role);
-        pContent.add(mail);
-        */
+        pContent.add(mail);*/
 
         pContent.add(semaineText);
         pContent.add(semaineButton);
