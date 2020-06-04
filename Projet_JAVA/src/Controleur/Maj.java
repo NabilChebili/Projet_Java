@@ -88,7 +88,9 @@ public class Maj {
             int diff3 = hdebut.compareTo(hfintest);
             int diff4 = hfin.compareTo(hfintest);
             if((seance.GET_DATE().toString() != seancelist.get(i).GET_DATE().toString()) || (((diff1)<0 &&(diff2)<0)|| ((diff3)>0 &&(diff4)>0)))
-            {}
+            {
+ 
+            }
             else{
                 Exception SeanceImpossible = null;
                 chevauchement = true;
@@ -98,8 +100,10 @@ public class Maj {
 
         if(chevauchement == false)
         {
+            ArrayList<Integer> enseignants = seance.GET_ID_ENSEIGNANTS();
+            enseignants.add(id_enseignant);
             DAO<Seance> seancedao = new DAO_Seance();
-            boolean ajout = seancedao.create(seance);
+            boolean ajout = seancedao.update(seance);
             if(ajout == false)
             {
                 Exception problemesql = null;
@@ -108,12 +112,13 @@ public class Maj {
         }
     }
     
-    public void AjoutSeance(Seance seance) throws Exception{
+    public void AjoutUpdateSeance(Seance seance,boolean update) throws Exception{
         LocalDate Mntdate = LocalDate.now();
-        if(Mntdate.isBefore(seance.GET_DATE()))
+        Mntdate.minusDays(1);
+        if((update = true)||(Mntdate.isBefore(seance.GET_DATE())))
         {
             LocalTime Mntheure = LocalTime.now();
-            if(Mntheure.isBefore(seance.GET_HEURE_DEBUT())&&(seance.GET_HEURE_DEBUT().isBefore(seance.GET_HEURE_FIN())))
+            if ((update = true)||((Mntdate.toString() != seance.GET_DATE().toString()) || (Mntheure.isBefore(seance.GET_HEURE_DEBUT())&&(seance.GET_HEURE_DEBUT().isBefore(seance.GET_HEURE_FIN())))))
             {
                 DAO<Cours> coursdao = new DAO_Cours();
                 DAO<Enseignant> enseignantdao = new DAO_Enseignant();
@@ -133,6 +138,10 @@ public class Maj {
                             Enseignant enseignant = enseignantdao.find(listenseignantid.get(j));
                             ArrayList<Integer> listecoursid = new ArrayList<Integer>();
                             listecoursid = enseignant.GET_ID_COURS();
+                            
+                            System.out.println(listecoursid);
+                            System.out.println(seance.GET_ID_COURS());
+                            
                             for(int k=0;k<listecoursid.size();k++)
                             {
                                 if(listecoursid.get(k) == seance.GET_ID_COURS())
@@ -144,7 +153,7 @@ public class Maj {
                         }
                     }
                 }
-                if(coursexistant = true)
+                if(coursexistant == true)
                 {
                     //Verification du type de la séance
                     
@@ -158,7 +167,7 @@ public class Maj {
                             typecoursexistant = true;
                         }
                     }
-                    if(typecoursexistant = true)
+                    if(typecoursexistant == true)
                     {
                         // Verification du chevachement des cours
                         ArrayList<Seance> touteslesseances = new ArrayList();
@@ -179,6 +188,11 @@ public class Maj {
                             touteslesseances.addAll(recherche.RechercheSeanceUti());
                         }
                         
+                        if(touteslesseances.isEmpty())
+                        {
+                            System.out.println("aucune seance");
+                        }
+                        
                         for(int i=0;i<touteslesseances.size();i++)
                         {
                             LocalTime hdebuttest = LocalTime.parse(seance.GET_HEURE_DEBUT().toString());
@@ -189,22 +203,22 @@ public class Maj {
                             int diff2 = hfin.compareTo(hdebuttest);
                             int diff3 = hdebut.compareTo(hfintest);
                             int diff4 = hfin.compareTo(hfintest);
+                            System.out.println("diff : "+diff1+","+diff2+","+diff3+","+diff4+",");
                             if((touteslesseances.get(i).GET_DATE().toString() != seance.GET_DATE().toString()) || (((diff1)<0 &&(diff2)<0)|| ((diff3)>0 &&(diff4)>0)))
                             {}
                             else{chevauchement = true;}
                         }
-                        if(chevauchement = false)
+                        if(chevauchement == false)
                         {
                             // Test capacité salle
                             int capacitesalles = 0;
                             ArrayList<Integer>salleseanceid = seance.GET_ID_SALLES();
                             DAO<Salle> salledao = new DAO_Salle();
-                            for(int i=0;i<groupeseanceid.size();i++)
+                            for(int i=0;i<salleseanceid.size();i++)
                             {
                                 Salle Tmpsalle = salledao.find(groupeseanceid.get(i));
                                 capacitesalles += Tmpsalle.GET_CAPACITE();                               
                             }
-                            
                             int nbreleve = 0;
                             DAO<Etudiant> etudiantdao = new DAO_Etudiant();
                             for(int i=0;i<groupeseanceid.size();i++)
@@ -221,41 +235,56 @@ public class Maj {
                             
                             if(capacitesalles >= nbreleve)
                             {
-                                DAO<Seance> seancedao = new DAO_Seance();
-                                seancedao.create(seance);
+                                if(update == false)
+                                {
+                                    //DAO<Seance> seancedao = new DAO_Seance();
+                                    //seancedao.create(seance);
+                                    System.out.println("oui ajout");
+                                }
+                                else{
+                                    DAO<Seance> seancedao = new DAO_Seance();
+                                    seancedao.update(seance);
+                                }
+                                
                             }
                             else
                             {
                                 Exception erreurcapacité = null;
+                                System.out.println("Erreur capacité");
                                 throw erreurcapacité;
                             }
                         }
                         else
                         {
                             Exception erreurchevauchement = null;
+                            System.out.println("Erreur chevauchement de cours");
                             throw erreurchevauchement;
                         }
                     }
                     else
                     {
                         Exception erreurtypecours = null;
+                        System.out.println("Erreur typecours");
                         throw erreurtypecours;
                     }
                 }
                 else
                 {
                     Exception erreurprofcours = null;
+                    System.out.println("Erreur profcours : Verifiez les enseignants et le sujet du cours");
                     throw erreurprofcours;
                 }
             }
             else
             {
                 Exception erreurheure = null;
+                System.out.println("Erreur heure");
                 throw erreurheure;
             }
         }
         else{
             Exception erreurdate = null;
+            System.out.println("Erreur date");
             throw erreurdate; 
         }
     }

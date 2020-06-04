@@ -73,4 +73,35 @@ public class Seance {
         return ID_ENSEIGNANTS;
     }
     
+    public void SET_SEMAINE (int semaine){
+        this.SEMAINE = semaine;
+    }
+    public void SET_DATE (LocalDate date){
+        this.DATE = date;
+    }
+    public void SET_HEURE_DEBUT (LocalTime hd){
+        this.HEURE_DEBUT = hd;
+    }
+    public void SET_HEURE_FIN (LocalTime hf){
+        this.HEURE_FIN = hf;
+    }
+    public void SET_ETAT (String etat){
+        this.ETAT = etat;
+    }
+    public void SET_ID_COURS (int cours){
+        this.ID_COURS = cours;
+    }
+    public void SET_ID_TYPE (int type){
+        this.ID_TYPE = type;
+    }
+    public void SET_ID_GROUPES (ArrayList<Integer> groupe){
+        this.ID_GROUPES = groupe;
+    }
+    public void SET_ID_SALLES (ArrayList<Integer> salle){
+        this.ID_SALLES = salle;
+    }
+    public void SET_ID_ENSEIGNANTS (ArrayList<Integer> enseigant){
+        this.ID_ENSEIGNANTS = enseigant;
+    }
+    
 }
