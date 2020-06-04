@@ -83,7 +83,7 @@ public class DAO_Groupe extends DAO<Groupe> {
 
                 for(int j=0;j<liste2.size();j++)
                 {
-                    ID_Seances.add(Integer.parseInt((String) liste.get(j)));
+                    ID_Seances.add(Integer.parseInt((String) liste2.get(j)));
                 }
 
                 Groupe groupe = new Groupe(ID,NOM,ID_PROMOTION,ID_Seances);

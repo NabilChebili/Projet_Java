@@ -56,6 +56,8 @@ public class CustomFrame extends JFrame implements ActionListener {
     final private int menu = 400;
     final static private int sizeX = 175;
     final static private int sizeY = 100;
+    
+    private String typeRecherche = "Normal";
 
     public static void main(String args[]) {
         new CustomFrame().setVisible(true);
@@ -92,6 +94,7 @@ public class CustomFrame extends JFrame implements ActionListener {
                 fMain.revalidate();
                 initContent();
                 fMain.repaint();
+                typeRecherche = "Normal";
                 break;
             case "Les Classes":
                 System.out.println("Les CLasses Pressed");
@@ -124,11 +127,17 @@ public class CustomFrame extends JFrame implements ActionListener {
                 break;
             case "Classes":
                 System.out.println("Criteria Classes Pressed");
+                typeRecherche = "Classe";
+                pContent.removeAll();
+                initContent();
                 // Implementer la recherche pour les cours
                 // Obtient le cours recherché  ->  speF.getText();
                 break;
             case "Salles":
                 System.out.println("Criteria Salles Pressed");
+                typeRecherche = "Salle";
+                pContent.removeAll();
+                initContent();
                 // Implementer la recherche pour les cours
                 // Obtient le cours recherché  ->  speF.getText();
                 break;
@@ -220,7 +229,7 @@ public class CustomFrame extends JFrame implements ActionListener {
     private void initContent() {
         ArrayList stringcours = new ArrayList<>();
         ArrayList stringprof = new ArrayList<>();
-
+        
         if (semaineNbr != -1) {
             DAO<Utilisateur> utilisateurdao = new DAO_Utilisateur();
             DAO<Cours> coursdao = new DAO_Cours();
@@ -230,12 +239,65 @@ public class CustomFrame extends JFrame implements ActionListener {
             Recherche rech = new Recherche(uti);
             ArrayList<Seance> seances = new ArrayList<>();
             try {
-                seances.addAll(rech.RechercheSeanceUti());
+                boolean test;
+                switch (typeRecherche) {
+                    case "Normal" :
+                        seances.addAll(rech.RechercheSeanceUti());
+                        break;
+                    case "Classe" :
+                        DAO<Groupe> groupedao = new DAO_Groupe();
+                        ArrayList<Groupe> groupe = groupedao.all();
+                        test = false;
+                        
+                        
+                        System.out.println(speF.getText());
+                        for(int i = 0;i<groupe.size();i++)
+                        {
+                            System.out.println(i+" : "+groupe.get(i).GET_NOM());
+                            
+                            if(speF.getText().equals(groupe.get(i).GET_NOM()))
+                            {
+                                seances.addAll(rech.RechercheSeanceGroupe(groupe.get(i).GET_ID()));
+                                test = true;
+                                
+                            }
+                        }
+                        if (test == false)
+                        {
+                            System.out.println("Aucun groupe trouvé");
+                        }
+                        break;
+                    case "Salle" :
+                        DAO<Salle> salledao = new DAO_Salle();
+                        ArrayList<Salle> salle = salledao.all();
+                        test = false;
+                        for(int i = 0;i<salle.size();i++)
+                        {
+                            System.out.println("salle :" + i + ", " + salle.get(i).GET_NOM());
+                            if(speF.getText().equals(salle.get(i).GET_NOM()))
+                            {
+                                seances.addAll(rech.RechercheSeanceSalle(salle.get(i).GET_ID()));
+                                test = true;
+                            }
+                        }
+                        if (test == false)
+                        {
+                            System.out.println("Aucune salle trouvé");
+                        }
+                        break;
+                    
+                }
 
             } catch (Exception ex) {
                 System.out.println("Erreur Recherche");
+                ex.printStackTrace();
             }
-
+            
+            for(int i = 0;i<seances.size();i++)
+            {
+                System.out.println("Seance :" + i + ", " + seances.get(i).GET_ID());
+            }   
+            
             boolean trouve = false;
             for (int i = 0; i < 6; i++) {
                 //Jour
@@ -244,9 +306,6 @@ public class CustomFrame extends JFrame implements ActionListener {
                     //Heure
 
                     for (int k = 0; k < seances.size(); k++) {
-                        System.out.println("oui");
-                        System.out.println("seances.get(k).GET_SEMAINE()");
-                        System.out.println("semaineNbr");
                         if (seances.get(k).GET_SEMAINE() == semaineNbr) {
                             if (seances.get(k).GET_DATE().getDayOfWeek().getValue() - 1 == i) {
                                 int heure = getintheure(seances.get(k).GET_HEURE_DEBUT().toString());

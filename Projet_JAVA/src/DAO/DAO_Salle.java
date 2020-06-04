@@ -66,7 +66,40 @@ public class DAO_Salle extends DAO<Salle> {
 
     @Override
     public ArrayList<Salle> all() {
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+        ArrayList liste;
+        final String Requete1 = "SELECT * FROM `salle`";
+        
+        try{
+            liste = maconnexion.RequeteRetourListe(Requete1);
+            ArrayList<Salle> listsalle = new ArrayList();            
+            for(int i=0;i<liste.size();i+=8)
+            {
+                int ID = Integer.parseInt((String) liste.get(0));
+                String NOM = (String) liste.get(1);
+                int CAPACITE = Integer.parseInt((String) liste.get(2));
+                int ID_SITE = Integer.parseInt((String) liste.get(3));
+                final String Requete2 = "SELECT `#ID_SEANCE` FROM `seance_salles` WHERE `#ID_SALLE` = " + ID;
+                
+                ArrayList liste2;
+                liste2 = maconnexion.RequeteRetourListe(Requete2);
+                ArrayList<Integer> ID_Seances = new ArrayList<Integer>();
+
+                for(int j=0;j<liste2.size();j++)
+                {
+                    ID_Seances.add(Integer.parseInt((String) liste2.get(j)));
+                }
+
+                Salle salle = new Salle(ID,NOM,CAPACITE,ID_SITE,ID_Seances);
+                listsalle.add(salle);
+            }
+            return listsalle;
+        }
+        catch(final SQLException e){
+            System.out.println("Connexion echouee : probleme SQL");
+            e.printStackTrace();
+            return null;
+        }
+        
     }
     
 }
