@@ -37,6 +37,8 @@ public class CustomFrame extends JFrame implements ActionListener {
     private JLayeredPane pProf;
 
     private ArrayList<CoursWidget> pSemaine;
+    
+    private JButton inputProf;
 
     private JButton bMesCours;
     private JButton bMesClasses;
@@ -110,6 +112,9 @@ public class CustomFrame extends JFrame implements ActionListener {
 
                 fMain.repaint();
                 fMain.revalidate();
+                break;
+            case "Ajout de cours":
+                System.out.println("Ajout de cours  Pressed");
                 break;
             case "Rechercher":
                 System.out.println("Criteria Rechercher Pressed");
@@ -206,6 +211,17 @@ public class CustomFrame extends JFrame implements ActionListener {
         pMenu.add(bMesClasses);
         pMenu.add(bMesSalles);
 
+        if (true) {
+        //if (uti.GET_DROIT() == 3) {
+            JButton inputProf = new JButton("Ajout de cours");
+            inputProf.setBackground(grisFonce);
+            inputProf.setForeground(blanc);
+            inputProf.setFont(new Font("Arial", Font.PLAIN, 30));
+            inputProf.addActionListener(this);
+            inputProf.setBounds(0, 450, menu, 50);
+            pMenu.add(inputProf);
+        }
+
         JLabel intro = new JLabel("Planning's");
         intro.setFont(new Font("Arial", Font.PLAIN, 45));
         intro.setForeground(blanc);
@@ -294,7 +310,7 @@ public class CustomFrame extends JFrame implements ActionListener {
         System.out.println(stringcours);
         System.out.println(stringprof);
 
-        initArray(pSemaine, 0, 115, 5, 7, blanc, stringcours, stringprof);
+        initArray(pSemaine, 0, 115, 5, 7, bleu, stringcours, stringprof);
 
         Grille tmp = new Grille(menu + 10, sizeY, bleu, sizeX);
         tmp.addPanel(pContent);
@@ -306,6 +322,47 @@ public class CustomFrame extends JFrame implements ActionListener {
         semaineRecherche.setBounds(menu + 10, 10, 100, 20);
         semaineText.setBounds(menu + 120, 10, 50, 20);
         semaineButton.setBounds(menu + 180, 10, 35, 20);
+
+        /*JLabel nom = new JLabel(uti.GET_NOM());
+        JLabel prenom = new JLabel(uti.GET_PRENOM());
+        String droit;
+        switch (uti.GET_DROIT()) {
+            case 1:
+                droit = "Admin";
+                break;
+            case 2:
+                droit = "Superviseur";
+                break;
+            case 3:
+                droit = "Enseignant";
+                break;
+            case 4:
+                droit = "Etudiant";
+                break;
+            default:
+                System.out.println("Erreur Sur le type d'utilisateur");
+                droit = "Erreur";
+                break;
+        }
+        JLabel role = new JLabel(droit);
+        JLabel mail = new JLabel(uti.GET_EMAIL());
+
+        nom.setFont(new Font("Arial", Font.PLAIN, 20));
+        prenom.setFont(new Font("Arial", Font.PLAIN, 20));
+        role.setFont(new Font("Arial", Font.PLAIN, 20));
+        mail.setFont(new Font("Arial", Font.PLAIN, 20));
+
+        nom.setBounds(1400, 50, 100, 50);
+        prenom.setBounds(1450, 50, 100, 50);
+        role.setBounds(1400, 100, 100, 30);
+        mail.setBounds(1430, 50, 100, 70);
+        
+        pContent.add(nom);
+        pContent.add(prenom);
+        pContent.add(role);
+        pContent.add(role);
+        pContent.add(mail);
+        */
 
         pContent.add(semaineText);
         pContent.add(semaineButton);
