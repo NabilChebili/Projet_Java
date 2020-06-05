@@ -45,7 +45,6 @@ public final class CoursWidget extends JPanel {
         
         if (myLabel == "-1")pCours.setVisible(false);
         
-        Color blanc = Color.decode("#e2f3f5");
         lNomCours.setForeground(blanc);
         lProf.setForeground(blanc);
 

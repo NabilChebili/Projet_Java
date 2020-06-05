@@ -72,12 +72,12 @@ public class DAO_Salle extends DAO<Salle> {
         try{
             liste = maconnexion.RequeteRetourListe(Requete1);
             ArrayList<Salle> listsalle = new ArrayList();            
-            for(int i=0;i<liste.size();i+=8)
+            for(int i=0;i<liste.size();i+=4)
             {
-                int ID = Integer.parseInt((String) liste.get(0));
-                String NOM = (String) liste.get(1);
-                int CAPACITE = Integer.parseInt((String) liste.get(2));
-                int ID_SITE = Integer.parseInt((String) liste.get(3));
+                int ID = Integer.parseInt((String) liste.get(i));
+                String NOM = (String) liste.get(i+1);
+                int CAPACITE = Integer.parseInt((String) liste.get(i+2));
+                int ID_SITE = Integer.parseInt((String) liste.get(i+3));
                 final String Requete2 = "SELECT `#ID_SEANCE` FROM `seance_salles` WHERE `#ID_SALLE` = " + ID;
                 
                 ArrayList liste2;

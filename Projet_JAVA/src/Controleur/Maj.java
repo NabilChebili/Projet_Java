@@ -82,12 +82,8 @@ public class Maj {
         for(int i=0;i<seancelist.size();i++)
         {
             LocalTime hdebut = LocalTime.parse(seance.GET_HEURE_DEBUT().toString());             
-            LocalTime hfin = LocalTime.parse(seance.GET_HEURE_DEBUT().toString());               
-            int diff1 = hdebut.compareTo(hdebuttest);
-            int diff2 = hfin.compareTo(hdebuttest);
-            int diff3 = hdebut.compareTo(hfintest);
-            int diff4 = hfin.compareTo(hfintest);
-            if((seance.GET_DATE().toString() != seancelist.get(i).GET_DATE().toString()) || (((diff1)<0 &&(diff2)<0)|| ((diff3)>0 &&(diff4)>0)))
+            LocalTime hfin = LocalTime.parse(seance.GET_HEURE_DEBUT().toString());
+            if((!seancelist.get(i).GET_DATE().toString().equals(seance.GET_DATE().toString()) ) || (((hdebut.isBefore(hdebuttest) &&  hfin.isBefore(hdebuttest))|| (hdebut.isAfter(hfintest) && hfin.isAfter(hfintest)))))
             {
  
             }
@@ -115,10 +111,10 @@ public class Maj {
     public void AjoutUpdateSeance(Seance seance,boolean update) throws Exception{
         LocalDate Mntdate = LocalDate.now();
         Mntdate.minusDays(1);
-        if((update = true)||(Mntdate.isBefore(seance.GET_DATE())))
+        if((update == true)||(Mntdate.isBefore(seance.GET_DATE())))
         {
             LocalTime Mntheure = LocalTime.now();
-            if ((update = true)||((Mntdate.toString() != seance.GET_DATE().toString()) || (Mntheure.isBefore(seance.GET_HEURE_DEBUT())&&(seance.GET_HEURE_DEBUT().isBefore(seance.GET_HEURE_FIN())))))
+            if ((update == true)||((Mntdate.toString() != seance.GET_DATE().toString()) || (Mntheure.isBefore(seance.GET_HEURE_DEBUT())&&(seance.GET_HEURE_DEBUT().isBefore(seance.GET_HEURE_FIN())))))
             {
                 DAO<Cours> coursdao = new DAO_Cours();
                 DAO<Enseignant> enseignantdao = new DAO_Enseignant();
@@ -198,13 +194,8 @@ public class Maj {
                             LocalTime hdebuttest = LocalTime.parse(seance.GET_HEURE_DEBUT().toString());
                             LocalTime hfintest = LocalTime.parse(seance.GET_HEURE_DEBUT().toString());
                             LocalTime hdebut = LocalTime.parse(touteslesseances.get(i).GET_HEURE_DEBUT().toString());         
-                            LocalTime hfin = LocalTime.parse(touteslesseances.get(i).GET_HEURE_DEBUT().toString());             
-                            int diff1 = hdebut.compareTo(hdebuttest);
-                            int diff2 = hfin.compareTo(hdebuttest);
-                            int diff3 = hdebut.compareTo(hfintest);
-                            int diff4 = hfin.compareTo(hfintest);
-                            System.out.println("diff : "+diff1+","+diff2+","+diff3+","+diff4+",");
-                            if((touteslesseances.get(i).GET_DATE().toString() != seance.GET_DATE().toString()) || (((diff1)<0 &&(diff2)<0)|| ((diff3)>0 &&(diff4)>0)))
+                            LocalTime hfin = LocalTime.parse(touteslesseances.get(i).GET_HEURE_DEBUT().toString());
+                            if((!touteslesseances.get(i).GET_DATE().toString().equals(seance.GET_DATE().toString()) ) || (((hdebut.isBefore(hdebuttest) &&  hfin.isBefore(hdebuttest))|| (hdebut.isAfter(hfintest) && hfin.isAfter(hfintest)))) || (touteslesseances.get(i).GET_ID() == seance.GET_ID()))
                             {}
                             else{chevauchement = true;}
                         }
@@ -232,18 +223,19 @@ public class Maj {
                                     }
                                 }
                             }
-                            
+                            System.out.println(capacitesalles+ " "+" "+ nbreleve);
                             if(capacitesalles >= nbreleve)
                             {
                                 if(update == false)
                                 {
-                                    //DAO<Seance> seancedao = new DAO_Seance();
-                                    //seancedao.create(seance);
+                                    DAO<Seance> seancedao = new DAO_Seance();
+                                    seancedao.create(seance);
                                     System.out.println("oui ajout");
                                 }
                                 else{
                                     DAO<Seance> seancedao = new DAO_Seance();
                                     seancedao.update(seance);
+                                    System.out.println("nn ajout");
                                 }
                                 
                             }

@@ -96,8 +96,12 @@ public class DAO_Seance extends DAO<Seance> {
         String etat = obj.GET_ETAT();
         int idcours = obj.GET_ID_COURS();
         int idtype = obj.GET_ID_TYPE(); 
-        final String Requete1 = "UPDATE `seance` SET SEMAINE`="+ semaine +",`DATE`="+ date +",`HEURE_DEBUT`="+ heuredebut +",`HEURE_FIN`="+ heurefin +",`ETAT`="+ etat +",`#ID_COURS`="+ idcours +",`#ID_TYPE`="+ idtype +" WHERE ID = " + id;
+        final String Requete1 = "UPDATE `seance` SET `SEMAINE`='"+ semaine +"',`DATE`='"+ date +"',`HEURE_DEBUT`='"+ heuredebut +"',`HEURE_FIN`='"+ heurefin +"',`ETAT`='"+ etat +"',`#ID_COURS`='"+ idcours +"',`#ID_TYPE`='"+ idtype +"' WHERE ID = " + id;
+        
+        System.out.println(Requete1);
+        
         try {
+            maconnexion.Update(Requete1);
             final String Requetedel1 = "DELETE FROM `seance_groupes` WHERE `#ID_SEANCE` = " + id;
             maconnexion.Update(Requetedel1);
             final String Requetedel2 = "DELETE FROM `seance_salles` WHERE `#ID_SEANCE` = " + id;
@@ -129,6 +133,7 @@ public class DAO_Seance extends DAO<Seance> {
             }
             return true;
         } catch (SQLException ex) {
+            ex.printStackTrace();
             return false;
         }
         

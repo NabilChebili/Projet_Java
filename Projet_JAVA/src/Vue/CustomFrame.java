@@ -272,8 +272,10 @@ public class CustomFrame extends JFrame implements ActionListener {
         if (semaineNbr != -1) {
             DAO<Utilisateur> utilisateurdao = new DAO_Utilisateur();
             DAO<Cours> coursdao = new DAO_Cours();
+            DAO<Promotion> promotiondao = new DAO_Promotion();
             ArrayList<Cours> cours = coursdao.all();
             ArrayList<Utilisateur> prof = utilisateurdao.all();
+            //ArrayList<Promotion> promotion = promotiondao.all();
 
             Recherche rech = new Recherche(uti);
             ArrayList<Seance> seances = new ArrayList<>();
@@ -284,6 +286,7 @@ public class CustomFrame extends JFrame implements ActionListener {
                         seances.addAll(rech.RechercheSeanceUti());
                         break;
                     case "Classe" :
+                        System.out.println("Aucun groupe trouvé");
                         DAO<Groupe> groupedao = new DAO_Groupe();
                         ArrayList<Groupe> groupe = groupedao.all();
                         test = false;
@@ -331,7 +334,7 @@ public class CustomFrame extends JFrame implements ActionListener {
                 System.out.println("Erreur Recherche");
                 ex.printStackTrace();
             }
-            
+            System.out.println(typeRecherche);
             for(int i = 0;i<seances.size();i++)
             {
                 System.out.println("Seance :" + i + ", " + seances.get(i).GET_ID());
@@ -504,7 +507,7 @@ public class CustomFrame extends JFrame implements ActionListener {
                 return 1;
             case "12:00":
                 return 2;
-            case "13H45":
+            case "13:45":
                 return 3;
             case "15:30":
                 return 4;
