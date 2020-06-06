@@ -170,13 +170,13 @@ public class CustomFrame extends JFrame implements ActionListener {
         JLabel groupes = new JLabel("nom des groupes: ");
         JLabel salles = new JLabel("numéros des salles: ");
         
-        creneau.setBounds(menu + 20, 20, 80, 30);
-        date.setBounds(menu + 20, 20, 80, 30);
-        idCours.setBounds(menu + 20, 20, 80, 30);
-        typeCours.setBounds(menu + 20, 20, 80, 30);
-        enseignants.setBounds(menu + 20, 20, 80, 30);
-        groupes.setBounds(menu + 20, 20, 80, 30);
-        salles.setBounds(menu + 20, 20, 80, 30);
+        creneau.setBounds(menu + 20, 20 + 30, 80, 30);
+        date.setBounds(menu + 20, 50 + 30, 80, 30);
+        idCours.setBounds(menu + 20, 80 + 30, 80, 30);
+        typeCours.setBounds(menu + 20, 110 + 30, 80, 30);
+        enseignants.setBounds(menu + 20, 140 + 30, 80, 30);
+        groupes.setBounds(menu + 20, 170 + 30, 80, 30);
+        salles.setBounds(menu + 20, 200 + 30, 80, 30);
         
         JTextField creneauF = new JTextField();
         JTextField dateF = new JTextField();
@@ -186,13 +186,13 @@ public class CustomFrame extends JFrame implements ActionListener {
         JTextField groupesF = new JTextField();
         JTextField sallesF = new JTextField();
         
-        creneauF.setBounds(menu + 20 + 80, 20, 80, 30);
-        dateF.setBounds(menu + 20 + 80, 20, 80, 30);
-        idCoursF.setBounds(menu + 20 + 80, 20, 80, 30);
-        typeCoursF.setBounds(menu + 20 + 80, 20, 80, 30);
-        enseignantsF.setBounds(menu + 20 + 80, 20, 80, 30);
-        groupesF.setBounds(menu + 20 + 80, 20, 80, 30);
-        sallesF.setBounds(menu + 20 + 80, 20, 80, 30);
+        creneauF.setBounds(menu + 20 + 80, 20 + 30, 80, 30);
+        dateF.setBounds(menu + 20 + 80, 50 + 30, 80, 30);
+        idCoursF.setBounds(menu + 20 + 80, 80 + 30, 80, 30);
+        typeCoursF.setBounds(menu + 20 + 80, 110 + 30, 80, 30);
+        enseignantsF.setBounds(menu + 20 + 80, 140 + 30, 80, 30);
+        groupesF.setBounds(menu + 20 + 80, 170 + 30, 80, 30);
+        sallesF.setBounds(menu + 20 + 80, 200 + 30, 80, 30);
         
         pContent.add(creneau);
         pContent.add(date);
