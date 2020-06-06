@@ -57,6 +57,7 @@ public class CustomFrame extends JFrame implements ActionListener {
     private JTextField enseignantsF;
     private JTextField groupesF;
     private JTextField sallesF;
+    private JTextField promotionF;
     
     private JTextField idSeanceF;
 
@@ -133,7 +134,7 @@ public class CustomFrame extends JFrame implements ActionListener {
                 fMain.revalidate();
                 break;
             case "Update de cours":
-                System.out.println("Ajout de cours  Pressed");
+                System.out.println("Update de cours  Pressed");
                 pContent.removeAll();
 
                 updateProf("Update un cours:");
@@ -201,8 +202,9 @@ public class CustomFrame extends JFrame implements ActionListener {
         JLabel idCours = new JLabel("Nom du cours: ");
         JLabel typeCours = new JLabel("Type de cours: ");
         JLabel enseignants = new JLabel("nom des enseignants: ");
-        JLabel groupes = new JLabel("nom des groupes: ");
-        JLabel salles = new JLabel("numéros des salles: ");
+        JLabel groupes = new JLabel("Nom des groupes: ");
+        JLabel salles = new JLabel("Numéros des salles: ");
+        JLabel promotion = new JLabel("Promotion: ");
 
         creneau.setBounds(menu + 20, 20 + 80 + 10, 150, 30);
         date.setBounds(menu + 20, 50 + 80 + 20, 150, 30);
@@ -211,6 +213,7 @@ public class CustomFrame extends JFrame implements ActionListener {
         enseignants.setBounds(menu + 20, 140 + 80 + 50, 150, 30);
         groupes.setBounds(menu + 20, 170 + 80 + 60, 150, 30);
         salles.setBounds(menu + 20, 200 + 80 + 70, 150, 30);
+        promotion.setBounds(menu + 20, 230 + 80 + 80, 150, 30);
 
         creneauF = new JTextField();
         dateF = new JTextField();
@@ -219,6 +222,7 @@ public class CustomFrame extends JFrame implements ActionListener {
         enseignantsF = new JTextField();
         groupesF = new JTextField();
         sallesF = new JTextField();
+        promotionF = new JTextField();
 
         creneauF.setBounds(menu + 20 + 130, 20 + 80 + 10, 150, 30);
         dateF.setBounds(menu + 20 + 130, 50 + 80 + 20, 150, 30);
@@ -227,9 +231,10 @@ public class CustomFrame extends JFrame implements ActionListener {
         enseignantsF.setBounds(menu + 20 + 130, 140 + 80 + 50, 150, 30);
         groupesF.setBounds(menu + 20 + 130, 170 + 80 + 60, 150, 30);
         sallesF.setBounds(menu + 20 + 130, 200 + 80 + 70, 150, 30);
+        promotionF.setBounds(menu + 20 + 130, 230 + 80 + 80, 150, 30);
 
         JButton validerAjout = new JButton("AJOUTER");
-        validerAjout.setBounds(menu + 20, 200 + 100 + 90, 150, 30);
+        validerAjout.setBounds(menu + 20, 230 + 100 + 100, 150, 30);
         validerAjout.addActionListener(this);
 
         pContent.add(validerAjout);
@@ -242,6 +247,7 @@ public class CustomFrame extends JFrame implements ActionListener {
         pContent.add(enseignants);
         pContent.add(groupes);
         pContent.add(salles);
+        pContent.add(promotion);
         pContent.add(creneauF);
         pContent.add(dateF);
         pContent.add(idCoursF);
@@ -249,6 +255,7 @@ public class CustomFrame extends JFrame implements ActionListener {
         pContent.add(enseignantsF);
         pContent.add(groupesF);
         pContent.add(sallesF);
+        pContent.add(promotionF);
     }
 
     private void coursSpec(String monTypeField) {
