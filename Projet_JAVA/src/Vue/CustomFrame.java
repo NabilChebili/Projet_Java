@@ -190,17 +190,26 @@ public class CustomFrame extends JFrame implements ActionListener {
                 HEURE_FIN.plusMinutes(30);
                 String ETAT = "en cours de validation";
                 
-                for(int i = 0;i<groupe.size();i++)
+                int ID_COURS;
+                for(int i = 0;i<cours.size();i++)
                 {
-                    if()
+                    if(idCoursF.getText() == cours.get(i).GET_NOM())
+                    {
+                        ID_COURS = cours.get(i).GET_ID();
+
+                    }
                 }
-                int ID_COURS = idCoursF.getText();
                 
-                for(int i = 0;i<groupe.size();i++)
+                int ID_TYPE;
+                for(int i = 0;i<type_cours.size();i++)
                 {
-                    
+                    if(typeCoursF.getText() == cours.get(i).GET_NOM())
+                    {
+                        ID_TYPE = cours.get(i).GET_ID();
+
+                    }
                 }
-                int ID_TYPE = typeCoursF.getText();
+                
                 
                 for(int i = 0;i<groupe.size();i++)
                 {
