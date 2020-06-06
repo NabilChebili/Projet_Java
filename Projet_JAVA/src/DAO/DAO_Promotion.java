@@ -54,7 +54,26 @@ public class DAO_Promotion extends DAO<Promotion> {
 
     @Override
     public ArrayList<Promotion> all() {
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+        ArrayList liste;
+        final String Requete1 = "SELECT * FROM `promotion`";
+        
+        try{
+            liste = maconnexion.RequeteRetourListe(Requete1);
+            ArrayList<Promotion> listpromotion = new ArrayList();            
+            for(int i=0;i<liste.size();i+=8)
+            {
+                int ID = Integer.parseInt((String) liste.get(i));
+                String NOM = (String) liste.get(i+1);  
+                Promotion promotion = new Promotion(ID,NOM);
+                listpromotion.add(promotion);
+            }
+            return listpromotion;
+        }
+        catch(final SQLException e){
+            System.out.println("Connexion echouee : probleme SQL");
+            e.printStackTrace();
+            return null;
+        }
     }
     
 }
