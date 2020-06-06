@@ -160,6 +160,81 @@ public class CustomFrame extends JFrame implements ActionListener {
                 break;
             case "AJOUTER": 
                 System.out.println("Criteria Ajouter - Prof Pressed");
+                Maj maj = new Maj(uti);
+                
+                DAO<Cours> coursdao = new DAO_Cours();
+                ArrayList<Cours> cours = coursdao.all();
+                
+                DAO<Type_cours> type_coursdao = new DAO_Type_cours();
+                ArrayList<Type_cours> type_cours = type_coursdao.all();
+                
+                DAO<Utilisateur> utilisateurdao = new DAO_Utilisateur();
+                ArrayList<Utilisateur> prof = utilisateurdao.all();
+                
+                DAO<Groupe> groupedao = new DAO_Groupe();
+                ArrayList<Groupe> groupe = groupedao.all();
+                
+                DAO<Promotion> promotiondao = new DAO_Promotion();
+                ArrayList<Promotion> promotion = promotiondao.all();
+                
+                DAO<Salle> salledao = new DAO_Salle();
+                ArrayList<Salle> salle = salledao.all();
+                
+                //int ID = 19;
+                int SEMAINE = 10;
+
+                LocalDate DATE = LocalDate.parse(dateF.getText());       
+                LocalTime HEURE_DEBUT = LocalTime.parse(creneauF.getText());
+                LocalTime HEURE_FIN = HEURE_DEBUT;
+                HEURE_FIN.plusHours(1);
+                HEURE_FIN.plusMinutes(30);
+                String ETAT = "en cours de validation";
+                
+                for(int i = 0;i<groupe.size();i++)
+                {
+                    if()
+                }
+                int ID_COURS = idCoursF.getText();
+                
+                for(int i = 0;i<groupe.size();i++)
+                {
+                    
+                }
+                int ID_TYPE = typeCoursF.getText();
+                
+                for(int i = 0;i<groupe.size();i++)
+                {
+                    
+                }
+                ArrayList<Integer> ID_GROUPE = new ArrayList<Integer>();
+                
+                for(int i = 0;i<groupe.size();i++)
+                {
+                    
+                }
+                ArrayList<Integer> ID_SALLE = new ArrayList<Integer>();
+                
+                for(int i = 0;i<groupe.size();i++)
+                {
+                    
+                }
+                ArrayList<Integer> ID_ENSEIGNANT = new ArrayList<Integer>();
+                //ID_GROUPE.add(1);
+                //ID_GROUPE.add(2);
+                ID_GROUPE.add(groupesF.getText());
+                ID_SALLE.add(sallesF.getText());
+                ID_ENSEIGNANT.add(enseignantsF.getText());
+                
+                Seance seance = new Seance(ID,SEMAINE,DATE,HEURE_DEBUT,HEURE_FIN,ETAT,ID_COURS,ID_TYPE,ID_GROUPE,ID_SALLE,ID_ENSEIGNANT);
+                
+                try {
+                    //maj.AjoutUpdateSeance(seance, true);
+
+                } catch (Exception ex) {
+                    ex.printStackTrace();
+                    System.out.println("Erreur Maj");
+                }
+                
                 break;
             default:
                 break;
@@ -176,10 +251,10 @@ public class CustomFrame extends JFrame implements ActionListener {
         JLabel creneau = new JLabel("Horaire: ");
         JLabel date = new JLabel("Date: ");
         JLabel idCours = new JLabel("Nom du cours: ");
-        JLabel typeCours = new JLabel("Type de cours: ");
-        JLabel enseignants = new JLabel("nom des enseignants: ");
-        JLabel groupes = new JLabel("nom des groupes: ");
-        JLabel salles = new JLabel("numéros des salles: ");
+        JLabel typeCours = new JLabel("Type du cours: ");
+        JLabel enseignants = new JLabel("Nom de l'enseignant: ");
+        JLabel groupes = new JLabel("Nom de groupe: ");
+        JLabel salles = new JLabel("Numéro de la salle: ");
 
         creneau.setBounds(menu + 20, 20 + 30 + 10, 150, 30);
         date.setBounds(menu + 20, 50 + 30 + 20, 150, 30);

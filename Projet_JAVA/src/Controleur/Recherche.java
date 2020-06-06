@@ -65,6 +65,8 @@ public class Recherche {
         }
         
     }
+   
+    
     public ArrayList<Seance> RechercheSeanceGroupe(int id_groupe)
     {
         DAO<Groupe> groupedao = new DAO_Groupe();
