@@ -38,12 +38,6 @@ public class CustomFrame extends JFrame implements ActionListener {
 
     private ArrayList<CoursWidget> pSemaine;
 
-    private JButton inputProf;
-
-    private JButton bMesCours;
-    private JButton bMesClasses;
-    private JButton bMesSalles;
-    private JButton semaineButton;
     private JTextField semaineText;
     private int semaineNbr = -1;
     private String semaineNom = "Semaine : ";
@@ -56,12 +50,20 @@ public class CustomFrame extends JFrame implements ActionListener {
     private JLabel speCoursL;
     private JTextField speCoursF;
 
+    private JTextField creneauF;
+    private JTextField dateF;
+    private JTextField idCoursF;
+    private JTextField typeCoursF;
+    private JTextField enseignantsF;
+    private JTextField groupesF;
+    private JTextField sallesF;
+
     final private int height = 1000;
     final private int width = 1600;
     final private int menu = 400;
     final static private int sizeX = 175;
     final static private int sizeY = 100;
-    
+
     private String typeRecherche = "Normal";
 
     public static void main(String args[]) {
@@ -146,7 +148,7 @@ public class CustomFrame extends JFrame implements ActionListener {
                 initContent();
                 // Implementer la recherche pour les cours
                 // Obtient le cours recherché  ->  speF.getText();
-               // Obtient la proma avec speCoursF.getText();
+                // Obtient la proma avec speCoursF.getText();
                 break;
             case "Salles":
                 System.out.println("Criteria Salles Pressed");
@@ -156,12 +158,21 @@ public class CustomFrame extends JFrame implements ActionListener {
                 // Implementer la recherche pour les cours
                 // Obtient le cours recherché  ->  speF.getText();
                 break;
+            case "AJOUTER": 
+                System.out.println("Criteria Ajouter - Prof Pressed");
+                break;
             default:
                 break;
         }
     }
 
     private void ajoutProf() {
+
+        JLabel titre = new JLabel("Ajouter un cours:");
+        titre.setBounds(menu + 20, +5, 500, 50);
+        titre.setForeground(gris);
+        titre.setFont(new Font("Arial", Font.PLAIN, 30));
+
         JLabel creneau = new JLabel("Horaire: ");
         JLabel date = new JLabel("Date: ");
         JLabel idCours = new JLabel("Nom du cours: ");
@@ -169,31 +180,38 @@ public class CustomFrame extends JFrame implements ActionListener {
         JLabel enseignants = new JLabel("nom des enseignants: ");
         JLabel groupes = new JLabel("nom des groupes: ");
         JLabel salles = new JLabel("numéros des salles: ");
-        
-        creneau.setBounds(menu + 20, 20, 80, 30);
-        date.setBounds(menu + 20, 20, 80, 30);
-        idCours.setBounds(menu + 20, 20, 80, 30);
-        typeCours.setBounds(menu + 20, 20, 80, 30);
-        enseignants.setBounds(menu + 20, 20, 80, 30);
-        groupes.setBounds(menu + 20, 20, 80, 30);
-        salles.setBounds(menu + 20, 20, 80, 30);
-        
-        JTextField creneauF = new JTextField();
-        JTextField dateF = new JTextField();
-        JTextField idCoursF = new JTextField();
-        JTextField typeCoursF = new JTextField();
-        JTextField enseignantsF = new JTextField();
-        JTextField groupesF = new JTextField();
-        JTextField sallesF = new JTextField();
-        
-        creneauF.setBounds(menu + 20 + 80, 20, 80, 30);
-        dateF.setBounds(menu + 20 + 80, 20, 80, 30);
-        idCoursF.setBounds(menu + 20 + 80, 20, 80, 30);
-        typeCoursF.setBounds(menu + 20 + 80, 20, 80, 30);
-        enseignantsF.setBounds(menu + 20 + 80, 20, 80, 30);
-        groupesF.setBounds(menu + 20 + 80, 20, 80, 30);
-        sallesF.setBounds(menu + 20 + 80, 20, 80, 30);
-        
+
+        creneau.setBounds(menu + 20, 20 + 30 + 10, 150, 30);
+        date.setBounds(menu + 20, 50 + 30 + 20, 150, 30);
+        idCours.setBounds(menu + 20, 80 + 30 + 30, 150, 30);
+        typeCours.setBounds(menu + 20, 110 + 30 + 40, 150, 30);
+        enseignants.setBounds(menu + 20, 140 + 30 + 50, 150, 30);
+        groupes.setBounds(menu + 20, 170 + 30 + 60, 150, 30);
+        salles.setBounds(menu + 20, 200 + 30 + 70, 150, 30);
+
+        creneauF = new JTextField();
+        dateF = new JTextField();
+        idCoursF = new JTextField();
+        typeCoursF = new JTextField();
+        enseignantsF = new JTextField();
+        groupesF = new JTextField();
+        sallesF = new JTextField();
+
+        creneauF.setBounds(menu + 20 + 130, 20 + 30 + 10, 150, 30);
+        dateF.setBounds(menu + 20 + 130, 50 + 30 + 20, 150, 30);
+        idCoursF.setBounds(menu + 20 + 130, 80 + 30 + 30, 150, 30);
+        typeCoursF.setBounds(menu + 20 + 130, 110 + 30 + 40, 150, 30);
+        enseignantsF.setBounds(menu + 20 + 130, 140 + 30 + 50, 150, 30);
+        groupesF.setBounds(menu + 20 + 130, 170 + 30 + 60, 150, 30);
+        sallesF.setBounds(menu + 20 + 130, 200 + 30 + 70, 150, 30);
+
+        JButton validerAjout = new JButton("AJOUTER");
+        validerAjout.setBounds(menu + 20, 200 + 50 + 90, 150, 30);
+        validerAjout.addActionListener(this);
+
+        pContent.add(validerAjout);
+        pContent.add(titre);
+
         pContent.add(creneau);
         pContent.add(date);
         pContent.add(idCours);
@@ -290,7 +308,8 @@ public class CustomFrame extends JFrame implements ActionListener {
         pMenu.add(bMesClasses);
         pMenu.add(bMesSalles);
 
-        if (uti.GET_DROIT() == 3) {
+        if (true) {
+            //if (uti.GET_DROIT() == 3) {
             JButton inputProf = new JButton("Ajout de cours");
             inputProf.setBackground(grisFonce);
             inputProf.setForeground(blanc);
@@ -313,7 +332,7 @@ public class CustomFrame extends JFrame implements ActionListener {
     private void initContent() {
         ArrayList stringcours = new ArrayList<>();
         ArrayList stringprof = new ArrayList<>();
-        
+
         if (semaineNbr != -1) {
             DAO<Utilisateur> utilisateurdao = new DAO_Utilisateur();
             DAO<Cours> coursdao = new DAO_Cours();
@@ -327,16 +346,15 @@ public class CustomFrame extends JFrame implements ActionListener {
             try {
                 boolean test;
                 switch (typeRecherche) {
-                    case "Normal" :
+                    case "Normal":
                         seances.addAll(rech.RechercheSeanceUti());
                         break;
-                    case "Classe" :
+                    case "Classe":
                         System.out.println("Aucun groupe trouvé");
                         DAO<Groupe> groupedao = new DAO_Groupe();
                         ArrayList<Groupe> groupe = groupedao.all();
                         test = false;
-                        
-                        
+
                         System.out.println(speF.getText());
                         for(int i = 0;i<groupe.size();i++)
                         {
@@ -352,16 +370,15 @@ public class CustomFrame extends JFrame implements ActionListener {
                                         test = true;
                                     }
                                 }
-                                
+
                             }
-                            
+
                         }
-                        if (test == false)
-                        {
+                        if (test == false) {
                             System.out.println("Aucun groupe trouvé");
                         }
                         break;
-                    case "Salle" :
+                    case "Salle":
                         DAO<Salle> salledao = new DAO_Salle();
                         ArrayList<Salle> salle = salledao.all();
                         test = false;
@@ -373,12 +390,11 @@ public class CustomFrame extends JFrame implements ActionListener {
                                 test = true;
                             }
                         }
-                        if (test == false)
-                        {
+                        if (test == false) {
                             System.out.println("Aucune salle trouvé");
                         }
                         break;
-                    
+
                 }
 
             } catch (Exception ex) {
@@ -389,8 +405,8 @@ public class CustomFrame extends JFrame implements ActionListener {
             for(int i = 0;i<seances.size();i++)
             {
                 System.out.println("Seance :" + i + ", " + seances.get(i).GET_ID());
-            }   
-            
+            }
+
             boolean trouve = false;
             for (int i = 0; i < 6; i++) {
                 //Jour
@@ -453,7 +469,7 @@ public class CustomFrame extends JFrame implements ActionListener {
 
         semaineRecherche = new JLabel(semaineNom);
         semaineText = new JTextField();
-        semaineButton = new JButton("Rechercher");
+        JButton semaineButton = new JButton("Rechercher");
         semaineButton.addActionListener(this);
         semaineRecherche.setBounds(menu + 10, 10, 100, 20);
         semaineText.setBounds(menu + 120, 10, 50, 20);
@@ -498,7 +514,6 @@ public class CustomFrame extends JFrame implements ActionListener {
         pContent.add(role);
         pContent.add(role);
         pContent.add(mail);*/
-
         pContent.add(semaineText);
         pContent.add(semaineButton);
         pContent.add(semaineRecherche);
