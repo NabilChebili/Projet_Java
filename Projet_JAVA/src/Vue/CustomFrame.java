@@ -105,7 +105,7 @@ public class CustomFrame extends JFrame implements ActionListener {
                 System.out.println("Les CLasses Pressed");
                 pContent.removeAll();
                 initContent();
-                coursSpec("Groupe");
+                coursSpec("Classes");
 
                 fMain.repaint();
                 fMain.revalidate();
@@ -162,7 +162,9 @@ public class CustomFrame extends JFrame implements ActionListener {
     }
 
     private void ajoutProf() {
-
+        JLabel bonjour = new JLabel("Bonjour"); 
+        bonjour.setBounds(menu + 10, 10, 200, 100);
+        pContent.add(bonjour);
     }
 
     private void coursSpec(String monTypeField) {
@@ -175,7 +177,7 @@ public class CustomFrame extends JFrame implements ActionListener {
         speF.setBounds(menu + 120, 40, 100, 20);
         speB.setBounds(menu + 180 + 50, 40, 35, 20);
 
-        if ("Groupe".equals(monTypeField)) {
+        if ("Classes".equals(monTypeField)) {
             speCoursL = new JLabel("Promotion :");
             speCoursF = new JTextField();
             speCoursL.setBounds(menu + 240, 40, 100, 20);
@@ -451,26 +453,6 @@ public class CustomFrame extends JFrame implements ActionListener {
         pContent.add(semaineText);
         pContent.add(semaineButton);
         pContent.add(semaineRecherche);
-    }
-
-    private void initProfInputCours() {
-        JPanel tmp = new JPanel();
-
-        tmp.setLayout(null);
-        tmp.setBounds(menu + 10, 300, 500, 350);
-        tmp.setBackground(Color.yellow);
-
-        pContent.add(tmp);
-    }
-
-    private void initProfInputCoursRED() {
-        JPanel tmp = new JPanel();
-
-        tmp.setLayout(null);
-        tmp.setBounds(menu + 100, 300, 500, 350);
-        tmp.setBackground(Color.RED);
-
-        pContent.add(tmp);
     }
 
     private void initArray(ArrayList<CoursWidget> semaine, int x, int y, int gap, int nbColumn, Color color, ArrayList<String> myLabel, ArrayList<String> myProf) {
