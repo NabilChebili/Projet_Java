@@ -340,11 +340,12 @@ public class CustomFrame extends JFrame implements ActionListener {
                         System.out.println(speF.getText());
                         for(int i = 0;i<groupe.size();i++)
                         {
-                            System.out.println(i+" : "+groupe.get(i).GET_NOM());
+                            
                             for(int j = 0;j<promotion.size();j++)
                             {
                                 if((promotion.get(j).GET_NOM().equals(speCoursF.getText())) && (groupe.get(i).GET_ID_PROMOTION() == promotion.get(j).GET_ID()))
                                 {
+                                    System.out.println(i+" : "+groupe.get(i).GET_ID());
                                     if(speF.getText().equals(groupe.get(i).GET_NOM()))
                                     {
                                         seances.addAll(rech.RechercheSeanceGroupe(groupe.get(i).GET_ID()));
@@ -366,7 +367,6 @@ public class CustomFrame extends JFrame implements ActionListener {
                         test = false;
                         for(int i = 0;i<salle.size();i++)
                         {
-                            System.out.println("salle :" + i + ", " + salle.get(i).GET_NOM());
                             if(speF.getText().equals(salle.get(i).GET_NOM()))
                             {
                                 seances.addAll(rech.RechercheSeanceSalle(salle.get(i).GET_ID()));
@@ -385,7 +385,7 @@ public class CustomFrame extends JFrame implements ActionListener {
                 System.out.println("Erreur Recherche");
                 ex.printStackTrace();
             }
-            System.out.println(typeRecherche);
+            
             for(int i = 0;i<seances.size();i++)
             {
                 System.out.println("Seance :" + i + ", " + seances.get(i).GET_ID());
