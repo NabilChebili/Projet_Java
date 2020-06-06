@@ -46,7 +46,7 @@ public class CustomFrame extends JFrame implements ActionListener {
     private JLabel speL;
     private JButton speB;
     private JTextField speF;
-
+    
     private JLabel speCoursL;
     private JTextField speCoursF;
 
@@ -57,6 +57,8 @@ public class CustomFrame extends JFrame implements ActionListener {
     private JTextField enseignantsF;
     private JTextField groupesF;
     private JTextField sallesF;
+    
+    private JTextField idSeanceF;
 
     final private int height = 1000;
     final private int width = 1600;
@@ -125,7 +127,16 @@ public class CustomFrame extends JFrame implements ActionListener {
                 System.out.println("Ajout de cours  Pressed");
                 pContent.removeAll();
 
-                ajoutProf();
+                ajoutProf("Ajouter un cours:");
+
+                fMain.repaint();
+                fMain.revalidate();
+                break;
+            case "Update de cours":
+                System.out.println("Ajout de cours  Pressed");
+                pContent.removeAll();
+
+                updateProf("Update un cours:");
 
                 fMain.repaint();
                 fMain.revalidate();
@@ -165,11 +176,23 @@ public class CustomFrame extends JFrame implements ActionListener {
                 break;
         }
     }
+    
+    private void updateProf(String titreC) {
+        
+        ajoutProf(titreC);
+        JLabel idSeance = new JLabel("ID Cours: ");
+        idSeance.setBounds(menu + 20, 20 + 50 + 0, 150, 30);
+        idSeanceF = new JTextField();
+        idSeanceF.setBounds(menu + 20 + 130, 20 + 50 + 0, 150, 30);
+        
+        pContent.add(idSeance);
+        pContent.add(idSeanceF);
+    }
 
-    private void ajoutProf() {
+    private void ajoutProf(String titreC) {
 
-        JLabel titre = new JLabel("Ajouter un cours:");
-        titre.setBounds(menu + 20, +5, 500, 50);
+        JLabel titre = new JLabel(titreC);
+        titre.setBounds(menu + 20, 5, 500, 50);
         titre.setForeground(gris);
         titre.setFont(new Font("Arial", Font.PLAIN, 30));
 
@@ -181,13 +204,13 @@ public class CustomFrame extends JFrame implements ActionListener {
         JLabel groupes = new JLabel("nom des groupes: ");
         JLabel salles = new JLabel("numéros des salles: ");
 
-        creneau.setBounds(menu + 20, 20 + 30 + 10, 150, 30);
-        date.setBounds(menu + 20, 50 + 30 + 20, 150, 30);
-        idCours.setBounds(menu + 20, 80 + 30 + 30, 150, 30);
-        typeCours.setBounds(menu + 20, 110 + 30 + 40, 150, 30);
-        enseignants.setBounds(menu + 20, 140 + 30 + 50, 150, 30);
-        groupes.setBounds(menu + 20, 170 + 30 + 60, 150, 30);
-        salles.setBounds(menu + 20, 200 + 30 + 70, 150, 30);
+        creneau.setBounds(menu + 20, 20 + 80 + 10, 150, 30);
+        date.setBounds(menu + 20, 50 + 80 + 20, 150, 30);
+        idCours.setBounds(menu + 20, 80 + 80 + 30, 150, 30);
+        typeCours.setBounds(menu + 20, 110 + 80 + 40, 150, 30);
+        enseignants.setBounds(menu + 20, 140 + 80 + 50, 150, 30);
+        groupes.setBounds(menu + 20, 170 + 80 + 60, 150, 30);
+        salles.setBounds(menu + 20, 200 + 80 + 70, 150, 30);
 
         creneauF = new JTextField();
         dateF = new JTextField();
@@ -197,16 +220,16 @@ public class CustomFrame extends JFrame implements ActionListener {
         groupesF = new JTextField();
         sallesF = new JTextField();
 
-        creneauF.setBounds(menu + 20 + 130, 20 + 30 + 10, 150, 30);
-        dateF.setBounds(menu + 20 + 130, 50 + 30 + 20, 150, 30);
-        idCoursF.setBounds(menu + 20 + 130, 80 + 30 + 30, 150, 30);
-        typeCoursF.setBounds(menu + 20 + 130, 110 + 30 + 40, 150, 30);
-        enseignantsF.setBounds(menu + 20 + 130, 140 + 30 + 50, 150, 30);
-        groupesF.setBounds(menu + 20 + 130, 170 + 30 + 60, 150, 30);
-        sallesF.setBounds(menu + 20 + 130, 200 + 30 + 70, 150, 30);
+        creneauF.setBounds(menu + 20 + 130, 20 + 80 + 10, 150, 30);
+        dateF.setBounds(menu + 20 + 130, 50 + 80 + 20, 150, 30);
+        idCoursF.setBounds(menu + 20 + 130, 80 + 80 + 30, 150, 30);
+        typeCoursF.setBounds(menu + 20 + 130, 110 + 80 + 40, 150, 30);
+        enseignantsF.setBounds(menu + 20 + 130, 140 + 80 + 50, 150, 30);
+        groupesF.setBounds(menu + 20 + 130, 170 + 80 + 60, 150, 30);
+        sallesF.setBounds(menu + 20 + 130, 200 + 80 + 70, 150, 30);
 
         JButton validerAjout = new JButton("AJOUTER");
-        validerAjout.setBounds(menu + 20, 200 + 50 + 90, 150, 30);
+        validerAjout.setBounds(menu + 20, 200 + 100 + 90, 150, 30);
         validerAjout.addActionListener(this);
 
         pContent.add(validerAjout);
@@ -317,6 +340,14 @@ public class CustomFrame extends JFrame implements ActionListener {
             inputProf.addActionListener(this);
             inputProf.setBounds(0, 450, menu, 50);
             pMenu.add(inputProf);
+            
+            JButton updateProf = new JButton("Update de cours");
+            updateProf.setBackground(grisFonce);
+            updateProf.setForeground(blanc);
+            updateProf.setFont(new Font("Arial", Font.PLAIN, 30));
+            updateProf.addActionListener(this);
+            updateProf.setBounds(0, 500, menu, 50);
+            pMenu.add(updateProf);
         }
 
         JLabel intro = new JLabel("Planning's");
