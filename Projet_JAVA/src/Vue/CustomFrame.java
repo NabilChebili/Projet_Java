@@ -172,6 +172,81 @@ public class CustomFrame extends JFrame implements ActionListener {
                 break;
             case "AJOUTER": 
                 System.out.println("Criteria Ajouter - Prof Pressed");
+                Maj maj = new Maj(uti);
+                
+                DAO<Cours> coursdao = new DAO_Cours();
+                ArrayList<Cours> cours = coursdao.all();
+                
+                DAO<Type_cours> type_coursdao = new DAO_Type_cours();
+                ArrayList<Type_cours> type_cours = type_coursdao.all();
+                
+                DAO<Utilisateur> utilisateurdao = new DAO_Utilisateur();
+                ArrayList<Utilisateur> prof = utilisateurdao.all();
+                
+                DAO<Groupe> groupedao = new DAO_Groupe();
+                ArrayList<Groupe> groupe = groupedao.all();
+                
+                DAO<Promotion> promotiondao = new DAO_Promotion();
+                ArrayList<Promotion> promotion = promotiondao.all();
+                
+                DAO<Salle> salledao = new DAO_Salle();
+                ArrayList<Salle> salle = salledao.all();
+                
+                //int ID = 19;
+                int SEMAINE = 10;
+
+                LocalDate DATE = LocalDate.parse(dateF.getText());       
+                LocalTime HEURE_DEBUT = LocalTime.parse(creneauF.getText());
+                LocalTime HEURE_FIN = HEURE_DEBUT;
+                HEURE_FIN.plusHours(1);
+                HEURE_FIN.plusMinutes(30);
+                String ETAT = "en cours de validation";
+                
+                for(int i = 0;i<groupe.size();i++)
+                {
+                    if()
+                }
+                int ID_COURS = idCoursF.getText();
+                
+                for(int i = 0;i<groupe.size();i++)
+                {
+                    
+                }
+                int ID_TYPE = typeCoursF.getText();
+                
+                for(int i = 0;i<groupe.size();i++)
+                {
+                    
+                }
+                ArrayList<Integer> ID_GROUPE = new ArrayList<Integer>();
+                
+                for(int i = 0;i<groupe.size();i++)
+                {
+                    
+                }
+                ArrayList<Integer> ID_SALLE = new ArrayList<Integer>();
+                
+                for(int i = 0;i<groupe.size();i++)
+                {
+                    
+                }
+                ArrayList<Integer> ID_ENSEIGNANT = new ArrayList<Integer>();
+                //ID_GROUPE.add(1);
+                //ID_GROUPE.add(2);
+                ID_GROUPE.add(groupesF.getText());
+                ID_SALLE.add(sallesF.getText());
+                ID_ENSEIGNANT.add(enseignantsF.getText());
+                
+                Seance seance = new Seance(ID,SEMAINE,DATE,HEURE_DEBUT,HEURE_FIN,ETAT,ID_COURS,ID_TYPE,ID_GROUPE,ID_SALLE,ID_ENSEIGNANT);
+                
+                try {
+                    //maj.AjoutUpdateSeance(seance, true);
+
+                } catch (Exception ex) {
+                    ex.printStackTrace();
+                    System.out.println("Erreur Maj");
+                }
+                
                 break;
             default:
                 break;
@@ -200,11 +275,10 @@ public class CustomFrame extends JFrame implements ActionListener {
         JLabel creneau = new JLabel("Horaire: ");
         JLabel date = new JLabel("Date: ");
         JLabel idCours = new JLabel("Nom du cours: ");
-        JLabel typeCours = new JLabel("Type de cours: ");
-        JLabel enseignants = new JLabel("nom des enseignants: ");
-        JLabel groupes = new JLabel("Nom des groupes: ");
-        JLabel salles = new JLabel("Numéros des salles: ");
-        JLabel promotion = new JLabel("Promotion: ");
+        JLabel typeCours = new JLabel("Type du cours: ");
+        JLabel enseignants = new JLabel("Nom de l'enseignant: ");
+        JLabel groupes = new JLabel("Nom de groupe: ");
+        JLabel salles = new JLabel("Numéro de la salle: ");
 
         creneau.setBounds(menu + 20, 20 + 80 + 10, 150, 30);
         date.setBounds(menu + 20, 50 + 80 + 20, 150, 30);
@@ -394,11 +468,16 @@ public class CustomFrame extends JFrame implements ActionListener {
                         test = false;
 
                         System.out.println(speF.getText());
-                        for (int i = 0; i < groupe.size(); i++) {
-                            System.out.println(i + " : " + groupe.get(i).GET_NOM());
-                            for (int j = 0; j < promotion.size(); j++) {
-                                if ((promotion.get(j).GET_NOM().equals(speCoursF.getText())) && (groupe.get(i).GET_ID_PROMOTION() == promotion.get(j).GET_ID())) {
-                                    if (speF.getText().equals(groupe.get(i).GET_NOM())) {
+                        for(int i = 0;i<groupe.size();i++)
+                        {
+                            
+                            for(int j = 0;j<promotion.size();j++)
+                            {
+                                if((promotion.get(j).GET_NOM().equals(speCoursF.getText())) && (groupe.get(i).GET_ID_PROMOTION() == promotion.get(j).GET_ID()))
+                                {
+                                    System.out.println(i+" : "+groupe.get(i).GET_ID());
+                                    if(speF.getText().equals(groupe.get(i).GET_NOM()))
+                                    {
                                         seances.addAll(rech.RechercheSeanceGroupe(groupe.get(i).GET_ID()));
                                         test = true;
                                     }
@@ -415,9 +494,10 @@ public class CustomFrame extends JFrame implements ActionListener {
                         DAO<Salle> salledao = new DAO_Salle();
                         ArrayList<Salle> salle = salledao.all();
                         test = false;
-                        for (int i = 0; i < salle.size(); i++) {
-                            System.out.println("salle :" + i + ", " + salle.get(i).GET_NOM());
-                            if (speF.getText().equals(salle.get(i).GET_NOM())) {
+                        for(int i = 0;i<salle.size();i++)
+                        {
+                            if(speF.getText().equals(salle.get(i).GET_NOM()))
+                            {
                                 seances.addAll(rech.RechercheSeanceSalle(salle.get(i).GET_ID()));
                                 test = true;
                             }
@@ -433,8 +513,9 @@ public class CustomFrame extends JFrame implements ActionListener {
                 System.out.println("Erreur Recherche");
                 ex.printStackTrace();
             }
-            System.out.println(typeRecherche);
-            for (int i = 0; i < seances.size(); i++) {
+            
+            for(int i = 0;i<seances.size();i++)
+            {
                 System.out.println("Seance :" + i + ", " + seances.get(i).GET_ID());
             }
 

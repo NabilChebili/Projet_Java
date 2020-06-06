@@ -65,14 +65,14 @@ public class Recherche {
         }
         
     }
+   
+    
     public ArrayList<Seance> RechercheSeanceGroupe(int id_groupe)
     {
         DAO<Groupe> groupedao = new DAO_Groupe();
         Groupe groupe = groupedao.find(id_groupe);
-        System.out.println("groupe id :" + groupe.GET_ID());
         ArrayList<Integer> seanceid = new ArrayList<Integer>();
         seanceid = groupe.GET_ID_SEANCES();
-        System.out.println("Seance id :" + seanceid);
         ArrayList<Seance> seancelist = new ArrayList<Seance>();
         for(int i=0;i<seanceid.size();i++)
         {
@@ -81,10 +81,6 @@ public class Recherche {
             seancelist.add(seance);
 
         }
-        for(int i = 0;i<seancelist.size();i++)
-        {
-            System.out.println("Seance :" + i + ", " + seancelist.get(i).GET_ID());
-        } 
         return seancelist;
             
     }
