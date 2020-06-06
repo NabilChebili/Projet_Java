@@ -146,7 +146,7 @@ public class CustomFrame extends JFrame implements ActionListener {
                 initContent();
                 // Implementer la recherche pour les cours
                 // Obtient le cours recherché  ->  speF.getText();
-                // Obtient la proma avec speCoursF.getText();
+               // Obtient la proma avec speCoursF.getText();
                 break;
             case "Salles":
                 System.out.println("Criteria Salles Pressed");
@@ -320,7 +320,7 @@ public class CustomFrame extends JFrame implements ActionListener {
             DAO<Promotion> promotiondao = new DAO_Promotion();
             ArrayList<Cours> cours = coursdao.all();
             ArrayList<Utilisateur> prof = utilisateurdao.all();
-            //ArrayList<Promotion> promotion = promotiondao.all();
+            ArrayList<Promotion> promotion = promotiondao.all();
 
             Recherche rech = new Recherche(uti);
             ArrayList<Seance> seances = new ArrayList<>();
@@ -341,13 +341,19 @@ public class CustomFrame extends JFrame implements ActionListener {
                         for(int i = 0;i<groupe.size();i++)
                         {
                             System.out.println(i+" : "+groupe.get(i).GET_NOM());
-                            
-                            if(speF.getText().equals(groupe.get(i).GET_NOM()))
+                            for(int j = 0;j<promotion.size();j++)
                             {
-                                seances.addAll(rech.RechercheSeanceGroupe(groupe.get(i).GET_ID()));
-                                test = true;
+                                if((promotion.get(j).GET_NOM().equals(speCoursF.getText())) && (groupe.get(i).GET_ID_PROMOTION() == promotion.get(j).GET_ID()))
+                                {
+                                    if(speF.getText().equals(groupe.get(i).GET_NOM()))
+                                    {
+                                        seances.addAll(rech.RechercheSeanceGroupe(groupe.get(i).GET_ID()));
+                                        test = true;
+                                    }
+                                }
                                 
                             }
+                            
                         }
                         if (test == false)
                         {
