@@ -162,9 +162,52 @@ public class CustomFrame extends JFrame implements ActionListener {
     }
 
     private void ajoutProf() {
-        JLabel bonjour = new JLabel("Bonjour"); 
-        bonjour.setBounds(menu + 10, 10, 200, 100);
-        pContent.add(bonjour);
+        JLabel creneau = new JLabel("Horaire: ");
+        JLabel date = new JLabel("Date: ");
+        JLabel idCours = new JLabel("Nom du cours: ");
+        JLabel typeCours = new JLabel("Type de cours: ");
+        JLabel enseignants = new JLabel("nom des enseignants: ");
+        JLabel groupes = new JLabel("nom des groupes: ");
+        JLabel salles = new JLabel("numéros des salles: ");
+        
+        creneau.setBounds(menu + 20, 20, 80, 30);
+        date.setBounds(menu + 20, 20, 80, 30);
+        idCours.setBounds(menu + 20, 20, 80, 30);
+        typeCours.setBounds(menu + 20, 20, 80, 30);
+        enseignants.setBounds(menu + 20, 20, 80, 30);
+        groupes.setBounds(menu + 20, 20, 80, 30);
+        salles.setBounds(menu + 20, 20, 80, 30);
+        
+        JTextField creneauF = new JTextField();
+        JTextField dateF = new JTextField();
+        JTextField idCoursF = new JTextField();
+        JTextField typeCoursF = new JTextField();
+        JTextField enseignantsF = new JTextField();
+        JTextField groupesF = new JTextField();
+        JTextField sallesF = new JTextField();
+        
+        creneauF.setBounds(menu + 20 + 80, 20, 80, 30);
+        dateF.setBounds(menu + 20 + 80, 20, 80, 30);
+        idCoursF.setBounds(menu + 20 + 80, 20, 80, 30);
+        typeCoursF.setBounds(menu + 20 + 80, 20, 80, 30);
+        enseignantsF.setBounds(menu + 20 + 80, 20, 80, 30);
+        groupesF.setBounds(menu + 20 + 80, 20, 80, 30);
+        sallesF.setBounds(menu + 20 + 80, 20, 80, 30);
+        
+        pContent.add(creneau);
+        pContent.add(date);
+        pContent.add(idCours);
+        pContent.add(typeCours);
+        pContent.add(enseignants);
+        pContent.add(groupes);
+        pContent.add(salles);
+        pContent.add(creneauF);
+        pContent.add(dateF);
+        pContent.add(idCoursF);
+        pContent.add(typeCoursF);
+        pContent.add(enseignantsF);
+        pContent.add(groupesF);
+        pContent.add(sallesF);
     }
 
     private void coursSpec(String monTypeField) {
