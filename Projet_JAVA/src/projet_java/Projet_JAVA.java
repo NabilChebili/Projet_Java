@@ -18,8 +18,7 @@ import java.util.logging.Logger;
  * @author Nabil WOW
  */
 public class Projet_JAVA {
-    public Connexion conn;
-    public Recherche recherche;
+
     /**
      * @param args the command line arguments
      */
