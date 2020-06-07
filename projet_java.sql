@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Hôte : 127.0.0.1:3306
--- Généré le :  lun. 01 juin 2020 à 20:21
+-- Généré le :  Dim 07 juin 2020 à 21:42
 -- Version du serveur :  5.7.26
 -- Version de PHP :  7.2.18
 
@@ -202,7 +202,16 @@ CREATE TABLE IF NOT EXISTS `seance` (
   `#ID_COURS` int(11) NOT NULL,
   `#ID_TYPE` int(11) NOT NULL,
   PRIMARY KEY (`ID`)
-) ENGINE=MyISAM AUTO_INCREMENT=7 DEFAULT CHARSET=latin1;
+) ENGINE=MyISAM AUTO_INCREMENT=21 DEFAULT CHARSET=latin1;
+
+--
+-- Déchargement des données de la table `seance`
+--
+
+INSERT INTO `seance` (`ID`, `SEMAINE`, `DATE`, `HEURE_DEBUT`, `HEURE_FIN`, `ETAT`, `#ID_COURS`, `#ID_TYPE`) VALUES
+(14, 10, '2020-06-01', '17:15:00', '18:45:00', 'validee', 2, 1),
+(13, 10, '2020-03-06', '08:30:00', '10:00:00', 'validee', 2, 1),
+(20, 3, '2020-06-08', '15:30:00', '15:30:00', 'en cours de validation', 4, 5);
 
 -- --------------------------------------------------------
 
@@ -216,6 +225,17 @@ CREATE TABLE IF NOT EXISTS `seance_enseignants` (
   `#ID_ENSEIGNANT` int(11) NOT NULL
 ) ENGINE=MyISAM DEFAULT CHARSET=latin1;
 
+--
+-- Déchargement des données de la table `seance_enseignants`
+--
+
+INSERT INTO `seance_enseignants` (`#ID_SEANCE`, `#ID_ENSEIGNANT`) VALUES
+(13, 23),
+(20, 8),
+(14, 23),
+(13, 3),
+(19, 8);
+
 -- --------------------------------------------------------
 
 --
@@ -228,6 +248,20 @@ CREATE TABLE IF NOT EXISTS `seance_groupes` (
   `#ID_GROUPE` int(11) NOT NULL
 ) ENGINE=MyISAM DEFAULT CHARSET=latin1;
 
+--
+-- Déchargement des données de la table `seance_groupes`
+--
+
+INSERT INTO `seance_groupes` (`#ID_SEANCE`, `#ID_GROUPE`) VALUES
+(13, 1),
+(13, 2),
+(13, 3),
+(14, 1),
+(14, 2),
+(14, 3),
+(20, 1),
+(19, 3);
+
 -- --------------------------------------------------------
 
 --
@@ -239,6 +273,20 @@ CREATE TABLE IF NOT EXISTS `seance_salles` (
   `#ID_SEANCE` int(11) NOT NULL,
   `#ID_SALLE` int(11) NOT NULL
 ) ENGINE=MyISAM DEFAULT CHARSET=latin1;
+
+--
+-- Déchargement des données de la table `seance_salles`
+--
+
+INSERT INTO `seance_salles` (`#ID_SEANCE`, `#ID_SALLE`) VALUES
+(13, 1),
+(13, 2),
+(13, 3),
+(14, 1),
+(14, 2),
+(14, 3),
+(20, 4),
+(19, 2);
 
 -- --------------------------------------------------------
 

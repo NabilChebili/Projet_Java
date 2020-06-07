@@ -79,6 +79,13 @@ public class DAO_Seance extends DAO<Seance> {
         final String Requete1 = "DELETE FROM `seance` WHERE ID = " + id;
         try {
             maconnexion.Update(Requete1);
+            
+            final String Requetedel1 = "DELETE FROM `seance_groupes` WHERE `#ID_SEANCE` = " + id;
+            maconnexion.Update(Requetedel1);
+            final String Requetedel2 = "DELETE FROM `seance_salles` WHERE `#ID_SEANCE` = " + id;
+            maconnexion.Update(Requetedel2);
+            final String Requetedel3 = "DELETE FROM `seance_enseignants` WHERE `#ID_SEANCE` = " + id;
+            maconnexion.Update(Requetedel3);
             return true;
         } catch (SQLException ex) {
             ex.printStackTrace();
