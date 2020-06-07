@@ -210,7 +210,8 @@ public class DAO_Seance extends DAO<Seance> {
         
         try{
             liste = maconnexion.RequeteRetourListe(Requete1);
-            ArrayList<Seance> listgrp = new ArrayList();            
+            ArrayList<Seance> listgrp = new ArrayList();  
+            
             for(int i=0;i<liste.size();i+=8)
             {
                 int ID = Integer.parseInt((String) liste.get(i));
@@ -226,31 +227,37 @@ public class DAO_Seance extends DAO<Seance> {
                 final String Requete2 = "SELECT `#ID_GROUPE` FROM `seance_groupes` WHERE `#ID_SEANCE` = " + ID;
                 final String Requete3 = "SELECT `#ID_SALLE` FROM `seance_salles` WHERE `#ID_SEANCE` = " + ID;
                 final String Requete4 = "SELECT `#ID_ENSEIGNANT` FROM `seance_enseignants` WHERE `#ID_SEANCE` = " + ID;
-                liste = maconnexion.RequeteRetourListe(Requete2);
+                
+                ArrayList liste2 = new ArrayList(); 
+                liste2 = maconnexion.RequeteRetourListe(Requete2);
                 ArrayList<Integer> ID_GROUPE = new ArrayList<Integer>();
-                for(int j=0;j<liste.size();j++)
+                for(int j=0;j<liste2.size();j++)
                 {
-                    ID_GROUPE.add(Integer.parseInt((String) liste.get(j)));
+                    ID_GROUPE.add(Integer.parseInt((String) liste2.get(j)));
                 }
 
-                liste = maconnexion.RequeteRetourListe(Requete3);
+                liste2 = maconnexion.RequeteRetourListe(Requete3);
                 ArrayList<Integer> ID_SALLE = new ArrayList<Integer>();
 
-                for(int k=0;k<liste.size();k++)
+                for(int k=0;k<liste2.size();k++)
                 {
-                    ID_SALLE.add(Integer.parseInt((String) liste.get(k)));
+                    ID_SALLE.add(Integer.parseInt((String) liste2.get(k)));
                 }
 
-                liste = maconnexion.RequeteRetourListe(Requete4);
+                liste2 = maconnexion.RequeteRetourListe(Requete4);
                 ArrayList<Integer> ID_ENSEIGNANT = new ArrayList<Integer>();
 
-                for(int l=0;l<liste.size();l++)
+                for(int l=0;l<liste2.size();l++)
                 {
-                    ID_ENSEIGNANT.add(Integer.parseInt((String) liste.get(l)));
+                    ID_ENSEIGNANT.add(Integer.parseInt((String) liste2.get(l)));
                 }
-
+                
+                
+                
                 Seance seance = new Seance(ID,SEMAINE,DATE,HEURE_DEBUT,HEURE_FIN,ETAT,ID_COURS,ID_TYPE,ID_GROUPE,ID_SALLE,ID_ENSEIGNANT);
                 listgrp.add(seance);
+                
+                
             }
             return listgrp;
         }

@@ -123,11 +123,11 @@ public class CustomFrame extends JFrame implements ActionListener {
         int ID = -1;
         int SEMAINE = -1;
 
-        LocalDate DATE;
+        LocalDate DATE = null;
         Date myDate;
         SimpleDateFormat formater = new SimpleDateFormat("w");
-        LocalTime HEURE_DEBUT;
-        LocalTime HEURE_FIN;
+        LocalTime HEURE_DEBUT = null;
+        LocalTime HEURE_FIN = null;
         String ETAT = "en cours de validation";
 
         int ID_COURS = -1;
@@ -355,8 +355,16 @@ public class CustomFrame extends JFrame implements ActionListener {
                 System.out.println("On est sur le panel admin");
                 pContent.removeAll();
                 adminUpdate();
+                fMain.repaint();
+                fMain.revalidate();
+                
             case "Supprimer":
-                adminSuppr.getText();
+                int id = -1;
+                id = Integer.parseInt(adminSuppr.getText());
+                seance = new Seance(id,SEMAINE, DATE, HEURE_DEBUT, HEURE_FIN, ETAT, ID_COURS, ID_TYPE, ID_GROUPE, ID_SALLE, ID_ENSEIGNANT);
+                
+                DAO<Seance> seancedao = new DAO_Seance();
+                boolean test = seancedao.delete(seance);
                 break;
             default:
                 break;
@@ -368,16 +376,17 @@ public class CustomFrame extends JFrame implements ActionListener {
         adminSuppr = new JTextField();
         JButton adminButton = new JButton("Supprimer");
         adminButton.addActionListener(this);
-        label.setBounds(menu + 10, 10, 100, 30);
-        adminSuppr.setBounds(menu + 110, 10, 100, 30);
-        adminButton.setBounds(menu + 210, 10, 35, 30);
+        label.setBounds(menu + 10, 10, 200, 30);
+        adminSuppr.setBounds(menu + 210, 10, 100, 30);
+        adminButton.setBounds(menu + 320, 10, 35, 30);
         pContent.add(label);
         pContent.add(adminSuppr);
         pContent.add(adminButton);
-
+        
         DAO<Seance> seancedao = new DAO_Seance();
         ArrayList<Seance> seances = seancedao.all();
-
+        
+        
         DAO<Utilisateur> utilisateurdao = new DAO_Utilisateur();
         DAO<Cours> coursdao = new DAO_Cours();
         DAO<Promotion> promotiondao = new DAO_Promotion();
@@ -402,9 +411,13 @@ public class CustomFrame extends JFrame implements ActionListener {
         ArrayList<String> stringprof = new ArrayList<>();
         ArrayList<String> stringGroupe = new ArrayList<>();
         ArrayList<String> stringSalle = new ArrayList<>();
-
-        for (int k = 0; k < seances.size(); k++) {
-
+        
+        System.out.println(seances.size());
+        
+        for(int k=0;k<seances.size();k++){
+            
+            
+            
             stringid.add(Integer.toString(seances.get(k).GET_ID()));
             stringsemaine.add(Integer.toString(seances.get(k).GET_SEMAINE()));
             stringdate.add(seances.get(k).GET_DATE().toString());
