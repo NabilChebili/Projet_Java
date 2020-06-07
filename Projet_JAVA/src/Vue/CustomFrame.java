@@ -129,7 +129,7 @@ public class CustomFrame extends JFrame implements ActionListener {
                 System.out.println("Ajout de cours  Pressed");
                 pContent.removeAll();
 
-                ajoutProf("Ajouter un cours:");
+                ajoutProf("Ajouter un cours:", "AJOUTER");
 
                 fMain.repaint();
                 fMain.revalidate();
@@ -277,6 +277,8 @@ public class CustomFrame extends JFrame implements ActionListener {
                 }
                 
                 break;
+            case "UPDATE":
+                break;
             default:
                 break;
         }
@@ -284,7 +286,7 @@ public class CustomFrame extends JFrame implements ActionListener {
     
     private void updateProf(String titreC) {
         
-        ajoutProf(titreC);
+        ajoutProf(titreC, "UPDATE");
         JLabel idSeance = new JLabel("ID Cours: ");
         idSeance.setBounds(menu + 20, 20 + 50 + 0, 150, 30);
         idSeanceF = new JTextField();
@@ -294,7 +296,7 @@ public class CustomFrame extends JFrame implements ActionListener {
         pContent.add(idSeanceF);
     }
 
-    private void ajoutProf(String titreC) {
+    private void ajoutProf(String titreC, String button) {
 
         JLabel titre = new JLabel(titreC);
         titre.setBounds(menu + 20, 5, 500, 50);
@@ -337,7 +339,7 @@ public class CustomFrame extends JFrame implements ActionListener {
         sallesF.setBounds(menu + 20 + 130, 200 + 80 + 70, 150, 30);
         promotionF.setBounds(menu + 20 + 130, 230 + 80 + 80, 150, 30);
 
-        JButton validerAjout = new JButton("AJOUTER");
+        JButton validerAjout = new JButton(button);
         validerAjout.setBounds(menu + 20, 230 + 100 + 100, 150, 30);
         validerAjout.addActionListener(this);
 
