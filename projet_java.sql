@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Hôte : 127.0.0.1:3306
--- Généré le :  Dim 07 juin 2020 à 21:42
+-- Généré le :  Dim 07 juin 2020 à 21:44
 -- Version du serveur :  5.7.26
 -- Version de PHP :  7.2.18
 
@@ -233,8 +233,7 @@ INSERT INTO `seance_enseignants` (`#ID_SEANCE`, `#ID_ENSEIGNANT`) VALUES
 (13, 23),
 (20, 8),
 (14, 23),
-(13, 3),
-(19, 8);
+(13, 3);
 
 -- --------------------------------------------------------
 
@@ -259,8 +258,7 @@ INSERT INTO `seance_groupes` (`#ID_SEANCE`, `#ID_GROUPE`) VALUES
 (14, 1),
 (14, 2),
 (14, 3),
-(20, 1),
-(19, 3);
+(20, 1);
 
 -- --------------------------------------------------------
 
@@ -285,8 +283,7 @@ INSERT INTO `seance_salles` (`#ID_SEANCE`, `#ID_SALLE`) VALUES
 (14, 1),
 (14, 2),
 (14, 3),
-(20, 4),
-(19, 2);
+(20, 4);
 
 -- --------------------------------------------------------
 
