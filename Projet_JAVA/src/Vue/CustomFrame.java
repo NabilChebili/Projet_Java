@@ -469,6 +469,8 @@ public class CustomFrame extends JFrame implements ActionListener {
     private void initContent() {
         ArrayList stringcours = new ArrayList<>();
         ArrayList stringprof = new ArrayList<>();
+        ArrayList stringGroupe = new ArrayList<>();
+        ArrayList stringSalle = new ArrayList<>();
 
         if (semaineNbr != -1) {
             DAO<Utilisateur> utilisateurdao = new DAO_Utilisateur();
@@ -599,7 +601,7 @@ public class CustomFrame extends JFrame implements ActionListener {
         System.out.println(stringcours);
         System.out.println(stringprof);
 
-        initArray(pSemaine, 0, 115, 5, 7, bleu, stringcours, stringprof);
+        initArray(pSemaine, 0, 115, 5, 7, bleu, stringcours, stringprof, stringGroupe, stringSalle);
 
         Grille tmp = new Grille(menu + 10, sizeY, bleu, sizeX);
         tmp.addPanel(pContent);
@@ -656,10 +658,10 @@ public class CustomFrame extends JFrame implements ActionListener {
         pContent.add(semaineRecherche);
     }
 
-    private void initArray(ArrayList<CoursWidget> semaine, int x, int y, int gap, int nbColumn, Color color, ArrayList<String> myLabel, ArrayList<String> myProf) {
+    private void initArray(ArrayList<CoursWidget> semaine, int x, int y, int gap, int nbColumn, Color color, ArrayList<String> myLabel, ArrayList<String> myProf, ArrayList<String> myGroupe, ArrayList<String> mySalle) {
         for (int i = 0; i < 6; i++) {
             for (int j = 0; j < nbColumn; j++) {
-                CoursWidget pElem = new CoursWidget(myLabel.get(i * nbColumn + j), myProf.get(i * nbColumn + j), color, sizeX, sizeY, menu + 80 + (sizeX + 10) * i, y + (sizeY + gap * 4) * j, gap);
+                CoursWidget pElem = new CoursWidget(myLabel.get(i * nbColumn + j), myProf.get(i * nbColumn + j), color, sizeX, sizeY, menu + 80 + (sizeX + 10) * i, y + (sizeY + gap * 4) * j, gap, myGroupe.get(i * nbColumn + j), mySalle.get(i * nbColumn + j));
                 semaine.add(pElem);
             }
         }

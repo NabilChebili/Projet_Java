@@ -18,16 +18,25 @@ public final class CoursWidget extends JPanel {
     private final JLabel lNomCours;
     private final JLabel lProf;
     private final Color cCours;
+    
+    private final JLabel groupe;
+    private final JLabel salle;
 
-    public CoursWidget(String myLabel, String myProf, Color myColor, int sizeX, int sizeY, int x, int y, int gap) {
+    public CoursWidget(String myLabel, String myProf, Color myColor, int sizeX, int sizeY, int x, int y, int gap, String myGroupe, String mySalle) {
         this.pCours = new JPanel();
         this.pCours.setLayout(null);
 
         this.lNomCours = new JLabel(myLabel);
-        this.lNomCours.setBounds( 0, 10, sizeX, sizeY / 2);
+        this.lNomCours.setBounds( 0, 5, sizeX, 25);
 
         this.lProf = new JLabel(myProf);
-        this.lProf.setBounds( 0, sizeY / 2, sizeX/2, sizeY / 2);
+        this.lProf.setBounds( 0, 30, sizeX/2, 25);
+        
+        this.groupe = new JLabel(myGroupe);
+        this.groupe.setBounds( 0, 55, sizeX/2, 25);
+        
+        this.salle = new JLabel(mySalle);
+        this.salle.setBounds( 0, 80, sizeX/2, 20);
 
         this.cCours = myColor;
         this.pCours.setBackground(myColor);
@@ -37,19 +46,25 @@ public final class CoursWidget extends JPanel {
         
         setFontSizeMax(this.lNomCours);
         setFontSizeMax(this.lProf);
+        setFontSizeMax(this.groupe);
+        setFontSizeMax(this.salle);
         
         Color blanc = Color.decode("#e2f3f5");
         
         lNomCours.setForeground(blanc);
         lProf.setForeground(blanc);
+        groupe.setForeground(blanc);
+        salle.setForeground(blanc);
         
-        if (myLabel == "-1")pCours.setVisible(false);
+        if ("-1".equals(myLabel))pCours.setVisible(false);
         
         lNomCours.setForeground(blanc);
         lProf.setForeground(blanc);
 
         this.pCours.add(this.lNomCours);
         this.pCours.add(this.lProf);
+        this.pCours.add(groupe);
+        this.pCours.add(salle);
     }
 
     //Fonction pour set le font à la grandeur maximum pour prendre tout l'espace disponible
