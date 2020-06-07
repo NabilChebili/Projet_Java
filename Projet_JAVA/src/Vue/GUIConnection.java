@@ -87,8 +87,8 @@ public class GUIConnection extends JFrame implements ActionListener {
         String pwd = pwdText.getText();
 
         System.out.println(user + " " + pwd);
-        user = "ajouxclement@gmail.com";
-        pwd = "LajouxC";
+        user = "nabil.chebili@edu.ece.fr";
+        pwd = "nabs1999";
         Connexion myCo = new Connexion();
   
         if (myCo.connexion(user, pwd)) {
