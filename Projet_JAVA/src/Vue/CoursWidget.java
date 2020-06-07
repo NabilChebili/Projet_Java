@@ -30,13 +30,13 @@ public final class CoursWidget extends JPanel {
         this.lNomCours.setBounds( 0, 5, sizeX, 25);
 
         this.lProf = new JLabel(myProf);
-        this.lProf.setBounds( 0, 30, sizeX/2, 25);
+        this.lProf.setBounds( 0, 30, sizeX, 25);
         
         this.groupe = new JLabel(myGroupe);
-        this.groupe.setBounds( 0, 55, sizeX/2, 25);
+        this.groupe.setBounds( 0, 55, sizeX, 25);
         
         this.salle = new JLabel(mySalle);
-        this.salle.setBounds( 0, 80, sizeX/2, 20);
+        this.salle.setBounds( 0, 80, sizeX, 20);
 
         this.cCours = myColor;
         this.pCours.setBackground(myColor);
