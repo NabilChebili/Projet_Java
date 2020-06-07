@@ -359,7 +359,8 @@ public class CustomFrame extends JFrame implements ActionListener {
                 fMain.revalidate();
                 
             case "Supprimer":
-                int id = Integer.parseInt(adminSuppr.getText());
+                int id = -1;
+                id = Integer.parseInt(adminSuppr.getText());
                 seance = new Seance(id,SEMAINE, DATE, HEURE_DEBUT, HEURE_FIN, ETAT, ID_COURS, ID_TYPE, ID_GROUPE, ID_SALLE, ID_ENSEIGNANT);
                 
                 DAO<Seance> seancedao = new DAO_Seance();
