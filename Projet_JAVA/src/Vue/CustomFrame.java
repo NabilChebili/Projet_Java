@@ -368,9 +368,9 @@ public class CustomFrame extends JFrame implements ActionListener {
         adminSuppr = new JTextField();
         JButton adminButton = new JButton("Supprimer");
         adminButton.addActionListener(this);
-        adminSuppr.setBounds(menu + 10, 10, 100, 20);
-        semaineText.setBounds(menu + 120, 10, 50, 20);
-        adminButton.setBounds(menu + 180, 10, 35, 20);
+        adminSuppr.setBounds(menu + 10, 10, 100, 30);
+        semaineText.setBounds(menu + 120, 10, 50, 30);
+        adminButton.setBounds(menu + 180, 10, 35, 30);
         
         
         
@@ -390,21 +390,21 @@ public class CustomFrame extends JFrame implements ActionListener {
         ArrayList<Salle> salle = salledao.all();
         ArrayList<Type_cours> type = typedao.all();
         
-        ArrayList stringid = new ArrayList<>();
-        ArrayList stringsemaine = new ArrayList<>();
-        ArrayList stringdate = new ArrayList<>();
-        ArrayList stringheured = new ArrayList<>();
-        ArrayList stringetat = new ArrayList<>();
+        ArrayList<String> stringid = new ArrayList<>();
+        ArrayList<String> stringsemaine = new ArrayList<>();
+        ArrayList<String> stringdate = new ArrayList<>();
+        ArrayList<String> stringheured = new ArrayList<>();
+        ArrayList<String> stringetat = new ArrayList<>();
         
-        ArrayList stringtype = new ArrayList<>();
-        ArrayList stringcours = new ArrayList<>();
-        ArrayList stringprof = new ArrayList<>();
-        ArrayList stringGroupe = new ArrayList<>();
-        ArrayList stringSalle = new ArrayList<>();
+        ArrayList<String> stringtype = new ArrayList<>();
+        ArrayList<String> stringcours = new ArrayList<>();
+        ArrayList<String> stringprof = new ArrayList<>();
+        ArrayList<String> stringGroupe = new ArrayList<>();
+        ArrayList<String> stringSalle = new ArrayList<>();
         
         for(int k=0;k<seances.size();k++){
             
-            stringid.add(seances.get(k).GET_ID());
+            stringid.add(seances.get(k).GET_ID().toString());
             stringsemaine.add(seances.get(k).GET_SEMAINE());
             stringdate.add(seances.get(k).GET_DATE());
             stringheured.add(seances.get(k).GET_HEURE_DEBUT().toString());
@@ -458,7 +458,15 @@ public class CustomFrame extends JFrame implements ActionListener {
             stringSalle.add(ssalle);   
         }
         
-        adminGestion(menu+25, i*60+60, String idS, String dateS, String semaineS, String heureDebutS, String nomCoursS, String typeCoursS, String salleS, String groupeS, String enseignantS);
+        for (int i=0 ; i < stringid.size() ; i++) {
+            adminGestion tmp = new adminGestion(menu + 25, i*60 + 60, stringid.get(i), stringdate.get(i), stringsemaine.get(i), stringheured.get(i), stringcours.get(i), stringtype.get(i), stringSalle.get(i), stringGroupe.get(i), stringprof.get(i), stringetat.get(i));
+        }
+        
+        
+        
+        
+        
+        //adminGestion(menu+25, i*60+60, String idS, String dateS, String semaineS, String heureDebutS, String nomCoursS, String typeCoursS, String salleS, String groupeS, String enseignantS);
         
  
     }

@@ -28,8 +28,9 @@ public class adminGestion extends JPanel {
     private JLabel salle;
     private JLabel groupe;
     private JLabel enseignant;
+    private JLabel etat;
 
-    public adminGestion(int x, int y, String idS, String dateS, String semaineS, String heureDebutS, String nomCoursS, String typeCoursS, String salleS, String groupeS, String enseignantS) {
+    public adminGestion(int x, int y, String idS, String dateS, String semaineS, String heureDebutS, String nomCoursS, String typeCoursS, String salleS, String groupeS, String enseignantS, String etatS) {
 
         Color gris = Color.decode("#303a52");
         Color grisFonce = Color.decode("#202a42");
@@ -87,6 +88,11 @@ public class adminGestion extends JPanel {
         this.enseignant.setBounds( 5, 10, 50, 40);
         setFontSizeMax(this.enseignant);
         enseignant.setForeground(blanc);
+        
+        this.etat = new JLabel(etatS);
+        this.etat.setBounds( 5, 10, 50, 40);
+        setFontSizeMax(this.etat);
+        etat.setForeground(blanc);
         
         this.ligne.add(ID);
         this.ligne.add(date);
