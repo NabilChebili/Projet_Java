@@ -104,4 +104,8 @@ public class adminGestion extends JPanel {
         this.ligne.add(salle);
         this.ligne.add(enseignant);
     }
+    
+    public JPanel getCours() {
+        return this.ligne;
+    }
 }

@@ -61,7 +61,7 @@ public class CustomFrame extends JFrame implements ActionListener {
     private JTextField promotionF;
 
     private JTextField idSeanceF;
-    
+
     private JTextField adminSuppr;
 
     final private int height = 1000;
@@ -362,8 +362,8 @@ public class CustomFrame extends JFrame implements ActionListener {
                 break;
         }
     }
-    
-    private void adminUpdate() { 
+
+    private void adminUpdate() {
         JLabel label = new JLabel("ID du cours à supprimer: ");
         adminSuppr = new JTextField();
         JButton adminButton = new JButton("Supprimer");
@@ -374,12 +374,10 @@ public class CustomFrame extends JFrame implements ActionListener {
         pContent.add(label);
         pContent.add(adminSuppr);
         pContent.add(adminButton);
-        
-        
-        
+
         DAO<Seance> seancedao = new DAO_Seance();
         ArrayList<Seance> seances = seancedao.all();
-        
+
         DAO<Utilisateur> utilisateurdao = new DAO_Utilisateur();
         DAO<Cours> coursdao = new DAO_Cours();
         DAO<Promotion> promotiondao = new DAO_Promotion();
@@ -392,34 +390,33 @@ public class CustomFrame extends JFrame implements ActionListener {
         ArrayList<Groupe> groupe = groupedao.all();
         ArrayList<Salle> salle = salledao.all();
         ArrayList<Type_cours> type = typedao.all();
-        
+
         ArrayList<String> stringid = new ArrayList<>();
         ArrayList<String> stringsemaine = new ArrayList<>();
         ArrayList<String> stringdate = new ArrayList<>();
         ArrayList<String> stringheured = new ArrayList<>();
         ArrayList<String> stringetat = new ArrayList<>();
-        
+
         ArrayList<String> stringtype = new ArrayList<>();
         ArrayList<String> stringcours = new ArrayList<>();
         ArrayList<String> stringprof = new ArrayList<>();
         ArrayList<String> stringGroupe = new ArrayList<>();
         ArrayList<String> stringSalle = new ArrayList<>();
-        
-        for(int k=0;k<seances.size();k++){
-            
+
+        for (int k = 0; k < seances.size(); k++) {
+
             stringid.add(Integer.toString(seances.get(k).GET_ID()));
             stringsemaine.add(Integer.toString(seances.get(k).GET_SEMAINE()));
             stringdate.add(seances.get(k).GET_DATE().toString());
             stringheured.add(seances.get(k).GET_HEURE_DEBUT().toString());
             stringetat.add(seances.get(k).GET_ETAT());
-            
+
             for (int l = 0; l < type.size(); l++) {
-                if (seances.get(k).GET_ID_TYPE() == type.get(l).GET_ID())
-                { 
+                if (seances.get(k).GET_ID_TYPE() == type.get(l).GET_ID()) {
                     stringtype.add(type.get(l).GET_NOM());
                 }
             }
-            
+
             for (int l = 0; l < cours.size(); l++) {
                 if (seances.get(k).GET_ID_COURS() == cours.get(l).GET_ID()) {
                     stringcours.add(cours.get(l).GET_NOM());
@@ -458,12 +455,12 @@ public class CustomFrame extends JFrame implements ActionListener {
                     }
                 }
             }
-            stringSalle.add(ssalle);   
+            stringSalle.add(ssalle);
         }
-        
-        for (int i=0 ; i < stringid.size() ; i++) {
-            adminGestion tmp = new adminGestion(menu + 25, i*60 + 60, stringid.get(i), stringdate.get(i), stringsemaine.get(i), stringheured.get(i), stringcours.get(i), stringtype.get(i), stringSalle.get(i), stringGroupe.get(i), stringprof.get(i), stringetat.get(i));
-            pContent.add(tmp);
+
+        for (int i = 0; i < stringid.size(); i++) {
+            adminGestion tmp = new adminGestion(menu + 25, i * 60 + 60, stringid.get(i), stringdate.get(i), stringsemaine.get(i), stringheured.get(i), stringcours.get(i), stringtype.get(i), stringSalle.get(i), stringGroupe.get(i), stringprof.get(i), stringetat.get(i));
+            pContent.add(tmp.getCours(), 2);
         }
     }
 
