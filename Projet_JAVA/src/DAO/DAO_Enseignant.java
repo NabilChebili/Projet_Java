@@ -41,7 +41,7 @@ public class DAO_Enseignant extends DAO<Enseignant> {
             
             liste = maconnexion.RequeteRetourListe(Requete2);
             ArrayList<Integer> ID_Cours = new ArrayList<Integer>();
-            
+            System.out.println("Connexion echouee : probleme SQL");
             for(int i=0;i<liste.size();i++)
             {
                 ID_Cours.add(Integer.parseInt((String) liste.get(i)));
