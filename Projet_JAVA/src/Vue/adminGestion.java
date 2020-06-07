@@ -45,52 +45,52 @@ public class adminGestion extends JPanel {
         this.ligne.setLocation(x ,y);
         
         this.ID = new JLabel(idS);
-        this.ID.setBounds( 5, 10, 50, 40);
+        this.ID.setBounds( 5, 10, 100, 40);
         setFontSizeMax(this.ID);
         ID.setForeground(blanc);
         
         this.date = new JLabel(dateS);
-        this.date.setBounds( 5  + 50, 10, 50, 40);
+        this.date.setBounds( 5  + 50, 10, 100, 40);
         setFontSizeMax(this.date);
         date.setForeground(blanc);
         
         this.semaine = new JLabel(semaineS);
-        this.semaine.setBounds( 5 + 100, 10, 50, 40);
+        this.semaine.setBounds( 5 + 100, 10, 100, 40);
         setFontSizeMax(this.semaine);
         semaine.setForeground(blanc);
         
         this.heureDebut = new JLabel(heureDebutS);
-        this.heureDebut.setBounds( 5 + 150, 10, 50, 40);
+        this.heureDebut.setBounds( 5 + 150, 10, 100, 40);
         setFontSizeMax(this.heureDebut);
         heureDebut.setForeground(blanc);
         
         this.nomCours = new JLabel(nomCoursS);
-        this.nomCours.setBounds( 5 + 200, 10, 50, 40);
+        this.nomCours.setBounds( 5 + 200, 10, 100, 40);
         setFontSizeMax(this.nomCours);
         nomCours.setForeground(blanc);
         
         this.typeCours = new JLabel(typeCoursS);
-        this.typeCours.setBounds( 5 + 250, 10, 50, 40);
+        this.typeCours.setBounds( 5 + 250, 10, 100, 40);
         setFontSizeMax(this.typeCours);
         typeCours.setForeground(blanc);
         
         this.salle = new JLabel(salleS);
-        this.salle.setBounds( 5 + 300, 10, 50, 40);
+        this.salle.setBounds( 5 + 300, 10, 100, 40);
         setFontSizeMax(this.salle);
         salle.setForeground(blanc);
         
         this.groupe = new JLabel(groupeS);
-        this.groupe.setBounds( 5 + 350, 10, 50, 40);
+        this.groupe.setBounds( 5 + 350, 10, 100, 40);
         setFontSizeMax(this.groupe);
         groupe.setForeground(blanc);
         
         this.enseignant = new JLabel(enseignantS);
-        this.enseignant.setBounds( 5 + 400, 10, 50, 40);
+        this.enseignant.setBounds( 5 + 400, 10, 100, 40);
         setFontSizeMax(this.enseignant);
         enseignant.setForeground(blanc);
         
         this.etat = new JLabel(etatS);
-        this.etat.setBounds( 5 + 450, 10, 50, 40);
+        this.etat.setBounds( 5 + 450, 10, 100, 40);
         setFontSizeMax(this.etat);
         etat.setForeground(blanc);
         
