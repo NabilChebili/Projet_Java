@@ -212,12 +212,6 @@ public class CustomFrame extends JFrame implements ActionListener {
                     }
                 }
                 
-                if(ID_COURS == -1)
-                {
-                    Exception erreur = null;
-                    throw erreur;
-                }
-                
                 int ID_TYPE = -1;
                 for(int i = 0;i<type_cours.size();i++)
                 {
