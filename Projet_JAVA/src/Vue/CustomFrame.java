@@ -371,7 +371,7 @@ public class CustomFrame extends JFrame implements ActionListener {
         }
     }
     
-    private void adminUpdate() {
+    private void adminUpdate() { 
         JLabel label = new JLabel("ID du cours à supprimer: ");
         adminSuppr = new JTextField();
         JButton adminButton = new JButton("Supprimer");
@@ -477,14 +477,6 @@ public class CustomFrame extends JFrame implements ActionListener {
             adminGestion tmp = new adminGestion(menu + 25, i*60 + 60, stringid.get(i), stringdate.get(i), stringsemaine.get(i), stringheured.get(i), stringcours.get(i), stringtype.get(i), stringSalle.get(i), stringGroupe.get(i), stringprof.get(i), stringetat.get(i));
             pContent.add(tmp,2);
         }
-        
-        
-        
-        
-        
-        //adminGestion(menu+25, i*60+60, String idS, String dateS, String semaineS, String heureDebutS, String nomCoursS, String typeCoursS, String salleS, String groupeS, String enseignantS);
-        
- 
     }
 
     private void updateProf(String titreC) {
