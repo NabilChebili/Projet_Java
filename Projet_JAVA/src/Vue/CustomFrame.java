@@ -61,6 +61,8 @@ public class CustomFrame extends JFrame implements ActionListener {
     private JTextField promotionF;
 
     private JTextField idSeanceF;
+    
+    private JTextField adminSuppr;
 
     final private int height = 1000;
     final private int width = 1600;
@@ -353,13 +355,112 @@ public class CustomFrame extends JFrame implements ActionListener {
                 System.out.println("On est sur le panel admin");
                 pContent.removeAll();
                 adminUpdate();
+            case "Supprimer":
+                adminSuppr.getText();
+                break;
             default:
                 break;
         }
     }
     
     private void adminUpdate() {
+        JLabel label = new JLabel("ID du cours à supprimer: ");
+        adminSuppr = new JTextField();
+        JButton adminButton = new JButton("Supprimer");
+        adminButton.addActionListener(this);
+        adminSuppr.setBounds(menu + 10, 10, 100, 20);
+        semaineText.setBounds(menu + 120, 10, 50, 20);
+        adminButton.setBounds(menu + 180, 10, 35, 20);
         
+        
+        
+        DAO<Seance> seancedao = new DAO_Seance();
+        ArrayList<Seance> seances = seancedao.all();
+        
+        DAO<Utilisateur> utilisateurdao = new DAO_Utilisateur();
+        DAO<Cours> coursdao = new DAO_Cours();
+        DAO<Promotion> promotiondao = new DAO_Promotion();
+        DAO<Groupe> groupedao = new DAO_Groupe();
+        DAO<Salle> salledao = new DAO_Salle();
+        DAO<Type_cours> typedao = new DAO_Type_cours();
+        ArrayList<Cours> cours = coursdao.all();
+        ArrayList<Utilisateur> prof = utilisateurdao.all();
+        ArrayList<Promotion> promotion = promotiondao.all();
+        ArrayList<Groupe> groupe = groupedao.all();
+        ArrayList<Salle> salle = salledao.all();
+        ArrayList<Type_cours> type = typedao.all();
+        
+        ArrayList stringid = new ArrayList<>();
+        ArrayList stringsemaine = new ArrayList<>();
+        ArrayList stringdate = new ArrayList<>();
+        ArrayList stringheured = new ArrayList<>();
+        ArrayList stringetat = new ArrayList<>();
+        
+        ArrayList stringtype = new ArrayList<>();
+        ArrayList stringcours = new ArrayList<>();
+        ArrayList stringprof = new ArrayList<>();
+        ArrayList stringGroupe = new ArrayList<>();
+        ArrayList stringSalle = new ArrayList<>();
+        
+        for(int k=0;k<seances.size();k++){
+            
+            stringid.add(seances.get(k).GET_ID());
+            stringsemaine.add(seances.get(k).GET_SEMAINE());
+            stringdate.add(seances.get(k).GET_DATE());
+            stringheured.add(seances.get(k).GET_HEURE_DEBUT().toString());
+            stringetat.add(seances.get(k).GET_ETAT());
+            
+            for (int l = 0; l < type.size(); l++) {
+                if (seances.get(k).GET_ID_TYPE() == type.get(l).GET_ID())
+                { 
+                    stringtype.add(type.get(l).GET_NOM());
+                }
+            }
+            
+            for (int l = 0; l < cours.size(); l++) {
+                if (seances.get(k).GET_ID_COURS() == cours.get(l).GET_ID()) {
+                    stringcours.add(cours.get(l).GET_NOM());
+                }
+            }
+            String sprof = "";
+            for (int l = 0; l < prof.size(); l++) {
+                for (int m = 0; m < seances.get(k).GET_ID_ENSEIGNANTS().size(); m++) {
+                    if (seances.get(k).GET_ID_ENSEIGNANTS().get(m) == prof.get(l).GET_ID()) {
+                        sprof += "M ";
+                        sprof += prof.get(l).GET_NOM();
+                        sprof += ", ";
+                    }
+                }
+
+            }
+            stringprof.add(sprof);
+
+            String sgroupe = "";
+            for (int l = 0; l < groupe.size(); l++) {
+                for (int m = 0; m < seances.get(k).GET_ID_GROUPES().size(); m++) {
+                    if (seances.get(k).GET_ID_GROUPES().get(m) == groupe.get(l).GET_ID()) {
+                        sgroupe += groupe.get(l).GET_NOM();
+                        sgroupe += ", ";
+                    }
+                }
+            }
+            stringGroupe.add(sgroupe);
+
+            String ssalle = "";
+            for (int l = 0; l < salle.size(); l++) {
+                for (int m = 0; m < seances.get(k).GET_ID_SALLES().size(); m++) {
+                    if (seances.get(k).GET_ID_SALLES().get(m) == salle.get(l).GET_ID()) {
+                        ssalle += salle.get(l).GET_NOM();
+                        ssalle += ", ";
+                    }
+                }
+            }
+            stringSalle.add(ssalle);   
+        }
+        
+        adminGestion(menu+25, i*60+60, String idS, String dateS, String semaineS, String heureDebutS, String nomCoursS, String typeCoursS, String salleS, String groupeS, String enseignantS);
+        
+ 
     }
 
     private void updateProf(String titreC) {
