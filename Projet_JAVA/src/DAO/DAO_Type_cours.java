@@ -59,10 +59,10 @@ public class DAO_Type_cours extends DAO<Type_cours> {
         try{
             liste = maconnexion.RequeteRetourListe(Requete1);
             ArrayList<Type_cours> listtype_cours = new ArrayList(); 
-            for(int i=0;i<liste.size();i+=3)
+            for(int i=0;i<liste.size();i+=2)
             {
-                int ID = Integer.parseInt((String) liste.get(0));
-                String NOM = (String) liste.get(1);
+                int ID = Integer.parseInt((String) liste.get(i));
+                String NOM = (String) liste.get(i+1);
                 Type_cours type_cours = new Type_cours(ID,NOM);
                 listtype_cours.add(type_cours);
             }

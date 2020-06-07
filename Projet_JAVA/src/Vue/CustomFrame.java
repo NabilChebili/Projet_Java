@@ -10,6 +10,7 @@ import DAO.*;
 import static Vue.CoursWidget.setFontSizeMax;
 import java.awt.*;
 import java.awt.event.*;
+import java.text.SimpleDateFormat;
 import java.time.LocalDate;
 import java.time.LocalTime;
 import javax.swing.*;
@@ -193,41 +194,44 @@ public class CustomFrame extends JFrame implements ActionListener {
                 ArrayList<Salle> salle = salledao.all();
                 
                 int ID = -1;
-                int SEMAINE = 10;
+                int SEMAINE = -1;
 
-                LocalDate DATE = LocalDate.parse(dateF.getText());       
+                LocalDate DATE = LocalDate.parse(dateF.getText());   
+                Date myDate = new Date(DATE.getYear(), DATE.getMonthValue(), DATE.getDayOfMonth()); 
+                SimpleDateFormat formater = new SimpleDateFormat("w");
+                SEMAINE = Integer.parseInt(formater.format(myDate));        
                 LocalTime HEURE_DEBUT = LocalTime.parse(creneauF.getText());
-                LocalTime HEURE_FIN = HEURE_DEBUT;
-                HEURE_FIN.plusHours(1);
-                HEURE_FIN.plusMinutes(30);
+                LocalTime HEURE_FIN = HEURE_DEBUT.plusHours(1).plusMinutes(30);
                 String ETAT = "en cours de validation";
                 
                 int ID_COURS = -1;
                 for(int i = 0;i<cours.size();i++)
                 {
-                    if(idCoursF.getText() == cours.get(i).GET_NOM())
+                    if(idCoursF.getText().equals(cours.get(i).GET_NOM()))
                     {
                         ID_COURS = cours.get(i).GET_ID();
 
                     }
                 }
+                System.out.println("cours="+ID_COURS);
                 
                 int ID_TYPE = -1;
                 for(int i = 0;i<type_cours.size();i++)
                 {
-                    if(typeCoursF.getText() == cours.get(i).GET_NOM())
+                    System.out.println("tc="+type_cours.get(i).GET_NOM());
+                    if(typeCoursF.getText().equals(type_cours.get(i).GET_NOM()) )
                     {
-                        ID_TYPE = cours.get(i).GET_ID();
+                        ID_TYPE = type_cours.get(i).GET_ID();
 
                     }
                 }
-                
+                System.out.println("tcours="+ID_TYPE);
                 ArrayList<Integer> ID_GROUPE = new ArrayList<Integer>();;
                 for(int i = 0;i<groupe.size();i++)
                 {
                     for(int j = 0;j<promotion.size();j++)
                     {
-                        if((promotion.get(j).GET_NOM().equals(speCoursF.getText())) && (groupe.get(i).GET_ID_PROMOTION() == promotion.get(j).GET_ID()))
+                        if((promotion.get(j).GET_NOM().equals(promotionF.getText())) && (groupe.get(i).GET_ID_PROMOTION() == promotion.get(j).GET_ID()))
                         {
                             if(groupesF.getText().equals(groupe.get(i).GET_NOM()))
                             {
@@ -242,7 +246,7 @@ public class CustomFrame extends JFrame implements ActionListener {
                 ArrayList<Integer> ID_SALLE = new ArrayList<Integer>();
                 for(int i = 0;i<salle.size();i++)
                 {
-                    if(sallesF.getText() == salle.get(i).GET_NOM())
+                    if(sallesF.getText().equals(salle.get(i).GET_NOM()) )
                     {
                         ID_SALLE.add(salle.get(i).GET_ID());
 
@@ -250,15 +254,16 @@ public class CustomFrame extends JFrame implements ActionListener {
                 }
                 
                 ArrayList<Integer> ID_ENSEIGNANT = new ArrayList<Integer>();
-                for(int i = 0;i<groupe.size();i++)
+                for(int i = 0;i<prof.size();i++)
                 {
-                    if((enseignantsF.getText() == prof.get(i).GET_NOM()) && (prof.get(i).GET_DROIT()==3))
+                    if((enseignantsF.getText().equals(prof.get(i).GET_NOM()) ) && (prof.get(i).GET_DROIT()==3))
                     {
-                        ID_SALLE.add(prof.get(i).GET_ID());
+                        ID_ENSEIGNANT.add(prof.get(i).GET_ID());
 
                     }
                 }
                 
+                System.out.println("enseignant="+ID_ENSEIGNANT);
                 
                 
                 Seance seance = new Seance(ID,SEMAINE,DATE,HEURE_DEBUT,HEURE_FIN,ETAT,ID_COURS,ID_TYPE,ID_GROUPE,ID_SALLE,ID_ENSEIGNANT);
@@ -471,14 +476,20 @@ public class CustomFrame extends JFrame implements ActionListener {
         ArrayList stringprof = new ArrayList<>();
         ArrayList stringGroupe = new ArrayList<>();
         ArrayList stringSalle = new ArrayList<>();
+        
+        DAO<Utilisateur> utilisateurdao = new DAO_Utilisateur();
+        DAO<Cours> coursdao = new DAO_Cours();
+        DAO<Promotion> promotiondao = new DAO_Promotion();
+        DAO<Groupe> groupedao = new DAO_Groupe();
+        DAO<Salle> salledao = new DAO_Salle();
+        ArrayList<Cours> cours = coursdao.all();
+        ArrayList<Utilisateur> prof = utilisateurdao.all();
+        ArrayList<Promotion> promotion = promotiondao.all();
+        ArrayList<Groupe> groupe = groupedao.all();
+        ArrayList<Salle> salle = salledao.all();
 
         if (semaineNbr != -1) {
-            DAO<Utilisateur> utilisateurdao = new DAO_Utilisateur();
-            DAO<Cours> coursdao = new DAO_Cours();
-            DAO<Promotion> promotiondao = new DAO_Promotion();
-            ArrayList<Cours> cours = coursdao.all();
-            ArrayList<Utilisateur> prof = utilisateurdao.all();
-            ArrayList<Promotion> promotion = promotiondao.all();
+            
 
             Recherche rech = new Recherche(uti);
             ArrayList<Seance> seances = new ArrayList<>();
@@ -490,8 +501,6 @@ public class CustomFrame extends JFrame implements ActionListener {
                         break;
                     case "Classe":
                         System.out.println("Aucun groupe trouvé");
-                        DAO<Groupe> groupedao = new DAO_Groupe();
-                        ArrayList<Groupe> groupe = groupedao.all();
                         test = false;
 
                         System.out.println(speF.getText());
@@ -518,8 +527,6 @@ public class CustomFrame extends JFrame implements ActionListener {
                         }
                         break;
                     case "Salle":
-                        DAO<Salle> salledao = new DAO_Salle();
-                        ArrayList<Salle> salle = salledao.all();
                         test = false;
                         for(int i = 0;i<salle.size();i++)
                         {
@@ -568,6 +575,19 @@ public class CustomFrame extends JFrame implements ActionListener {
                                             stringprof.add(prof.get(l).GET_NOM());
                                         }
                                     }
+                                    
+                                    for (int l = 0; l < groupe.size(); l++) {
+                                        if (seances.get(k).GET_ID_GROUPES().get(0) == groupe.get(l).GET_ID()) {
+                                            stringGroupe.add(groupe.get(l).GET_NOM());
+                                        }
+                                    }
+                                    
+                                    for (int l = 0; l < salle.size(); l++) {
+                                        if (seances.get(k).GET_ID_SALLES().get(0) == salle.get(l).GET_ID()) {
+                                            stringSalle.add(salle.get(l).GET_NOM());
+                                        }
+                                    }
+                                    
                                     trouve = true;
                                 }
 
@@ -579,6 +599,8 @@ public class CustomFrame extends JFrame implements ActionListener {
                     if (trouve == false) {
                         stringcours.add("-1");
                         stringprof.add("-1");
+                        stringGroupe.add("-1");
+                        stringSalle.add("-1");
                     } else {
                         trouve = false;
                     }
@@ -591,6 +613,8 @@ public class CustomFrame extends JFrame implements ActionListener {
                 for (int j = 0; j < 7; j++) {
                     stringcours.add("-1");
                     stringprof.add("-1");
+                    stringGroupe.add("-1");
+                    stringSalle.add("-1");
                 }
 
             }
@@ -600,6 +624,8 @@ public class CustomFrame extends JFrame implements ActionListener {
 
         System.out.println(stringcours);
         System.out.println(stringprof);
+        System.out.println(stringGroupe);
+        System.out.println(stringSalle);
 
         initArray(pSemaine, 0, 115, 5, 7, bleu, stringcours, stringprof, stringGroupe, stringSalle);
 
@@ -703,4 +729,14 @@ public class CustomFrame extends JFrame implements ActionListener {
         }
         return 0;
     }
+    
+    public int getNumWeekYearOfDate(Date dateInc) {
+        Calendar cal = Calendar.getInstance(Locale.FRANCE);
+        cal.setTime(dateInc);
+ 
+        return Calendar.WEEK_OF_YEAR;
+        
+   }
+    
+   
 }
