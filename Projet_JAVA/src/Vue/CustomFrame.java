@@ -404,9 +404,9 @@ public class CustomFrame extends JFrame implements ActionListener {
         
         for(int k=0;k<seances.size();k++){
             
-            stringid.add(seances.get(k).GET_ID().toString());
-            stringsemaine.add(seances.get(k).GET_SEMAINE());
-            stringdate.add(seances.get(k).GET_DATE());
+            stringid.add(Integer.toString(seances.get(k).GET_ID()));
+            stringsemaine.add(Integer.toString(seances.get(k).GET_SEMAINE()));
+            stringdate.add(seances.get(k).GET_DATE().toString());
             stringheured.add(seances.get(k).GET_HEURE_DEBUT().toString());
             stringetat.add(seances.get(k).GET_ETAT());
             
@@ -460,6 +460,7 @@ public class CustomFrame extends JFrame implements ActionListener {
         
         for (int i=0 ; i < stringid.size() ; i++) {
             adminGestion tmp = new adminGestion(menu + 25, i*60 + 60, stringid.get(i), stringdate.get(i), stringsemaine.get(i), stringheured.get(i), stringcours.get(i), stringtype.get(i), stringSalle.get(i), stringGroupe.get(i), stringprof.get(i), stringetat.get(i));
+            pContent.add(tmp);
         }
         
         
