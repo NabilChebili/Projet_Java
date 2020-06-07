@@ -440,7 +440,7 @@ public class CustomFrame extends JFrame implements ActionListener {
         pMenu.add(bMesSalles);
 
         //if (true) {
-            if (uti.GET_DROIT() == 3) {
+            if (uti.GET_DROIT() == 1 || uti.GET_DROIT() == 2) {
             JButton inputProf = new JButton("Ajout de cours");
             inputProf.setBackground(grisFonce);
             inputProf.setForeground(blanc);
