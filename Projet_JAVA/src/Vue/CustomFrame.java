@@ -192,7 +192,7 @@ public class CustomFrame extends JFrame implements ActionListener {
                 DAO<Salle> salledao = new DAO_Salle();
                 ArrayList<Salle> salle = salledao.all();
                 
-                //int ID = 19;
+                int ID = -1;
                 int SEMAINE = 10;
 
                 LocalDate DATE = LocalDate.parse(dateF.getText());       
@@ -202,7 +202,7 @@ public class CustomFrame extends JFrame implements ActionListener {
                 HEURE_FIN.plusMinutes(30);
                 String ETAT = "en cours de validation";
                 
-                int ID_COURS;
+                int ID_COURS = -1;
                 for(int i = 0;i<cours.size();i++)
                 {
                     if(idCoursF.getText() == cours.get(i).GET_NOM())
@@ -212,7 +212,13 @@ public class CustomFrame extends JFrame implements ActionListener {
                     }
                 }
                 
-                int ID_TYPE;
+                if(ID_COURS == -1)
+                {
+                    Exception erreur = null;
+                    throw erreur;
+                }
+                
+                int ID_TYPE = -1;
                 for(int i = 0;i<type_cours.size();i++)
                 {
                     if(typeCoursF.getText() == cours.get(i).GET_NOM())
@@ -222,34 +228,49 @@ public class CustomFrame extends JFrame implements ActionListener {
                     }
                 }
                 
-                
+                ArrayList<Integer> ID_GROUPE = new ArrayList<Integer>();;
                 for(int i = 0;i<groupe.size();i++)
                 {
-                    
+                    for(int j = 0;j<promotion.size();j++)
+                    {
+                        if((promotion.get(j).GET_NOM().equals(speCoursF.getText())) && (groupe.get(i).GET_ID_PROMOTION() == promotion.get(j).GET_ID()))
+                        {
+                            if(groupesF.getText().equals(groupe.get(i).GET_NOM()))
+                            {
+                                ID_GROUPE.add(groupe.get(i).GET_ID());
+                            }
+                        }
+
+                    }
+
                 }
-                ArrayList<Integer> ID_GROUPE = new ArrayList<Integer>();
-                
-                for(int i = 0;i<groupe.size();i++)
-                {
-                    
-                }
+
                 ArrayList<Integer> ID_SALLE = new ArrayList<Integer>();
+                for(int i = 0;i<salle.size();i++)
+                {
+                    if(sallesF.getText() == salle.get(i).GET_NOM())
+                    {
+                        ID_SALLE.add(salle.get(i).GET_ID());
+
+                    }
+                }
                 
+                ArrayList<Integer> ID_ENSEIGNANT = new ArrayList<Integer>();
                 for(int i = 0;i<groupe.size();i++)
                 {
-                    
+                    if((enseignantsF.getText() == prof.get(i).GET_NOM()) && (prof.get(i).GET_DROIT()==3))
+                    {
+                        ID_SALLE.add(prof.get(i).GET_ID());
+
+                    }
                 }
-                ArrayList<Integer> ID_ENSEIGNANT = new ArrayList<Integer>();
-                //ID_GROUPE.add(1);
-                //ID_GROUPE.add(2);
-                ID_GROUPE.add(groupesF.getText());
-                ID_SALLE.add(sallesF.getText());
-                ID_ENSEIGNANT.add(enseignantsF.getText());
+                
+                
                 
                 Seance seance = new Seance(ID,SEMAINE,DATE,HEURE_DEBUT,HEURE_FIN,ETAT,ID_COURS,ID_TYPE,ID_GROUPE,ID_SALLE,ID_ENSEIGNANT);
                 
                 try {
-                    //maj.AjoutUpdateSeance(seance, true);
+                    maj.AjoutUpdateSeance(seance, false);
 
                 } catch (Exception ex) {
                     ex.printStackTrace();
@@ -288,7 +309,8 @@ public class CustomFrame extends JFrame implements ActionListener {
         JLabel enseignants = new JLabel("Nom de l'enseignant: ");
         JLabel groupes = new JLabel("Nom de groupe: ");
         JLabel salles = new JLabel("Numéro de la salle: ");
-
+        JLabel promotion = new JLabel("Promotion: ");
+        
         creneau.setBounds(menu + 20, 20 + 80 + 10, 150, 30);
         date.setBounds(menu + 20, 50 + 80 + 20, 150, 30);
         idCours.setBounds(menu + 20, 80 + 80 + 30, 150, 30);
