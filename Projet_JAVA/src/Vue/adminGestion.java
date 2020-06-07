@@ -41,7 +41,7 @@ public class adminGestion extends JPanel {
         this.ligne.setLayout(null);
         
         this.ligne.setBackground(gris);
-        this.ligne.setSize(600-50, 60);
+        this.ligne.setSize(1200-50, 60);
         this.ligne.setLocation(x ,y);
         
         this.ID = new JLabel(idS);
