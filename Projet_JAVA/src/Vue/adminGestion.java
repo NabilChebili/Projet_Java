@@ -28,7 +28,6 @@ public class adminGestion extends JPanel {
     private JLabel salle;
     private JLabel groupe;
     private JLabel enseignant;
-    private final JButton supprimer;
 
     public adminGestion(int x, int y, String idS, String dateS, String semaineS, String heureDebutS, String nomCoursS, String typeCoursS, String salleS, String groupeS, String enseignantS) {
 
@@ -89,12 +88,6 @@ public class adminGestion extends JPanel {
         setFontSizeMax(this.enseignant);
         enseignant.setForeground(blanc);
         
-        supprimer = new JButton();
-        supprimer.addActionListener((ActionEvent e) -> {
-            System.out.println(ID.getText());
-            
-        });
-        
         this.ligne.add(ID);
         this.ligne.add(date);
         this.ligne.add(semaine);
@@ -104,7 +97,5 @@ public class adminGestion extends JPanel {
         this.ligne.add(groupe);
         this.ligne.add(salle);
         this.ligne.add(enseignant);
-        
-        this.ligne.add(supprimer);
     }
 }

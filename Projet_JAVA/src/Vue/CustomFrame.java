@@ -351,9 +351,15 @@ public class CustomFrame extends JFrame implements ActionListener {
                 break;
             case "Liste Séance":
                 System.out.println("On est sur le panel admin");
+                pContent.removeAll();
+                adminUpdate();
             default:
                 break;
         }
+    }
+    
+    private void adminUpdate() {
+        
     }
 
     private void updateProf(String titreC) {
