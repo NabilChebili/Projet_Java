@@ -128,7 +128,6 @@ public class CustomFrame extends JFrame implements ActionListener {
             case "Ajout de cours":
                 System.out.println("Ajout de cours  Pressed");
                 pContent.removeAll();
-
                 ajoutProf("Ajouter un cours:", "AJOUTER");
 
                 fMain.repaint();
