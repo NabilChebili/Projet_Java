@@ -471,8 +471,10 @@ public class CustomFrame extends JFrame implements ActionListener {
             stringSalle.add(ssalle);
         }
 
+        adminGestion firstLine = new adminGestion(menu + 25, 120, "ID", "Date", "Semaine", "Heure début", "Cours", "Type", "Salle", "Groupe", "Prof", "Etat");
+        pContent.add(firstLine);
         for (int i = 0; i < stringid.size(); i++) {
-            adminGestion tmp = new adminGestion(menu + 25, i * 60 + 60, stringid.get(i), stringdate.get(i), stringsemaine.get(i), stringheured.get(i), stringcours.get(i), stringtype.get(i), stringSalle.get(i), stringGroupe.get(i), stringprof.get(i), stringetat.get(i));
+            adminGestion tmp = new adminGestion(menu + 25, i * 60 + 120, stringid.get(i), stringdate.get(i), stringsemaine.get(i), stringheured.get(i), stringcours.get(i), stringtype.get(i), stringSalle.get(i), stringGroupe.get(i), stringprof.get(i), stringetat.get(i));
             pContent.add(tmp.getCours(), 2);
         }
     }
