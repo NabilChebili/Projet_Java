@@ -76,12 +76,10 @@ public class adminGestion extends JPanel {
         
         this.salle = new JLabel(salleS);
         this.salle.setBounds( 5+660, 10, 100, 40);
-        setFontSizeMax(this.salle);
         salle.setForeground(blanc);
         
         this.groupe = new JLabel(groupeS);
         this.groupe.setBounds( 5 +770, 10, 100, 40);
-        setFontSizeMax(this.groupe);
         groupe.setForeground(blanc);
         
         this.enseignant = new JLabel(enseignantS);
