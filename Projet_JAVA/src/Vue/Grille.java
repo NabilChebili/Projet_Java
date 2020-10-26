@@ -37,7 +37,7 @@ public final class Grille extends JPanel {
         }
 
         label = new ArrayList<>();
-        for (int i = 1; i < 16; i+=2) {
+        for (int i = 1; i < 15; i+=2) {
             JLabel test = new JLabel(staticHeure(i));
             test.setBounds(x, 13 + (y + 5 * 4) * ((i-1)/2) + 100 + 3, 50 ,10);
             label.add(test);

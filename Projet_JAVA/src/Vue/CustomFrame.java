@@ -218,7 +218,8 @@ public class CustomFrame extends JFrame implements ActionListener {
                 DATE = LocalDate.parse(dateF.getText());
                 myDate = new Date(DATE.getYear(), DATE.getMonthValue(), DATE.getDayOfMonth());
                 SEMAINE = Integer.parseInt(formater.format(myDate));
-                HEURE_DEBUT = LocalTime.parse(creneauF.getText());
+                String creneau = creneauF.getText();
+                HEURE_DEBUT = LocalTime.parse(creneau);
                 HEURE_FIN = HEURE_DEBUT.plusHours(1).plusMinutes(30);
                 ETAT = "en cours de validation";
 
@@ -365,6 +366,10 @@ public class CustomFrame extends JFrame implements ActionListener {
                 
                 DAO<Seance> seancedao = new DAO_Seance();
                 boolean test = seancedao.delete(seance);
+                pContent.removeAll();
+                adminUpdate();
+                fMain.repaint();
+                fMain.revalidate();
                 break;
             default:
                 break;
